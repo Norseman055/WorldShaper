@@ -1,25 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="WorldShaper">
+    <Filter Include="Core Engine">
       <UniqueIdentifier>{5220b1d0-4e5f-46c3-88f8-4b9a88314b46}</UniqueIdentifier>
     </Filter>
-    <Filter Include="WorldShaper\Header Files">
+    <Filter Include="Core Engine\Header Files">
       <UniqueIdentifier>{a305d087-4ba9-494d-a4d3-d34c3bc803ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="WorldShaper\Source Files">
+    <Filter Include="Core Engine\Source Files">
       <UniqueIdentifier>{96400676-d76a-4efd-b1de-3f0673744855}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GLFW Rendering">
+      <UniqueIdentifier>{936497dd-2ba4-48f0-94b2-c11d769da6b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GLFW Rendering\Header Files">
+      <UniqueIdentifier>{d0ee7cc0-457d-42a5-be81-0e4f6b224ff9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GLFW Rendering\Source Files">
+      <UniqueIdentifier>{60e63599-725e-41ab-a211-4aee6b339b3f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WorldShaper.cpp">
-      <Filter>WorldShaper\Source Files</Filter>
+      <Filter>Core Engine\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="GLFWManager.cpp">
+      <Filter>GLFW Rendering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WorldShaper.h">
-      <Filter>WorldShaper\Header Files</Filter>
+      <Filter>Core Engine\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GLFWManager.h">
+      <Filter>GLFW Rendering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Macros.h" />
   </ItemGroup>
 </Project>
