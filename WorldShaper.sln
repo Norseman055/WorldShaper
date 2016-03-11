@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WorldShaper", "WorldShaper\WorldShaper.vcxproj", "{47CB4FDA-1BE9-4808-88EA-9125EC390F95}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "UnitTests\UnitTests.vcxproj", "{504AA9A6-D812-48AE-B420-D6AAA96ABEE5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Application", "Application\Application.vcxproj", "{E538CAA0-F150-4540-8525-5D3502DB5C45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +19,14 @@ Global
 		{47CB4FDA-1BE9-4808-88EA-9125EC390F95}.Debug|Win32.Build.0 = Debug|Win32
 		{47CB4FDA-1BE9-4808-88EA-9125EC390F95}.Release|Win32.ActiveCfg = Release|Win32
 		{47CB4FDA-1BE9-4808-88EA-9125EC390F95}.Release|Win32.Build.0 = Release|Win32
+		{504AA9A6-D812-48AE-B420-D6AAA96ABEE5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{504AA9A6-D812-48AE-B420-D6AAA96ABEE5}.Debug|Win32.Build.0 = Debug|Win32
+		{504AA9A6-D812-48AE-B420-D6AAA96ABEE5}.Release|Win32.ActiveCfg = Release|Win32
+		{504AA9A6-D812-48AE-B420-D6AAA96ABEE5}.Release|Win32.Build.0 = Release|Win32
+		{E538CAA0-F150-4540-8525-5D3502DB5C45}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E538CAA0-F150-4540-8525-5D3502DB5C45}.Debug|Win32.Build.0 = Debug|Win32
+		{E538CAA0-F150-4540-8525-5D3502DB5C45}.Release|Win32.ActiveCfg = Release|Win32
+		{E538CAA0-F150-4540-8525-5D3502DB5C45}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -28,5 +28,6 @@
 *.exe
 *.out
 *.app
-WorldShaper/Debug/vc120.idb
 *.tlog
+*.idb
+*.ipch

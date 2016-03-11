@@ -27,7 +27,6 @@
     <ClCompile Include="GLFWManager.cpp">
       <Filter>GLFW Rendering\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Application.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WorldShaper.h">

@@ -1,9 +1,8 @@
 #include <stdlib.h>
 
-#include "WorldShaper.h"
+#include <WorldShaper.h>
 
-int main()
-{
+int main() {
 	WorldShaper::Run();
 	return EXIT_SUCCESS;
 }
