@@ -19,6 +19,24 @@
     <Filter Include="GLFW Rendering\Source Files">
       <UniqueIdentifier>{60e63599-725e-41ab-a211-4aee6b339b3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Models">
+      <UniqueIdentifier>{3bdfc072-536a-43d6-a20d-06f1cfc9c27d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Textures">
+      <UniqueIdentifier>{e9d5d39e-9e07-4b34-aa2c-496f6e8301bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Generics">
+      <UniqueIdentifier>{fc2a3feb-18f3-46f3-9fe4-3273710a3498}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{dc9c8378-6dc4-46f5-95e8-f19b794d2e81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Models\Header Files">
+      <UniqueIdentifier>{39d65f20-43d1-4a5a-b055-917a90b0d739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Models\_Generics">
+      <UniqueIdentifier>{5107a2dc-d486-44e9-a264-41f156beb97e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WorldShaper.cpp">
@@ -26,6 +44,9 @@
     </ClCompile>
     <ClCompile Include="GLFWManager.cpp">
       <Filter>GLFW Rendering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelManager.cpp">
+      <Filter>Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -36,5 +57,40 @@
       <Filter>GLFW Rendering\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Macros.h" />
+    <ClInclude Include="Model.h">
+      <Filter>Models\_Generics</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>_Generics</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>_Generics</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeLink.h">
+      <Filter>_Generics</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelNode.h">
+      <Filter>Models\_Generics</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelTypes.h">
+      <Filter>Models\_Generics</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelManager.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>_Generics</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Models\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Phong.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Phong.vert">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -6,31 +6,41 @@
 #include "Macros.h"
 
 void GLFWManager::StartupGLFW() {
+	printf( "===== Starting GLFW Manager =====\n" );
 	auto glfwManager = getInstance();
 
 	// Set error callback prior to initialization to notify if initialization fails
 	glfwSetErrorCallback( error_callback );
 
 	// Initialize GLFW library
+	printf( "  Initializing GLFW library..." );
 	if ( !glfwInit() ) {
 		exit( EXIT_FAILURE );
 	}
+	printf( "  Success!\n" );
 
 	// Create a window and context, make a current OpenGL context
+	printf( "  Creating game window..." );
 	glfwManager->mWindow = glfwCreateWindow( GAME_WIDTH, GAME_HEIGHT, "WorldShaper - Make your own", nullptr, nullptr );
 	if ( !glfwManager->mWindow ) {
 		glfwTerminate();
 		exit( EXIT_FAILURE );
 	}
+	printf( "  Success!\n" );
+	printf( "  Making OpenGL context current..." );
 	glfwMakeContextCurrent( glfwManager->mWindow );
 	glfwSwapInterval( 1 );
+	printf( "  Success!\n" );
 
+	printf( "  Initializing GLEW..." );
 	glewExperimental = GL_TRUE;
 	GLenum err = glewInit();
 	if ( err != GLEW_OK ) {
 		ShutdownGLFW();
 		exit( EXIT_FAILURE );
 	}
+	printf( "  Success!\n" );
+	printf( "===== GLFW Manager started =====\n\n" );
 
 	// Display OpenGL version info
 	const GLubyte* renderer = glGetString( GL_RENDERER ); 
