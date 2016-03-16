@@ -14,9 +14,11 @@ void WorldShaper::Run() {
 
 void WorldShaper::Startup() {
 	GLFWManager::StartupGLFW();
+	ModelManager::Startup();
 }
 
 void WorldShaper::Shutdown() {
+	ModelManager::Shutdown();
 	GLFWManager::ShutdownGLFW();
 }
 

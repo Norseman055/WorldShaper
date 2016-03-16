@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GLFWManager.h"
+#include "ModelManager.h"
 
 class WorldShaper {
 public:
