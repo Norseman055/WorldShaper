@@ -10,8 +10,8 @@ public:
 		return this->type;
 	}
 
-	ModelNode( ModelType inType, Model* const model ) 
-		: NodeLink(model), type(inType)
+	ModelNode( Model* const model ) 
+		: NodeLink(model), type(model->getType())
 	{ }
 
 private:

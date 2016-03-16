@@ -34,9 +34,6 @@
     <Filter Include="Models\Header Files">
       <UniqueIdentifier>{39d65f20-43d1-4a5a-b055-917a90b0d739}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Models\Source Files">
-      <UniqueIdentifier>{68edff4b-fd58-4846-ac9b-2ddc3d2f5e65}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Models\_Generics">
       <UniqueIdentifier>{5107a2dc-d486-44e9-a264-41f156beb97e}</UniqueIdentifier>
     </Filter>
@@ -84,5 +81,16 @@
     <ClInclude Include="Vertex.h">
       <Filter>_Generics</Filter>
     </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Models\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Phong.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Phong.vert">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

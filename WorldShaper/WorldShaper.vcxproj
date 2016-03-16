@@ -82,6 +82,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="GLFWManager.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Macros.h" />
@@ -98,6 +99,10 @@
     <ClCompile Include="GLFWManager.cpp" />
     <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="WorldShaper.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Phong.frag" />
+    <None Include="Phong.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

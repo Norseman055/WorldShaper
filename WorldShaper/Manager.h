@@ -9,16 +9,14 @@ class NodeLink;
 template<typename T>
 class Manager : public Singleton<Manager<T>> {
 	friend class Singleton<Manager<T>>;
-public:
+protected:
 	static void Add( NodeLink<T>* const node );
 	static void Remove( NodeLink<T>* const node );
-
-protected:
 	static PCSTree* GetObjectList();
 	static void Cleanup();
-	Manager() {
-		active = new PCSTree;
-	}
+
+	Manager();
+	virtual ~Manager();
 
 private:
 	// members
@@ -51,4 +49,17 @@ void Manager<T>::Cleanup() {
 	if ( man->active->getRoot() ) {
 		man->active->removeDown( man->active->getRoot() );
 	}
+}
+
+template <typename T>
+Manager<T>::Manager() {
+	printf( "  Creating Manager...\n" );
+	active = new PCSTree;
+
+}
+
+template <typename T>
+Manager<T>::~Manager() {
+	Cleanup();
+	delete active;
 }

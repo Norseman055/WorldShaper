@@ -2,7 +2,7 @@
 
 #include "Math\Vect.h"
 
-struct Vertex {
+struct Vertex : public Align16 {
 	Vect pos;
 	Vect normal;
 	Vect color;		// x = R, y = G, z = B, w = A

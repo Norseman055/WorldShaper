@@ -7,9 +7,15 @@ class ModelManager : public Manager<Model> {
 public: 
 	static void Startup();
 	static void Shutdown();
-	
-	static Model* Find( ModelType );
 
+	static void AddModel( Model* const );
+	static void RemoveModel( const ModelType );
+
+	static Model* FindModel( const ModelType );
+	
 private:
-	Model* findDepthFirst( ModelNode* const, ModelType );
+	static void LoadModels();
+	static ModelNode* Find( const ModelType );
+
+	ModelNode* findDepthFirst( ModelNode* const, ModelType );
 };
