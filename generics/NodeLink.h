@@ -12,6 +12,10 @@ public:
 		return this->data;
 	}
 
+	virtual ~NodeLink() {
+		delete data;
+	}
+
 private:
 	NodeLink() :
 		PCSNode(), data( nullptr ) { }
