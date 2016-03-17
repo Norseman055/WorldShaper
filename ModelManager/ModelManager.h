@@ -1,7 +1,10 @@
 #pragma once
 
 #include "Manager.h"
-#include "ModelNode.h"
+#include "ModelTypes.h"
+
+class ModelNode;
+class Model;
 
 class ModelManager : public Manager<Model> {
 public: 
@@ -17,5 +20,5 @@ private:
 	static void LoadModels();
 	static ModelNode* Find( const ModelType );
 
-	ModelNode* findDepthFirst( ModelNode* const, ModelType );
+	ModelNode* findDepthFirst( ModelNode* const, const ModelType );
 };

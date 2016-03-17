@@ -1,12 +1,9 @@
-#pragma once
-#include "Model.h"
+#include "Cube.h"
 
-class Cube : public Model {
-public:
-	Cube();
-};
+#include "Vertex.h"
+#include <stdio.h>
 
-inline Cube::Cube()
+Cube::Cube()
 	: Model( Model_Cube ) {
 	printf( "    Loading cube...\n" );
 
@@ -20,11 +17,11 @@ inline Cube::Cube()
 	vertices[3].pos = Vect( 0.3f, -0.3f, -0.3f );
 	vertices[0].normal = Vect( 0, 0, -1 );
 	vertices[1].normal = Vect( 0, 0, -1 );
-	vertices[2].normal = Vect( 0, 0, -1 ); 
+	vertices[2].normal = Vect( 0, 0, -1 );
 	vertices[3].normal = Vect( 0, 0, -1 );
-	vertices[0].color = Vect( 1, 1, 1 ); 
-	vertices[1].color = Vect( 1, 1, 1 ); 
-	vertices[2].color = Vect( 1, 1, 1 ); 
+	vertices[0].color = Vect( 1, 1, 1 );
+	vertices[1].color = Vect( 1, 1, 1 );
+	vertices[2].color = Vect( 1, 1, 1 );
 	vertices[3].color = Vect( 1, 1, 1 );
 
 	vertices[3].uv = Vect( 0, 0, 0 );
@@ -37,7 +34,7 @@ inline Cube::Cube()
 	vertices[5].pos = Vect( 0.3f, -0.3f, 0.3f );
 	vertices[6].pos = Vect( 0.3f, 0.3f, 0.3f );
 	vertices[7].pos = Vect( -0.3f, 0.3f, 0.3f );
-	vertices[4].normal = Vect( 0, 0, 1 ); 
+	vertices[4].normal = Vect( 0, 0, 1 );
 	vertices[5].normal = Vect( 0, 0, 1 );
 	vertices[6].normal = Vect( 0, 0, 1 );
 	vertices[7].normal = Vect( 0, 0, 1 );
@@ -65,8 +62,8 @@ inline Cube::Cube()
 	vertices[10].color = Vect( 1, 1, 1 );
 	vertices[11].color = Vect( 1, 1, 1 );
 
-	vertices[8].uv = Vect( 0, 0, 0);
-	vertices[9].uv = Vect( 1, 0, 0);
+	vertices[8].uv = Vect( 0, 0, 0 );
+	vertices[9].uv = Vect( 1, 0, 0 );
 	vertices[10].uv = Vect( 1, 1, 0 );
 	vertices[11].uv = Vect( 0, 1, 0 );
 

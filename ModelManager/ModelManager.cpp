@@ -1,5 +1,7 @@
 #include "ModelManager.h"
 
+#include "ModelNode.h"
+#include "Model.h"
 #include "Cube.h"
 
 void ModelManager::Startup() {
@@ -53,7 +55,7 @@ ModelNode* ModelManager::Find( ModelType type ) {
 	return model;
 }
 
-ModelNode* ModelManager::findDepthFirst( ModelNode* const walker, ModelType type ) {
+ModelNode* ModelManager::findDepthFirst( ModelNode* const walker, const ModelType type ) {
 	ModelNode* model = nullptr;
 
 	if ( walker->getType() == type ) {
