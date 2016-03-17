@@ -1,9 +1,5 @@
 #pragma once
 
-#include "GLFWManager.h"
-#include "ModelManager.h"
-#include "TextureManager.h"
-
 class WorldShaper {
 public:
 	// Methods
