@@ -59,7 +59,6 @@ GameObjectNode* GameObjectManager::Find( const GameObjectType type, const char* 
 			}
 		}
 	}
-
 	return gameObject;
 }
 
@@ -73,7 +72,6 @@ GameObjectNode* GameObjectManager::findTypeTree( GameObjectNode* const walker, c
 			gameObject = this->findTypeTree( static_cast< GameObjectNode* >(walker->getSibling()), type );
 		}
 	}
-
 	return gameObject;
 }
 
@@ -90,6 +88,5 @@ GameObjectNode* GameObjectManager::findDepthFirst( GameObjectNode* const walker,
 			gameObject = this->findDepthFirst( static_cast< GameObjectNode* >(walker->getSibling()), name );
 		}
 	}
-		
 	return gameObject;
 }

@@ -16,7 +16,6 @@
     <ClInclude Include="ModelManager.h" />
     <ClInclude Include="ModelNode.h" />
     <ClInclude Include="ModelTypes.h" />
-    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp" />

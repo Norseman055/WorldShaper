@@ -50,7 +50,6 @@ TextureNode* TextureManager::Find( const TextureType type ) {
 			texture = instance->findDepthFirst( root, type );
 		}
 	}
-
 	return texture;
 }
 
@@ -67,6 +66,5 @@ TextureNode* TextureManager::findDepthFirst( TextureNode* const walker, const Te
 			texture = this->findDepthFirst( static_cast< TextureNode* >(walker->getSibling()), type );
 		}
 	}
-
 	return texture;
 }

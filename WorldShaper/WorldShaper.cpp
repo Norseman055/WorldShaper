@@ -2,6 +2,7 @@
 #include "Macros.h"
 
 #include "GLFWManager.h"
+#include "ShaderManager.h"
 #include "ModelManager.h"
 #include "TextureManager.h"
 #include "GameObjectManager.h"
@@ -19,6 +20,7 @@ void WorldShaper::Run() {
 
 void WorldShaper::Startup() {
 	GLFWManager::StartupGLFW();
+	ShaderManager::Startup();
 	ModelManager::Startup();
 	TextureManager::Startup();
 	GameObjectManager::Startup();
@@ -28,6 +30,7 @@ void WorldShaper::Shutdown() {
 	GameObjectManager::Shutdown();
 	TextureManager::Shutdown();
 	ModelManager::Shutdown();
+	ShaderManager::Shutdown();
 	GLFWManager::ShutdownGLFW();
 }
 

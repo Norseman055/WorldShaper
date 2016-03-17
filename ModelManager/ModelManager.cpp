@@ -41,7 +41,7 @@ void ModelManager::LoadModels() {
 	AddModel( new Cube );
 }
 
-ModelNode* ModelManager::Find( ModelType type ) {
+ModelNode* ModelManager::Find( const ModelType type ) {
 	ModelNode* model = nullptr;
 	if ( type != Model_None ) {
 		ModelNode* root = static_cast< ModelNode* >(GetObjectList()->getRoot());
@@ -51,7 +51,6 @@ ModelNode* ModelManager::Find( ModelType type ) {
 			model = instance->findDepthFirst( root, type );
 		}
 	}
-	
 	return model;
 }
 
@@ -68,6 +67,5 @@ ModelNode* ModelManager::findDepthFirst( ModelNode* const walker, const ModelTyp
 			model = this->findDepthFirst( static_cast< ModelNode* >(walker->getSibling()), type );
 		}
 	}
-	
 	return model;
 }
