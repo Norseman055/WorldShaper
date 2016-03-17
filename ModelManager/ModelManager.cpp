@@ -64,7 +64,7 @@ ModelNode* ModelManager::findDepthFirst( ModelNode* const walker, const ModelTyp
 		if ( walker->getChild() ) {
 			model = this->findDepthFirst( static_cast< ModelNode* >(walker->getChild()), type );
 		}
-		if ( model == nullptr && walker->getSibling() ) {
+		if ( !model && walker->getSibling() ) {
 			model = this->findDepthFirst( static_cast< ModelNode* >(walker->getSibling()), type );
 		}
 	}

@@ -5,8 +5,7 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WorldShaper", "WorldShaper\WorldShaper.vcxproj", "{47CB4FDA-1BE9-4808-88EA-9125EC390F95}"
 	ProjectSection(ProjectDependencies) = postProject
-		{0A28EF60-5FC1-4182-A1D5-36D5C37C3799} = {0A28EF60-5FC1-4182-A1D5-36D5C37C3799}
-		{92EE5985-AF10-4A38-AF4F-5B8DDFBF286D} = {92EE5985-AF10-4A38-AF4F-5B8DDFBF286D}
+		{F2EC4E09-2C91-4BC2-8B26-3FD5EE293F96} = {F2EC4E09-2C91-4BC2-8B26-3FD5EE293F96}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "UnitTests\UnitTests.vcxproj", "{504AA9A6-D812-48AE-B420-D6AAA96ABEE5}"
@@ -19,6 +18,12 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ModelManager", "ModelManager\ModelManager.vcxproj", "{0A28EF60-5FC1-4182-A1D5-36D5C37C3799}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TextureManager", "TextureManager\TextureManager.vcxproj", "{92EE5985-AF10-4A38-AF4F-5B8DDFBF286D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameObjectManager", "GameObjectManager\GameObjectManager.vcxproj", "{F2EC4E09-2C91-4BC2-8B26-3FD5EE293F96}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0A28EF60-5FC1-4182-A1D5-36D5C37C3799} = {0A28EF60-5FC1-4182-A1D5-36D5C37C3799}
+		{92EE5985-AF10-4A38-AF4F-5B8DDFBF286D} = {92EE5985-AF10-4A38-AF4F-5B8DDFBF286D}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +51,10 @@ Global
 		{92EE5985-AF10-4A38-AF4F-5B8DDFBF286D}.Debug|Win32.Build.0 = Debug|Win32
 		{92EE5985-AF10-4A38-AF4F-5B8DDFBF286D}.Release|Win32.ActiveCfg = Release|Win32
 		{92EE5985-AF10-4A38-AF4F-5B8DDFBF286D}.Release|Win32.Build.0 = Release|Win32
+		{F2EC4E09-2C91-4BC2-8B26-3FD5EE293F96}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F2EC4E09-2C91-4BC2-8B26-3FD5EE293F96}.Debug|Win32.Build.0 = Debug|Win32
+		{F2EC4E09-2C91-4BC2-8B26-3FD5EE293F96}.Release|Win32.ActiveCfg = Release|Win32
+		{F2EC4E09-2C91-4BC2-8B26-3FD5EE293F96}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

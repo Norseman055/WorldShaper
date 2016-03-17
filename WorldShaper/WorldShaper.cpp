@@ -1,6 +1,11 @@
 #include "WorldShaper.h"
 #include "Macros.h"
 
+#include "GLFWManager.h"
+#include "ModelManager.h"
+#include "TextureManager.h"
+#include "GameObjectManager.h"
+
 void WorldShaper::Run() {
 	Startup();
 	auto window = GLFWManager::GetWindow();
@@ -16,9 +21,11 @@ void WorldShaper::Startup() {
 	GLFWManager::StartupGLFW();
 	ModelManager::Startup();
 	TextureManager::Startup();
+	GameObjectManager::Startup();
 }
 
 void WorldShaper::Shutdown() {
+	GameObjectManager::Shutdown();
 	TextureManager::Shutdown();
 	ModelManager::Shutdown();
 	GLFWManager::ShutdownGLFW();

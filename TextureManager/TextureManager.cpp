@@ -63,7 +63,7 @@ TextureNode* TextureManager::findDepthFirst( TextureNode* const walker, const Te
 		if ( walker->getChild() ) {
 			texture = this->findDepthFirst( static_cast< TextureNode* >(walker->getChild()), type );
 		}
-		if ( texture == nullptr && walker->getSibling() ) {
+		if ( !texture && walker->getSibling() ) {
 			texture = this->findDepthFirst( static_cast< TextureNode* >(walker->getSibling()), type );
 		}
 	}

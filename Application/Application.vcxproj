@@ -51,7 +51,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)ModelManager;$(SolutionDir)TextureManager;$(SolutionDir)WorldShaper;$(SolutionDir)libs;$(SolutionDir)generics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ModelManager;$(SolutionDir)TextureManager;$(SolutionDir)GameObjectManager;$(SolutionDir)WorldShaper;$(SolutionDir)libs;$(SolutionDir)generics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -71,7 +71,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)ModelManager;$(SolutionDir)TextureManager;$(SolutionDir)WorldShaper;$(SolutionDir)libs;$(SolutionDir)generics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ModelManager;$(SolutionDir)TextureManager;$(SolutionDir)GameObjectManager;$(SolutionDir)WorldShaper;$(SolutionDir)libs;$(SolutionDir)generics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>

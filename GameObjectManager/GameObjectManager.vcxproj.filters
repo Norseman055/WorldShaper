@@ -9,48 +9,34 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="_Models">
-      <UniqueIdentifier>{ff568dfe-4b38-4457-8d10-4fa76ce49a16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="_Models\Header Files">
-      <UniqueIdentifier>{ce92185a-d908-43a6-b72f-0989e9d4760a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="_Models\Source Files">
-      <UniqueIdentifier>{1be540ca-1921-4d7a-8482-9bd39709d868}</UniqueIdentifier>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ModelManager.h">
+    <ClInclude Include="GameObjectManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ModelNode.h">
+    <ClInclude Include="GameObjectNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ModelTypes.h">
+    <ClInclude Include="GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cube.h">
-      <Filter>_Models\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
+    <ClInclude Include="GameObjectTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ModelManager.cpp">
+    <ClCompile Include="GameObjectManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ModelNode.cpp">
+    <ClCompile Include="GameObjectNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Model.cpp">
+    <ClCompile Include="GameObject.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Cube.cpp">
-      <Filter>_Models\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
