@@ -51,7 +51,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;$(SolutionDir)ModelManager;$(SolutionDir)TextureManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;$(SolutionDir)ModelManager;$(SolutionDir)TextureManager;$(SolutionDir)ShaderManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -59,7 +59,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>ModelManagerDebug.lib;TextureManagerDebug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ModelManagerDebug.lib;TextureManagerDebug.lib;ShaderManagerDebug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -72,7 +72,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;$(SolutionDir)ModelManager;$(SolutionDir)TextureManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;$(SolutionDir)ModelManager;$(SolutionDir)TextureManager;$(SolutionDir)ShaderManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -82,7 +82,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>ModelManagerRelease.lib;TextureManagerRelease.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ModelManagerRelease.lib;TextureManagerRelease.lib;ShaderManagerRelease.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

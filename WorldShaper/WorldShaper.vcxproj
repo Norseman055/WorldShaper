@@ -55,7 +55,7 @@
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3.lib;glew32s.lib;PCSTreeDebug.lib;MathEngineDebug.lib;GameObjectManagerDebug.lib;ShaderManagerDebug.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;glew32s.lib;PCSTreeDebug.lib;MathEngineDebug.lib;GameObjectManagerDebug.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)libs\GLFW;$(SolutionDir)libs\glew;$(SolutionDir)libs\PCSTree;$(SolutionDir)libs\Math;$(SolutionDir)libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -81,7 +81,7 @@
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3.lib;glew32s.lib;PCSTreeRelease.lib;MathEngineRelease.lib;GameObjectManagerRelease.lib;ShaderManagerRelease.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;glew32s.lib;PCSTreeRelease.lib;MathEngineRelease.lib;GameObjectManagerRelease.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)libs\GLFW;$(SolutionDir)libs\glew;$(SolutionDir)libs\PCSTree;$(SolutionDir)libs\Math;$(SolutionDir)libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>

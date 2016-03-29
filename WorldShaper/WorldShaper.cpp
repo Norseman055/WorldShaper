@@ -1,5 +1,4 @@
 #include "WorldShaper.h"
-#include "Macros.h"
 
 #include "GLFWManager.h"
 #include "ShaderManager.h"
@@ -36,7 +35,7 @@ void WorldShaper::Shutdown() {
 
 void WorldShaper::update(double gameTime) {
 	// Add update logic
-	UNUSED( gameTime );
+	GameObjectManager::Update( gameTime );
 }
 
 void WorldShaper::draw() {	

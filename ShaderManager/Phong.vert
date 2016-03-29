@@ -1,4 +1,4 @@
-#version 150
+#version 450
 
 in vec4 vertexPos;
 in vec3 vertexNormal;

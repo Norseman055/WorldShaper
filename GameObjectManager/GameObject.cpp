@@ -20,8 +20,13 @@ void GameObject::setTexture( Texture* const inTexture ) {
 	this->texture = inTexture;
 }
 
+void GameObject::setShader( Shader* const inShader ) {
+	printf( "      Setting shader...\n" );
+	this->shader = inShader;
+}
+
 GameObject::GameObject( const GameObjectType inType, const char* inName )
-	: type( inType ), name( inName ), model( nullptr ), texture( nullptr ) {
+	: type( inType ), name( inName ), model( nullptr ), texture( nullptr ), shader( nullptr ) {
 	printf( "    Creating game object...\n" );
 }
 

@@ -4,6 +4,7 @@
 
 class Model;
 class Texture;
+class Shader;
 
 class GameObject {
 public:
@@ -12,6 +13,7 @@ public:
 
 	void setModel( Model* const );
 	void setTexture( Texture* const );
+	void setShader( Shader* const );
 
 	GameObject( const GameObjectType, const char* );
 	~GameObject();
@@ -22,4 +24,5 @@ private:
 
 	Model* model;
 	Texture* texture;
+	Shader* shader;
 };

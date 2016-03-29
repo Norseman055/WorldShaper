@@ -11,6 +11,8 @@ public:
 	static void Startup();
 	static void Shutdown();
 
+	static void Update( const double );
+
 	static void AddGameObject( GameObject* const );
 	static void RemoveGameObject( const GameObjectType, const char* );
 

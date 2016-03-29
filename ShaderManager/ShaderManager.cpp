@@ -37,7 +37,7 @@ Shader* ShaderManager::FindShader( const ShaderType type ) {
 
 void ShaderManager::LoadShaders() {
 	printf( "  Loading shaders...\n" );
-	AddShader( new Shader( Shader_Phong, "Phong" ) );
+	AddShader( new Shader( Shader_Phong, "../ShaderManager/Phong" ) );
 }
 
 ShaderNode* ShaderManager::Find( const ShaderType type ) {

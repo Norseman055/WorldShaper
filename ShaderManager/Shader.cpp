@@ -26,7 +26,6 @@ void Shader::setupGLSLShaders( const char* shaderName ) {
 	memcpy( fragShaderName, shaderName, nameLen );
 	memcpy( &fragShaderName[nameLen], fragExt, 6 );
 
-
 	int status;
 	char errorMessage[4096];  // Big enough to hold any reasonable error message
 	FILE* vertF;

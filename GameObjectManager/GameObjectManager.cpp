@@ -1,10 +1,12 @@
 #include "GameObjectManager.h"
+#include "Macros.h"
 
 #include "GameObjectNode.h"
 #include "GameObject.h"
 
 #include "ModelManager.h"
 #include "TextureManager.h"
+#include "ShaderManager.h"
 
 #include <string.h>
 
@@ -18,6 +20,11 @@ void GameObjectManager::Startup() {
 void GameObjectManager::Shutdown() {
 	Cleanup();
 	DestroyInstance();
+}
+
+void GameObjectManager::Update( const double gameTime ) {
+	// Update game objects
+	UNUSED( gameTime );
 }
 
 void GameObjectManager::AddGameObject( GameObject* const gameObject ) {
@@ -42,6 +49,7 @@ void GameObjectManager::LoadGameObjects() {
 	GameObject* cubeBrick = new GameObject( GameObject_CubeBrick, "testCube" );
 	cubeBrick->setModel( ModelManager::FindModel( Model_Cube ) );
 	cubeBrick->setTexture( TextureManager::FindTexture( Texture_Brick ) );
+	cubeBrick->setShader( ShaderManager::FindShader( Shader_Phong ) );
 	AddGameObject( cubeBrick );
 }
 

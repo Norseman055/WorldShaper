@@ -1,4 +1,4 @@
-#version 150
+#version 450
 
 in vec4 interpColor;
 in vec3 interpNormal;
