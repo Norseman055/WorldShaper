@@ -1,4 +1,7 @@
 #include "GameObject.h"
+#include "Macros.h"
+
+#include "Model.h"
 
 #include <stdio.h>
 
@@ -23,6 +26,19 @@ void GameObject::setTexture( Texture* const inTexture ) {
 void GameObject::setShader( Shader* const inShader ) {
 	printf( "      Setting shader...\n" );
 	this->shader = inShader;
+}
+
+void GameObject::update( const double gameTime ) const {
+	// Add update logic here
+	UNUSED( gameTime );
+}
+
+void GameObject::draw() const {
+	// Add draw logic here
+	// Setup shader
+	// Setup textures
+	// Setup model
+	// Draw
 }
 
 GameObject::GameObject( const GameObjectType inType, const char* inName )

@@ -5,7 +5,7 @@
 
 class Texture;
 
-class TextureNode : public NodeLink<Texture> {
+class TextureNode : public NodeLink<Texture*> {
 public:
 	TextureType getType() const;
 

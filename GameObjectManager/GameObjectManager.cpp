@@ -1,5 +1,4 @@
 #include "GameObjectManager.h"
-#include "Macros.h"
 
 #include "GameObjectNode.h"
 #include "GameObject.h"
@@ -24,11 +23,18 @@ void GameObjectManager::Shutdown() {
 
 void GameObjectManager::Update( const double gameTime ) {
 	// Update game objects
-	UNUSED( gameTime );
+	GameObjectNode* root = static_cast< GameObjectNode* >(GetObjectList()->getRoot());
+	if ( root ) {
+		static_cast< GameObjectManager* >(GetInstance())->updatePtC( gameTime, root );
+	}
 }
 
 void GameObjectManager::Draw() {
 	// Draw game objects
+	GameObjectNode* root = static_cast< GameObjectNode* >(GetObjectList()->getRoot());
+	if ( root ) {
+		static_cast< GameObjectManager* >(GetInstance())->drawPtC( root );
+	}
 }
 
 void GameObjectManager::AddGameObject( GameObject* const gameObject ) {
@@ -61,44 +67,58 @@ GameObjectNode* GameObjectManager::Find( const GameObjectType type, const char* 
 	GameObjectNode* gameObject = nullptr;
 	if ( type != GameObject_None ) {
 		GameObjectNode* root = static_cast< GameObjectNode* >(GetObjectList()->getRoot());
-		GameObjectNode* typeTree = nullptr;
-
 		if ( root ) {
-			GameObjectManager* instance = static_cast< GameObjectManager* >(GetInstance());
-			typeTree = instance->findTypeTree( root, type );
-			if ( typeTree ) {
-				gameObject = instance->findDepthFirst( gameObject, name );
-			}
+			gameObject = static_cast< GameObjectManager* >(GetInstance())->findDepthFirst( root, type, name );
 		}
 	}
 	return gameObject;
 }
 
-GameObjectNode* GameObjectManager::findTypeTree( GameObjectNode* const walker, const GameObjectType type ) {
+GameObjectNode* GameObjectManager::findDepthFirst( GameObjectNode* const walker, const GameObjectType type, const char* name ) const {
 	GameObjectNode* gameObject = nullptr;
 
+	// Look for object of appropriate type and name
 	if ( walker->getType() == type ) {
-		gameObject = walker;
-	} else {
-		if ( walker->getSibling() ) {
-			gameObject = this->findTypeTree( static_cast< GameObjectNode* >(walker->getSibling()), type );
+		if ( strcmp( walker->getName(), name ) == 0 ) {
+			gameObject = walker;
 		}
 	}
-	return gameObject;
-}
 
-GameObjectNode* GameObjectManager::findDepthFirst( GameObjectNode* const walker, const char* name ) {
-	GameObjectNode* gameObject = nullptr;
-
-	if ( strcmp( walker->getName(), name ) == 0 ) {
-		gameObject = walker;
-	} else {
+	// If not what we're looking for, check children and then siblings
+	if ( !gameObject ) {
 		if ( walker->getChild() ) {
-			gameObject = this->findDepthFirst( static_cast< GameObjectNode* >(walker->getChild()), name );
+			gameObject = this->findDepthFirst( static_cast< GameObjectNode* >(walker->getChild()), type, name );
 		}
 		if ( !gameObject && walker->getSibling() ) {
-			gameObject = this->findDepthFirst( static_cast< GameObjectNode* >(walker->getSibling()), name );
+			gameObject = this->findDepthFirst( static_cast< GameObjectNode* >(walker->getSibling()), type, name );
 		}
 	}
+	
 	return gameObject;
+}
+
+void GameObjectManager::updatePtC( const double gameTime, GameObjectNode* const walker ) const {
+	// Update node
+	walker->updateNode( gameTime );
+
+	// Update siblings, then children
+	if ( walker->getSibling() ) {
+		this->updatePtC( gameTime, static_cast< GameObjectNode* >(walker->getSibling()) );
+	}
+	if ( walker->getChild() ) {
+		this->updatePtC( gameTime, static_cast< GameObjectNode* >(walker->getChild()) );
+	}	
+}
+
+void GameObjectManager::drawPtC( GameObjectNode* const walker ) const {
+	// Draw node
+	walker->drawNode();
+
+	// Draw siblings, then children
+	if ( walker->getSibling() ) {
+		this->drawPtC( static_cast< GameObjectNode* >(walker->getSibling()) );
+	}
+	if ( walker->getChild() ) {
+		this->drawPtC( static_cast< GameObjectNode* >(walker->getChild()) );
+	}
 }

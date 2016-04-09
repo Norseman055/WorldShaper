@@ -6,7 +6,7 @@
 class ShaderNode;
 class Shader;
 
-class ShaderManager : public Manager<Shader> {
+class ShaderManager : public Manager<Shader*> {
 public:
 	static void Startup();
 	static void Shutdown();
