@@ -12,6 +12,10 @@ ShaderType Shader::getType() const {
 	return this->type;
 }
 
+unsigned int Shader::getShaderID() const {
+	return this->shaderProgram;
+}
+
 void Shader::setupGLSLShaders( const char* shaderName ) {
 	printf( "      Compiling GLSL shaders and creating shader program...\n" );
 

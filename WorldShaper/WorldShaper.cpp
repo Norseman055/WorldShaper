@@ -5,6 +5,7 @@
 #include "ModelManager.h"
 #include "TextureManager.h"
 #include "GameObjectManager.h"
+#include "CameraManager.h"
 
 void WorldShaper::Run() {
 	Startup();
@@ -23,9 +24,11 @@ void WorldShaper::Startup() {
 	TextureManager::Startup();
 	ModelManager::Startup();
 	GameObjectManager::Startup();
+	CameraManager::Startup();
 }
 
 void WorldShaper::Shutdown() {
+	CameraManager::Shutdown();
 	GameObjectManager::Shutdown();
 	ModelManager::Shutdown();
 	TextureManager::Shutdown();
@@ -40,36 +43,24 @@ void WorldShaper::update(double gameTime) {
 }
 
 void WorldShaper::draw() {
-	float ratio;
+
+	// Setup GLFW window and viewport, clear background
 	int width, height;
 
-	// Get aspect ratio
 	glfwGetFramebufferSize( GLFWManager::GetWindow(), &width, &height );
-	ratio = width / ( float ) height;
-
-	// Set viewport and clear the background
+	float ratio = width / ( float ) height;
 	glViewport( 0, 0, width, height );
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
 	// Set the projection matrix
+	// UPDATE TO USE CAMERA PROJECTION MATRIX
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
 	glOrtho( -ratio, ratio, -1.f, 1.f, 1.f, -1.f );
 	glMatrixMode( GL_MODELVIEW );
 
-	// Make a rotation matrix
-	glLoadIdentity();
-	glRotatef( ( float ) glfwGetTime() * 50.f, 0.f, 0.f, 1.f );
-
-	// Create our triangle
-	glBegin( GL_TRIANGLES );
-	glColor3f( 1.f, 0.f, 0.f );
-	glVertex3f( -0.6f, -0.4f, 0.f );
-	glColor3f( 0.f, 1.f, 0.f );
-	glVertex3f( 0.6f, -0.4f, 0.f );
-	glColor3f( 0.f, 0.f, 1.f );
-	glVertex3f( 0.f, 0.6f, 0.f );
-	glEnd();
+	// Draw Game Objects
+	GameObjectManager::Draw();
 
 	// Swap buffers and poll for key events
 	glfwSwapBuffers( GLFWManager::GetWindow() );

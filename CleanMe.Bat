@@ -2,12 +2,22 @@ rmdir /S /Q Debug
 rmdir /S /Q ipch
 rmdir /S /Q Release
 del /F /S *.sdf
+del /F /S /A:H *.suo
+
+rmdir /S /Q UnitTests\Debug
+rmdir /S /Q UnitTests\Release
+
+rmdir /S /Q Application\Debug
+rmdir /S /Q Application\Release
 
 rmdir /S /Q WorldShaper\Debug
 rmdir /S /Q WorldShaper\Release
 
-rmdir /S /Q Application\Debug
-rmdir /S /Q Application\Release
+rmdir /S /Q GLFWManager\Debug
+rmdir /S /Q GLFWManager\Release
+
+rmdir /S /Q CameraManager\Debug
+rmdir /S /Q CameraManager\Release
 
 rmdir /S /Q GameObjectManager\Debug
 rmdir /S /Q GameObjectManager\Release
@@ -20,7 +30,3 @@ rmdir /S /Q ShaderManager\Release
 
 rmdir /S /Q TextureManager\Debug
 rmdir /S /Q TextureManager\Release
-
-rmdir /S /Q UnitTests\Debug
-rmdir /S /Q UnitTests\Release
-

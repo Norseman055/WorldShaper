@@ -56,16 +56,16 @@ GameObject* GameObjectManager::FindGameObject( const GameObjectType type, const 
 
 void GameObjectManager::LoadGameObjects() {
 	printf( "  Loading game objects...\n" );
-	GameObject* cubeBrick = new GameObject( GameObject_CubeBrick, "testCube" );
-	cubeBrick->setModel( ModelManager::FindModel( Model_Cube ) );
-	cubeBrick->setTexture( TextureManager::FindTexture( Texture_Brick ) );
-	cubeBrick->setShader( ShaderManager::FindShader( Shader_Phong ) );
+	GameObject* cubeBrick = new GameObject( GameObjectType::GameObject_CubeBrick, "testCube" );
+	cubeBrick->setModel( ModelManager::FindModel( ModelType::Model_Cube ) );
+	cubeBrick->setTexture( TextureManager::FindTexture( TextureType::Texture_Brick ) );
+	cubeBrick->setShader( ShaderManager::FindShader( ShaderType::Shader_Phong ) );
 	AddGameObject( cubeBrick );
 }
 
 GameObjectNode* GameObjectManager::Find( const GameObjectType type, const char* name ) {
 	GameObjectNode* gameObject = nullptr;
-	if ( type != GameObject_None ) {
+	if ( type != GameObjectType::GameObject_None ) {
 		GameObjectNode* root = static_cast< GameObjectNode* >(GetObjectList()->getRoot());
 		if ( root ) {
 			gameObject = static_cast< GameObjectManager* >(GetInstance())->findDepthFirst( root, type, name );

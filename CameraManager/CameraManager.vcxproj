@@ -10,22 +10,9 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Cube.h" />
-    <ClInclude Include="Model.h" />
-    <ClInclude Include="ModelManager.h" />
-    <ClInclude Include="ModelNode.h" />
-    <ClInclude Include="ModelTypes.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Cube.cpp" />
-    <ClCompile Include="Model.cpp" />
-    <ClCompile Include="ModelManager.cpp" />
-    <ClCompile Include="ModelNode.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0A28EF60-5FC1-4182-A1D5-36D5C37C3799}</ProjectGuid>
-    <RootNamespace>ModelManager</RootNamespace>
+    <ProjectGuid>{186D93B7-0630-4F6A-A488-F7481E7BBA9E}</ProjectGuid>
+    <RootNamespace>CameraManager</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -64,21 +51,25 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs;$(SolutionDir)generics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;$(SolutionDir)libs\PCSTree;$(SolutionDir)GameObjectManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib />
+    <Lib />
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
+    <Lib />
+    <Lib />
     <Lib>
-      <AdditionalDependencies>PCSTreeDebug.lib;MathEngineDebug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PCSTreeDebug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)libs\PCSTree;$(SolutionDir)libs\Math;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)libs\PCSTree;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4006,4221 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -88,25 +79,44 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs;$(SolutionDir)generics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;$(SolutionDir)libs\PCSTree;$(SolutionDir)GameObjectManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <Lib />
+    <Lib />
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
+    <Lib />
     <Lib>
-      <AdditionalDependencies>PCSTreeRelease.lib;MathEngineRelease.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PCSTreeRelease.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)libs\PCSTree;$(SolutionDir)libs\Math;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)libs\PCSTree;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4006,4221 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraManager.h" />
+    <ClInclude Include="CameraNode.h" />
+    <ClInclude Include="CameraTypes.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraManager.cpp" />
+    <ClCompile Include="CameraNode.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameObjectManager\GameObjectManager.vcxproj">
+      <Project>{f2ec4e09-2c91-4bc2-8b26-3fd5ee293f96}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -6,7 +6,7 @@
 class ModelNode;
 class Model;
 
-class ModelManager : public Manager<Model> {
+class ModelManager : public Manager<Model*> {
 public: 
 	static void Startup();
 	static void Shutdown();

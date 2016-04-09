@@ -37,12 +37,12 @@ Texture* TextureManager::FindTexture( const TextureType type ) {
 
 void TextureManager::LoadTextures() {
 	printf( "  Loading textures...\n" );
-	AddTexture( "Bricks.tga", Texture_Brick );
+	AddTexture( "Bricks.tga", TextureType::Texture_Brick );
 }
 
 TextureNode* TextureManager::Find( const TextureType type ) {
 	TextureNode* texture = nullptr;
-	if ( type != Texture_None ) {
+	if ( type != TextureType::Texture_None ) {
 		TextureNode* root = static_cast< TextureNode* >(GetObjectList()->getRoot());
 
 		if ( root ) {

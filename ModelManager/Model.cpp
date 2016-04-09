@@ -7,7 +7,6 @@
 #include <glew\glew.h>
 #include <GLFW\glfw3.h>
 
-
 ModelType Model::getType() const {
 	return this->type;
 }

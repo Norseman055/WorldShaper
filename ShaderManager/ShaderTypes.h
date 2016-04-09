@@ -1,6 +1,6 @@
 #pragma once
 
-enum ShaderType {
+enum struct ShaderType {
 	Shader_None,
 	Shader_Phong
 };

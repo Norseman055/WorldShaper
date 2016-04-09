@@ -62,7 +62,12 @@
     <Lib />
     <Lib>
       <AdditionalOptions>/ignore:4505 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>PCSTreeDebug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)libs\PCSTree;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -84,7 +89,12 @@
     <Lib />
     <Lib>
       <AdditionalOptions>/ignore:4505 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>PCSTreeRelease.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)libs\PCSTree;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="stb_lib.h" />
@@ -97,6 +107,9 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TextureNode.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Bricks.tga" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

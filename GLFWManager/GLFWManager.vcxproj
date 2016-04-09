@@ -10,22 +10,9 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Cube.h" />
-    <ClInclude Include="Model.h" />
-    <ClInclude Include="ModelManager.h" />
-    <ClInclude Include="ModelNode.h" />
-    <ClInclude Include="ModelTypes.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Cube.cpp" />
-    <ClCompile Include="Model.cpp" />
-    <ClCompile Include="ModelManager.cpp" />
-    <ClCompile Include="ModelNode.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0A28EF60-5FC1-4182-A1D5-36D5C37C3799}</ProjectGuid>
-    <RootNamespace>ModelManager</RootNamespace>
+    <ProjectGuid>{32845016-27A7-4AC3-B0B6-D758FB0C3C16}</ProjectGuid>
+    <RootNamespace>GLFWManager</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -51,11 +38,11 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)libs\</OutDir>
     <TargetName>$(ProjectName)$(Configuration)</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)libs\</OutDir>
     <TargetName>$(ProjectName)$(Configuration)</TargetName>
   </PropertyGroup>
@@ -64,7 +51,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs;$(SolutionDir)generics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -74,12 +61,6 @@
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
-    <Lib>
-      <AdditionalDependencies>PCSTreeDebug.lib;MathEngineDebug.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
-    <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)libs\PCSTree;$(SolutionDir)libs\Math;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -88,7 +69,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs;$(SolutionDir)generics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -100,13 +81,13 @@
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
-    <Lib>
-      <AdditionalDependencies>PCSTreeRelease.lib;MathEngineRelease.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
-    <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)libs\PCSTree;$(SolutionDir)libs\Math;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-    </Lib>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="GLFWManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GLFWManager.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

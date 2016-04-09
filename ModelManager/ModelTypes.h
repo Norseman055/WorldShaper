@@ -1,6 +1,6 @@
 #pragma once
 
-enum ModelType {
-	Model_Cube,
-	Model_None
+enum struct ModelType {
+	Model_None,
+	Model_Cube
 };

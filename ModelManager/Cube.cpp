@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 Cube::Cube()
-	: Model( Model_Cube ) {
+	: Model( ModelType::Model_Cube ) {
 	printf( "    Loading cube...\n" );
 
 	this->numVertices = 12 * 2;

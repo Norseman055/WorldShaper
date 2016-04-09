@@ -37,12 +37,12 @@ Shader* ShaderManager::FindShader( const ShaderType type ) {
 
 void ShaderManager::LoadShaders() {
 	printf( "  Loading shaders...\n" );
-	AddShader( new Shader( Shader_Phong, "../ShaderManager/Phong" ) );
+	AddShader( new Shader( ShaderType::Shader_Phong, "../ShaderManager/Phong" ) );
 }
 
 ShaderNode* ShaderManager::Find( const ShaderType type ) {
 	ShaderNode* shader = nullptr;
-	if ( type != Shader_None ) {
+	if ( type != ShaderType::Shader_None ) {
 		ShaderNode* root = static_cast< ShaderNode* >(GetObjectList()->getRoot());
 
 		if ( root ) {

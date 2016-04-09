@@ -38,7 +38,6 @@ void GameObject::draw() const {
 	// Setup shader
 	// Setup textures
 	// Setup model
-	// Draw
 }
 
 GameObject::GameObject( const GameObjectType inType, const char* inName )
