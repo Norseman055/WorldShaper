@@ -20,25 +20,26 @@ void WorldShaper::Run() {
 void WorldShaper::Startup() {
 	GLFWManager::StartupGLFW();
 	ShaderManager::Startup();
-	ModelManager::Startup();
 	TextureManager::Startup();
+	ModelManager::Startup();
 	GameObjectManager::Startup();
 }
 
 void WorldShaper::Shutdown() {
 	GameObjectManager::Shutdown();
-	TextureManager::Shutdown();
 	ModelManager::Shutdown();
+	TextureManager::Shutdown();
 	ShaderManager::Shutdown();
 	GLFWManager::ShutdownGLFW();
 }
 
 void WorldShaper::update(double gameTime) {
 	// Add update logic
+	ModelManager::Update( gameTime );
 	GameObjectManager::Update( gameTime );
 }
 
-void WorldShaper::draw() {	
+void WorldShaper::draw() {
 	float ratio;
 	int width, height;
 

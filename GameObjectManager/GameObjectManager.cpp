@@ -27,6 +27,10 @@ void GameObjectManager::Update( const double gameTime ) {
 	UNUSED( gameTime );
 }
 
+void GameObjectManager::Draw() {
+	// Draw game objects
+}
+
 void GameObjectManager::AddGameObject( GameObject* const gameObject ) {
 	Add( new GameObjectNode( gameObject ) );
 }

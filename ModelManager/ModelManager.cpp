@@ -1,4 +1,5 @@
 #include "ModelManager.h"
+#include "Macros.h"
 
 #include "ModelNode.h"
 #include "Model.h"
@@ -34,6 +35,11 @@ Model* ModelManager::FindModel( const ModelType type ) {
 		model = modelnode->getData();
 	}
 	return model;
+}
+
+void ModelManager::Update( const double gameTime ) {
+	// Add update logic for global updates that must be considered for all models
+	UNUSED( gameTime );
 }
 
 void ModelManager::LoadModels() {

@@ -16,6 +16,8 @@ public:
 
 	static Model* FindModel( const ModelType );
 	
+	static void Update( const double );
+
 private:
 	static void LoadModels();
 	static ModelNode* Find( const ModelType );

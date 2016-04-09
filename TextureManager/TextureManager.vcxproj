@@ -43,7 +43,7 @@
     <TargetName>$(ProjectName)$(Configuration)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)libs</OutDir>
+    <OutDir>$(SolutionDir)libs\</OutDir>
     <TargetName>$(ProjectName)$(Configuration)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
