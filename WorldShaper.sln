@@ -33,9 +33,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLFWManager", "GLFWManager\GLFWManager.vcxproj", "{32845016-27A7-4AC3-B0B6-D758FB0C3C16}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CameraManager", "CameraManager\CameraManager.vcxproj", "{186D93B7-0630-4F6A-A488-F7481E7BBA9E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{F2EC4E09-2C91-4BC2-8B26-3FD5EE293F96} = {F2EC4E09-2C91-4BC2-8B26-3FD5EE293F96}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

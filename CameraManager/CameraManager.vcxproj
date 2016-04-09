@@ -51,7 +51,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;$(SolutionDir)libs\PCSTree;$(SolutionDir)GameObjectManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;$(SolutionDir)libs\PCSTree;$(SolutionDir)ModelManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -79,7 +79,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;$(SolutionDir)libs\PCSTree;$(SolutionDir)GameObjectManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;$(SolutionDir)libs\PCSTree;$(SolutionDir)ModelManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -113,8 +113,8 @@
     <ClCompile Include="CameraNode.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GameObjectManager\GameObjectManager.vcxproj">
-      <Project>{f2ec4e09-2c91-4bc2-8b26-3fd5ee293f96}</Project>
+    <ProjectReference Include="..\ModelManager\ModelManager.vcxproj">
+      <Project>{0a28ef60-5fc1-4182-a1d5-36d5c37c3799}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

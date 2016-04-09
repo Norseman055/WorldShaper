@@ -44,7 +44,7 @@ void CameraManager::Draw() {
 
 void CameraManager::LoadCameras() {
 	printf( "  Loading cameras...\n" );
-	AddCamera( new Camera( CameraType::Camera_Default, "Camera_Default" ) );
+	AddCamera( new Camera( CameraType::Camera_Default, "default" ) );
 }
 
 CameraNode* CameraManager::Find( const CameraType type, const char* name ) {
@@ -59,7 +59,7 @@ CameraNode* CameraManager::Find( const CameraType type, const char* name ) {
 	return camera;
 }
 
-CameraNode* CameraManager::findDepthFirst( CameraNode* const walker, const CameraType type, const char* name ) {
+CameraNode* CameraManager::findDepthFirst( CameraNode* const walker, const CameraType type, const char* name ) const {
 	CameraNode* camera = nullptr;
 	if ( walker->getType() == type ) {
 		camera = walker;

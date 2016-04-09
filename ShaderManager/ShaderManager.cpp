@@ -53,7 +53,7 @@ ShaderNode* ShaderManager::Find( const ShaderType type ) {
 	return shader;
 }
 
-ShaderNode* ShaderManager::findDepthFirst( ShaderNode* const walker, const ShaderType type ) {
+ShaderNode* ShaderManager::findDepthFirst( ShaderNode* const walker, const ShaderType type ) const {
 	ShaderNode* shader = nullptr;
 
 	if ( walker->getType() == type ) {

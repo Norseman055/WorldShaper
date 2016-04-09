@@ -53,7 +53,7 @@ TextureNode* TextureManager::Find( const TextureType type ) {
 	return texture;
 }
 
-TextureNode* TextureManager::findDepthFirst( TextureNode* const walker, const TextureType type ) {
+TextureNode* TextureManager::findDepthFirst( TextureNode* const walker, const TextureType type ) const {
 	TextureNode* texture = nullptr;
 
 	if ( walker->getType() == type ) {

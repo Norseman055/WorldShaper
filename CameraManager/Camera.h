@@ -1,15 +1,17 @@
 #pragma once
 
 #include "CameraTypes.h"
-#include "GameObject.h"
+#include "Model.h"
 
-class Camera : public GameObject {
+class Camera : public Model {
 public:
 	CameraType getType() const;
+	const char* getName() const;
 
 	Camera( const CameraType, const char* );
 	~Camera();
 
 private:
 	CameraType type;
+	const char* name;
 };

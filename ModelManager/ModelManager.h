@@ -22,5 +22,5 @@ private:
 	static void LoadModels();
 	static ModelNode* Find( const ModelType );
 
-	ModelNode* findDepthFirst( ModelNode* const, const ModelType );
+	ModelNode* findDepthFirst( ModelNode* const, const ModelType ) const;
 };

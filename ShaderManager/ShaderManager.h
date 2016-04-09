@@ -20,5 +20,5 @@ private:
 	static void LoadShaders();
 	static ShaderNode* Find( const ShaderType );
 
-	ShaderNode* findDepthFirst( ShaderNode* const, const ShaderType );
+	ShaderNode* findDepthFirst( ShaderNode* const, const ShaderType ) const;
 };

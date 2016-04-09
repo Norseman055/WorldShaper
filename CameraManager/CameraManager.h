@@ -23,5 +23,5 @@ private:
 	static void LoadCameras();
 	static CameraNode* Find( const CameraType, const char* );
 
-	CameraNode* findDepthFirst( CameraNode* const, const CameraType, const char* );
+	CameraNode* findDepthFirst( CameraNode* const, const CameraType, const char* ) const;
 };

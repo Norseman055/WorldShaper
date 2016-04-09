@@ -20,5 +20,5 @@ private:
 	static void LoadTextures();
 	static TextureNode* Find( const TextureType );
 
-	TextureNode* findDepthFirst( TextureNode* const, const TextureType );
+	TextureNode* findDepthFirst( TextureNode* const, const TextureType ) const;
 };

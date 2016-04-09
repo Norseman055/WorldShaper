@@ -60,7 +60,7 @@ ModelNode* ModelManager::Find( const ModelType type ) {
 	return model;
 }
 
-ModelNode* ModelManager::findDepthFirst( ModelNode* const walker, const ModelType type ) {
+ModelNode* ModelManager::findDepthFirst( ModelNode* const walker, const ModelType type ) const {
 	ModelNode* model = nullptr;
 
 	if ( walker->getType() == type ) {
