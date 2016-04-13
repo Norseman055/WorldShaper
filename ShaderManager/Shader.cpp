@@ -34,7 +34,7 @@ void Shader::setupGLSLShaders( const char* shaderName ) {
 	char errorMessage[4096];  // Big enough to hold any reasonable error message
 	FILE* vertF;
 
-	auto vertexShaderSrc = new char[2048];
+	char* vertexShaderSrc = new char[2048];
 	fopen_s( &vertF, vertShaderName, "rb" );
 	if ( !vertF ) {
 		perror( "      Could not load vertex shader file " );
@@ -60,7 +60,7 @@ void Shader::setupGLSLShaders( const char* shaderName ) {
 	printf( "  Success!\n" );
 
 	// Now load and compile the fragment shader
-	auto fragmentShaderSrc = new char[2048];
+	char* fragmentShaderSrc = new char[2048];
 	FILE* fragF;
 	fopen_s( &fragF, fragShaderName, "rb" );
 	if ( !fragF ) {

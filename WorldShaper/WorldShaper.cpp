@@ -8,18 +8,22 @@
 #include "CameraManager.h"
 
 void WorldShaper::Run() {
+	printf( "===== Starting World Shaper Engine =====\n" );
+	WorldShaper* worldShaper = GetInstance();
+	printf( "===== World Shaper Engine started =====\n\n" );
+
 	Startup();
-	auto window = GLFWManager::GetWindow();
+	GLFWwindow* window = GLFWManager::GetWindow();
 	while ( !glfwWindowShouldClose(window)) {
 		// Core game loop, run until game completion
-		getInstance()->update( glfwGetTime() );
-		getInstance()->draw();
+		worldShaper->update( glfwGetTime() );
+		worldShaper->draw();
 	}
 	Shutdown();
 }
 
 void WorldShaper::Startup() {
-	GLFWManager::StartupGLFW();
+	GLFWManager::Startup();
 	ShaderManager::Startup();
 	TextureManager::Startup();
 	ModelManager::Startup();
@@ -33,12 +37,10 @@ void WorldShaper::Shutdown() {
 	ModelManager::Shutdown();
 	TextureManager::Shutdown();
 	ShaderManager::Shutdown();
-	GLFWManager::ShutdownGLFW();
+	GLFWManager::Shutdown();
 }
 
 void WorldShaper::update(double gameTime) {
-	// Add update logic
-	ModelManager::Update( gameTime );
 	GameObjectManager::Update( gameTime );
 }
 
@@ -48,12 +50,12 @@ void WorldShaper::draw() {
 	int width, height;
 
 	glfwGetFramebufferSize( GLFWManager::GetWindow(), &width, &height );
-	float ratio = width / ( float ) height;
 	glViewport( 0, 0, width, height );
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
 	// Set the projection matrix
 	// UPDATE TO USE CAMERA PROJECTION MATRIX
+	float ratio = width / ( float ) height;
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
 	glOrtho( -ratio, ratio, -1.f, 1.f, 1.f, -1.f );
@@ -79,12 +81,5 @@ void WorldShaper::draw() {
 	glfwSwapBuffers( GLFWManager::GetWindow() );
 	glfwPollEvents();
 }
-
-WorldShaper* WorldShaper::getInstance() {
-	static WorldShaper instance;
-	return &instance;
-}
-
-WorldShaper::WorldShaper() { }
 
 WorldShaper::~WorldShaper() { }

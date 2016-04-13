@@ -1,6 +1,9 @@
 #pragma once
 
-class WorldShaper {
+#include "Singleton.h"
+
+class WorldShaper : public Singleton<WorldShaper> {
+	friend class Singleton<WorldShaper>;
 public:
 	// Methods
 	static void Run();
@@ -14,10 +17,6 @@ private:
 
 	void update(double gameTime);
 	void draw();
-
-	// Singleton methods
-	static WorldShaper* getInstance();
-	WorldShaper();
 
 	// Member variables
 };

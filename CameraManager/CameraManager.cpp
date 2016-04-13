@@ -33,18 +33,20 @@ Camera* CameraManager::FindCamera( const CameraType type, const char* name ) {
 	return camera;
 }
 
-void CameraManager::Update( const double gameTime ) {
-	// Add update logic for cameras in manager
-	UNUSED( gameTime );
-}
-
-void CameraManager::Draw() {
-	// Add draw logic for cameras in manager
+Camera* CameraManager::GetActiveCamera() {
+	return static_cast< CameraManager* >(GetInstance())->activeCamera;
 }
 
 void CameraManager::LoadCameras() {
 	printf( "  Loading cameras...\n" );
-	AddCamera( new Camera( CameraType::Camera_Default, "default" ) );
+	Camera* cam0 = new Camera( CameraType::Camera_Default, "default" );
+	cam0->setPerspective( 35.0f, float( GAME_WIDTH ) / float( GAME_HEIGHT ), 1.0f, 10.0f );
+	cam0->setViewport( 0, 0, GAME_HEIGHT, GAME_WIDTH );
+	cam0->setOrientationAndPosition( Vect( 0.0f, 1.0f, 0.0f ), Vect( 0.0f, 0.0f, 0.0f ), Vect( 0.0f, 0.0f, -10.0f ) );
+	AddCamera( cam0 );
+	
+	printf( "  Setting default camera to Camera_Default...\n" );
+	static_cast< CameraManager* >(GetInstance())->activeCamera = FindCamera( CameraType::Camera_Default, "default" );
 }
 
 CameraNode* CameraManager::Find( const CameraType type, const char* name ) {

@@ -15,8 +15,6 @@ public:
 	static void RemoveModel( const ModelType );
 
 	static Model* FindModel( const ModelType );
-	
-	static void Update( const double );
 
 private:
 	static void LoadModels();

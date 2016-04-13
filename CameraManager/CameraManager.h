@@ -15,13 +15,14 @@ public:
 	static void RemoveCamera( const CameraType, const char* );
 
 	static Camera* FindCamera( const CameraType, const char* );
-
-	static void Update( const double );
-	static void Draw();
+	static Camera* GetActiveCamera();
 
 private:
 	static void LoadCameras();
 	static CameraNode* Find( const CameraType, const char* );
 
 	CameraNode* findDepthFirst( CameraNode* const, const CameraType, const char* ) const;
+
+private:
+	Camera* activeCamera;
 };

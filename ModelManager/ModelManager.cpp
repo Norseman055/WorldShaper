@@ -37,11 +37,6 @@ Model* ModelManager::FindModel( const ModelType type ) {
 	return model;
 }
 
-void ModelManager::Update( const double gameTime ) {
-	// Add update logic for global updates that must be considered for all models
-	UNUSED( gameTime );
-}
-
 void ModelManager::LoadModels() {
 	printf( "  Loading models...\n" );
 	AddModel( new Cube );
