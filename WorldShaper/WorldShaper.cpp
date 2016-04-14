@@ -5,7 +5,7 @@
 #include "ModelManager.h"
 #include "TextureManager.h"
 #include "GameObjectManager.h"
-#include "CameraManager.h"
+//#include "CameraManager.h"
 
 void WorldShaper::Run() {
 	printf( "===== Starting World Shaper Engine =====\n" );
@@ -28,11 +28,11 @@ void WorldShaper::Startup() {
 	TextureManager::Startup();
 	ModelManager::Startup();
 	GameObjectManager::Startup();
-	CameraManager::Startup();
+	//CameraManager::Startup();
 }
 
 void WorldShaper::Shutdown() {
-	CameraManager::Shutdown();
+	//CameraManager::Shutdown();
 	GameObjectManager::Shutdown();
 	ModelManager::Shutdown();
 	TextureManager::Shutdown();
