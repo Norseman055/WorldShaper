@@ -1,4 +1,5 @@
 #include "GameObjectManager.h"
+#include "Macros.h"
 
 #include "GameObjectNode.h"
 #include "GameObject.h"
@@ -25,7 +26,9 @@ void GameObjectManager::Update( const double gameTime ) {
 	// Update game objects
 	GameObjectNode* root = static_cast< GameObjectNode* >(GetObjectList()->getRoot());
 	if ( root ) {
-		static_cast< GameObjectManager* >(GetInstance())->updatePtC( gameTime, root );
+		UNUSED(gameTime);
+		// UNCOMMENT THIS WHEN UPDATE LOGIC IS IN!
+		//static_cast< GameObjectManager* >(GetInstance())->updatePtC( gameTime, root );
 	}
 }
 
@@ -33,7 +36,8 @@ void GameObjectManager::Draw() {
 	// Draw game objects
 	GameObjectNode* root = static_cast< GameObjectNode* >(GetObjectList()->getRoot());
 	if ( root ) {
-		static_cast< GameObjectManager* >(GetInstance())->drawPtC( root );
+		// UNCOMMENT THIS WHEN UPDATE LOGIC IS IN!
+		//static_cast< GameObjectManager* >(GetInstance())->drawPtC( root );
 	}
 }
 
