@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MATH_MATRIX_H
+#define MATH_MATRIX_H
 
 #include "Vect.h"
 
@@ -6,142 +7,128 @@ class Quat;
 
 class Matrix final : public Align16 {
 public:
+	// ctors
 	Matrix();
-	Matrix( const Vect &v0, const Vect &v1, const Vect &v2, const Vect &v3 );
-	Matrix( const __m128 &m0, const __m128 &m1, const __m128 &m2, const __m128 &m3 );
-	Matrix( const float m0, const float m1, const float m2, const float m3,
-			const float m4, const float m5, const float m6, const float m7,
-			const float m8, const float m9, const float m10, const float m11,
-			const float m12, const float m13, const float m14, const float m15 );
-	Matrix( const MatrixSpecialType in );
-	Matrix( const MatrixTransType, const float f0, const float f1, const float f2 );
-	Matrix( const MatrixTransType, const Vect &v0 );
-	Matrix( const MatrixScaleType, const float f0, const float f1, const float f2 );
-	Matrix( const MatrixScaleType, const Vect &v0 );
-	Matrix( const RotType in, const float f );
-	Matrix( const RotAxisAngleType, const Vect &v0, const float f0 );
-	Matrix( const Rot3AxisType, const float f0, const float f1, const float f2 );
-	Matrix( const RotOrientType in, const Vect &v0, const Vect &v1 );
-	Matrix( const Matrix &m0 );
-	Matrix( const Quat &q0 );
+	Matrix(const Vect &v0, const Vect &v1, const Vect &v2, const Vect &v3);
+	Matrix(const MatrixSpecialType in);
+	Matrix(const MatrixTransType, const float x, const float y, const float z);
+	Matrix(const MatrixTransType, const Vect &v);
+	Matrix(const MatrixScaleType, const float x, const float y, const float z);
+	Matrix(const MatrixScaleType, const Vect &v);
+	Matrix(const RotType type, const float angle);
+	Matrix(const RotOrientType type, const Vect &direction, const Vect &up);
+	Matrix(const RotAxisAngleType, const Vect &axis, const float angle);
+	Matrix(const Rot3AxisType, const float x, const float y, const float z);
+	Matrix(const Quat &q0);
 
+	// copy
+	Matrix(const Matrix &m0);
+
+	// assignment
+	Matrix& operator=(const Matrix &t);
+
+	// dtor
 	~Matrix();
 
-	void set( const MatrixSpecialType in );
-	void set( const MatrixTransType, const float f0, const float f1, const float f2 );
-	void set( const MatrixTransType, const Vect &v0 );
-	void set( const MatrixScaleType, const float f0, const float f1, const float f2 );
-	void set( const MatrixScaleType, const Vect &v0 );
-	void set( const RotType in, const float f );
-	void set( const Rot3AxisType, const float f0, const float f1, const float f2 );
-	void set( const RotAxisAngleType, const Vect &v0, const float f0 );
-	void set( const RotOrientType in, const Vect &v0, const Vect &v1 );
-	void set( const MatrixRowType in, const Vect &v );
-	void set( const Vect &v0, const Vect &v1, const Vect &v2, const Vect &v3 );
-	void set( const __m128 &m0, const __m128 &m1, const __m128 &m2, const __m128 &m3 );
-	void set( const Quat &q0 );
+	// equality
+	bool isEqual(const Matrix &t, const float f = MATH_TOLERANCE)const;
+	bool isIdentity(const float f = MATH_TOLERANCE)const;
 
-	Vect get( const MatrixRowType in )const;
+	// set
+	void set(const MatrixSpecialType in);
+	void set(const MatrixTransType, const float x, const float y, const float z);
+	void set(const MatrixTransType, const Vect &v);
+	void set(const MatrixScaleType, const float x, const float y, const float z);
+	void set(const MatrixScaleType, const Vect &v);
+	void set(const RotType type, const float angle);
+	void set(const RotOrientType type, const Vect &direction, const Vect &up);
+	void set(const Rot3AxisType, const float x, const float y, const float z);
+	void set(const RotAxisAngleType, const Vect &axis, const float angle);
+	void set(const MatrixRowType in, const Vect &v);
+	void set(const Vect &v0, const Vect &v1, const Vect &v2, const Vect &v3);
+	void set(const Quat &q0);
 
-	void operator = (const Matrix &t);
-	Matrix operator + (const Matrix &t)const;
-	void operator += (const Matrix &t);
-	Matrix operator - (const Matrix &t)const;
-	void operator -= (const Matrix &t);
-	Matrix operator * (const Matrix &t)const;
-	void operator *= (const Matrix &t);
-	void operator *= (const float f);
-	friend Matrix operator * (const float f, const Matrix &t);
-	friend Matrix operator * (const Matrix &t, const float f);
-	friend Matrix operator + (const Matrix &t);
-	friend Matrix operator - (const Matrix &t);
+	// [] get operators
+	Vect operator[](const MatrixRowType row)const;
+	inline float operator[](const m0_enum)const { return v0[X]; }
+	inline float operator[](const m1_enum)const { return v0[Y]; }
+	inline float operator[](const m2_enum)const { return v0[Z]; }
+	inline float operator[](const m3_enum)const { return v0[W]; }
+	inline float operator[](const m4_enum)const { return v1[X]; }
+	inline float operator[](const m5_enum)const { return v1[Y]; }
+	inline float operator[](const m6_enum)const { return v1[Z]; }
+	inline float operator[](const m7_enum)const { return v1[W]; }
+	inline float operator[](const m8_enum)const { return v2[X]; }
+	inline float operator[](const m9_enum)const { return v2[Y]; }
+	inline float operator[](const m10_enum)const { return v2[Z]; }
+	inline float operator[](const m11_enum)const { return v2[W]; }
+	inline float operator[](const m12_enum)const { return v3[X]; }
+	inline float operator[](const m13_enum)const { return v3[Y]; }
+	inline float operator[](const m14_enum)const { return v3[Z]; }
+	inline float operator[](const m15_enum)const { return v3[W]; }
+	Vect get(const MatrixRowType row)const;
 
-	Vect operator[]( const MatrixRowType )const;
-	float operator[]( const m0_enum )const;
-	float operator[]( const m1_enum )const;
-	float operator[]( const m2_enum )const;
-	float operator[]( const m3_enum )const;
-	float operator[]( const m4_enum )const;
-	float operator[]( const m5_enum )const;
-	float operator[]( const m6_enum )const;
-	float operator[]( const m7_enum )const;
-	float operator[]( const m8_enum )const;
-	float operator[]( const m9_enum )const;
-	float operator[]( const m10_enum )const;
-	float operator[]( const m11_enum )const;
-	float operator[]( const m12_enum )const;
-	float operator[]( const m13_enum )const;
-	float operator[]( const m14_enum )const;
-	float operator[]( const m15_enum )const;
-	Vect& operator[]( const MatrixRowType );
-	float& operator[]( const m0_enum );
-	float& operator[]( const m1_enum );
-	float& operator[]( const m2_enum );
-	float& operator[]( const m3_enum );
-	float& operator[]( const m4_enum );
-	float& operator[]( const m5_enum );
-	float& operator[]( const m6_enum );
-	float& operator[]( const m7_enum );
-	float& operator[]( const m8_enum );
-	float& operator[]( const m9_enum );
-	float& operator[]( const m10_enum );
-	float& operator[]( const m11_enum );
-	float& operator[]( const m12_enum );
-	float& operator[]( const m13_enum );
-	float& operator[]( const m14_enum );
-	float& operator[]( const m15_enum );
+	// [] set operators
+	Vect& operator[](const MatrixRowType row);
+	inline float& operator[](const m0_enum) { return v0[X]; }
+	inline float& operator[](const m1_enum) { return v0[Y]; }
+	inline float& operator[](const m2_enum) { return v0[Z]; }
+	inline float& operator[](const m3_enum) { return v0[W]; }
+	inline float& operator[](const m4_enum) { return v1[X]; }
+	inline float& operator[](const m5_enum) { return v1[Y]; }
+	inline float& operator[](const m6_enum) { return v1[Z]; }
+	inline float& operator[](const m7_enum) { return v1[W]; }
+	inline float& operator[](const m8_enum) { return v2[X]; }
+	inline float& operator[](const m9_enum) { return v2[Y]; }
+	inline float& operator[](const m10_enum) { return v2[Z]; }
+	inline float& operator[](const m11_enum) { return v2[W]; }
+	inline float& operator[](const m12_enum) { return v3[X]; }
+	inline float& operator[](const m13_enum) { return v3[Y]; }
+	inline float& operator[](const m14_enum) { return v3[Z]; }
+	inline float& operator[](const m15_enum) { return v3[W]; }
+	
+	// unary operators
+	Matrix operator+(void)const;
+	Matrix operator-(void)const;
 
-	bool isEqual( const Matrix &t )const;
-	bool isIdentity( const float f = MATH_TOLERANCE )const;
+	// binary operators
+	Matrix operator+(const Matrix &t)const;
+	Matrix operator-(const Matrix &t)const;
+	Matrix operator*(const Matrix &t)const;
+	Matrix operator*(const float f)const;
 
+	// binary in-place operators
+	void operator+=(const Matrix &t);
+	void operator-=(const Matrix &t);
+	void operator*=(const Matrix &t);
+	void operator*=(const float f);
+	
+	// get determinant
 	float det()const;
+
+	// get transpose
 	void T();
 	Matrix getT()const;
+
+	// get inverse
 	void inv();
 	Matrix getInv()const;
+
+	// get adjutant
 	Matrix getAdj()const;
 
+	friend class Vect;
+	friend class Quat;
+
 private:
-	friend Vect;
-	friend Quat;
-	// Level 4 complains nameless struct/union ...
-#pragma warning( disable : 4201)
+	Matrix(const M128_TYPE& row0, const M128_TYPE& row1, const M128_TYPE& row2, const M128_TYPE& row3);
 
-	union {
-		struct {
-			__m128 xm0;
-			__m128 xm1;
-			__m128 xm2;
-			__m128 xm3;
-		};
-
-		struct {
-			Vect v0;
-			Vect v1;
-			Vect v2;
-			Vect v3;
-		};
-
-		struct {
-			float _m0;
-			float _m1;
-			float _m2;
-			float _m3;
-
-			float _m4;
-			float _m5;
-			float _m6;
-			float _m7;
-
-			float _m8;
-			float _m9;
-			float _m10;
-			float _m11;
-
-			float _m12;
-			float _m13;
-			float _m14;
-			float _m15;
-		};
-	};
+	Vect v0;
+	Vect v1;
+	Vect v2;
+	Vect v3;
 };
+
+Matrix operator*(const float f, const Matrix &t);	// float * matrix
+
+#endif

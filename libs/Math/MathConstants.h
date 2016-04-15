@@ -5,7 +5,8 @@
 /*                                                                           */
 /*****************************************************************************/
 
-#pragma once
+#ifndef MATH_CONSTANTS_H
+#define MATH_CONSTANTS_H
 
 /*****************************************************************************/
 /* Include:                                                                  */
@@ -193,6 +194,8 @@ const float MATH_INV_SQRT_2 = 0.707106781188f;	  /**< constant for 1/sqrt(2) */
 *
 *************************************************************************/
 
-const float MATH_TOLERANCE = 0.01f; /**< constant for internal tolerances */
+const float MATH_TOLERANCE = 0.001f; /**< constant for internal tolerances */
+
+#endif
 
 /**** END of Constants.h *******************************************************/

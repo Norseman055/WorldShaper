@@ -1,73 +1,114 @@
-#pragma once
+#ifndef MATH_VECT_H
+#define MATH_VECT_H
 
 #include "Align16.h"
 #include "MathConstants.h"
+#include "MathEngineSIMD.h"
 #include "MathEnum.h"
-#include <smmintrin.h>
 
 // forward declare
 class Matrix;
 class Quat;
+class VectApp;
 
 class Vect final : public Align16 {
 public:
-
+	// ctors
 	Vect();
-	Vect( const float x, const float y, const float z, const float w = 1.0f );
-	Vect( const __m128& inM );
+	Vect(const float x, const float y, const float z, const float w = 1.0f);
+
+	// copy
+	Vect(const Vect& v);
+	Vect(const Vect& v, const float w);
+
+	// assignment
+	Vect& operator=(const Vect& v);
+
+	// dtor
 	~Vect();
 
-	void operator = (const Vect &t);
-	Vect operator + (const Vect &t)const;
-	void operator += (const Vect &t);
-	Vect operator - (const Vect &t)const;
-	void operator -= (const Vect &t);
-	Vect operator * (const Matrix &t)const;
-	void operator *= (const Matrix &t);
-	void operator *= (const float f);
-	Vect operator * (const float f)const;	// vect * float
-	friend Vect operator * (const float f, const Vect &v);	// float * vect
-	friend Vect operator + (const Vect &t);
-	friend Vect operator - (const Vect &t);
+	// equality
+	bool isEqual(const Vect &rhs, const float tolerance = MATH_TOLERANCE)const;
+	bool isZero(const float precision = MATH_TOLERANCE)const;
 
-	float operator[]( const x_enum )const;
-	float& operator[]( const x_enum );
-	float operator[]( const y_enum )const;
-	float& operator[]( const y_enum );
-	float operator[]( const z_enum )const;
-	float& operator[]( const z_enum );
-	float operator[]( const w_enum )const;
-	float& operator[]( const w_enum );
+	// set
+	void set(const float x, const float y, const float z, const float w = 1.0f);
+	void set(const Vect &v);
+	void set(const Vect &v, const float w);
 
-	bool isEqual( const Vect &t, const float &precision = MATH_TOLERANCE )const;
-	bool isZero( const float &precision = 0.01f )const;
+	// xyzw get operators
+	inline float operator[](const x_enum)const {	return this->x;	}
+	inline float operator[](const y_enum)const {	return this->y;	}
+	inline float operator[](const z_enum)const {	return this->z;	}
+	inline float operator[](const w_enum)const {	return this->w;	}
 
-	float dot( const Vect &t )const;
-	Vect cross( const Vect &t )const;
+	// xyzw set operators
+	inline float& operator[](const x_enum) {	return this->x;	}
+	inline float& operator[](const y_enum) {	return this->y;	}
+	inline float& operator[](const z_enum) {	return this->z;	}
+	inline float& operator[](const w_enum) {	return this->w;	}
+
+	// unary operators
+	Vect operator+(void)const;
+	Vect operator-(void)const;
+
+	// binary operators
+	Vect operator+(const Vect &rhs)const;
+	Vect operator-(const Vect &rhs)const;
+	Vect operator*(const Matrix &rhs)const;
+	Vect operator*(const float rhs)const;	// vect * float
+
+	// binary in-place operators
+	void operator+=(const Vect &rhs);
+	void operator-=(const Vect &rhs);
+	void operator*=(const Matrix &rhs);
+	void operator*=(const float rhs);
+
+	// get dot product
+	float dot(const Vect &t)const;
+
+	// get cross product vector
+	Vect cross(const Vect &t)const;
+
+	// normalize/get normalized vector
 	void norm();
 	Vect getNorm()const;
+
+	// get magnitude/magnitude squared
 	float mag()const;
 	float magSqr()const;
-	float getAngle( const Vect &t )const;
 
-	void set( const float x, const float y, const float z, const float w = 1.0f );
-	void set( const Vect &v );
+	// get angle
+	float getAngle(const Vect &t)const;
 
-private:
 	friend Matrix;
 	friend Quat;
+	friend VectApp;
+
+private:
+	Vect(const M128_TYPE &m);
+	Vect(const M128_TYPE &m, const float w);
+
+public:
+
 	// Level 4 complains nameless struct/union ...
 #pragma warning( disable : 4201)
 	// anonymous union
 	union {
-		__m128	m;
+		struct {
+			M128_TYPE m;
+		};
 
 		// anonymous struct
 		struct {
-			float vx;
-			float vy;
-			float vz;
-			float vw;
+			float x;
+			float y;
+			float z;
+			float w;
 		};
 	};
 };
+
+Vect operator*(const float f, const Vect &v);	// float * vect
+
+#endif
