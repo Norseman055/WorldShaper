@@ -143,5 +143,7 @@ private:
 			float _m14;
 			float _m15;
 		};
+
+		float m[4][4];
 	};
 };

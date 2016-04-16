@@ -14,8 +14,8 @@ void GameObjectNode::updateNode( const double gameTime ) {
 	this->getData()->update( gameTime );
 }
 
-void GameObjectNode::drawNode() {
-	this->getData()->draw();
+void GameObjectNode::drawNode(Camera* const camera) {
+	this->getData()->draw(camera);
 }
 
 GameObjectNode::GameObjectNode( GameObject* const gameObject )

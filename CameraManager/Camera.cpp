@@ -15,6 +15,18 @@ const char* Camera::getName() const {
 	return this->name;
 }
 
+Matrix& Camera::getViewMatrix() {
+	return this->viewMatrix;
+}
+
+Matrix& Camera::getProjectionMatrix() {
+	return this->projectionMatrix;
+}
+
+Vect& Camera::getPosition() {
+	return this->position;
+}
+
 void Camera::setPerspective( const float inNear, const float inFar, const float inFovy, const float inAspect ) {
 	this->nearDist = inNear;
 	this->farDist = inFar;
@@ -27,6 +39,8 @@ void Camera::setViewport( const float x, const float y, const float height, cons
 	this->viewportY = y;
 	this->viewportHeight = height;
 	this->viewportWidth = width;
+
+	this->setGlfwViewport();
 }
 
 void Camera::setOrientationAndPosition( const Vect& inUp, const Vect& inLookAt, const Vect& inPos ) {
@@ -159,6 +173,10 @@ void Camera::updateProjectionMatrix() {
 	this->projectionMatrix[m13] = 0.0f;
 	this->projectionMatrix[m14] = (2.0f * this->farDist * this->nearDist) / (this->nearDist - this->farDist);
 	this->projectionMatrix[m15] = 0.0f;
+}
+
+void Camera::setGlfwViewport() const {
+	glViewport(this->viewportX, this->viewportY, this->viewportWidth, this->viewportHeight);
 }
 
 Camera::Camera( CameraType inType, const char* inName )

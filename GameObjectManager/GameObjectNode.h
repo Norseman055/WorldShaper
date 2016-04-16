@@ -4,14 +4,15 @@
 #include "GameObjectTypes.h"
 
 class GameObject;
+class Camera;
 
 class GameObjectNode : public NodeLink<GameObject*> {
 public:
 	GameObjectType getType() const;
 	const char* getName() const;
 
-	void updateNode( const double );
-	void drawNode();
+	void updateNode(const double);
+	void drawNode(Camera* const);
 
 	GameObjectNode( GameObject* const );
 	~GameObjectNode();

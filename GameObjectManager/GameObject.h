@@ -5,6 +5,7 @@
 class Model;
 class Texture;
 class Shader;
+class Camera;
 
 class GameObject {
 public:
@@ -16,7 +17,7 @@ public:
 	void setShader( Shader* const );
 
 	void update( const double ) const;
-	void draw() const;
+	void draw(Camera* const) const;
 
 	GameObject( const GameObjectType, const char* );
 	~GameObject();

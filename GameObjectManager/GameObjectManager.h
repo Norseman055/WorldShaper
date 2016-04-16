@@ -5,6 +5,7 @@
 
 class GameObjectNode;
 class GameObject;
+class Camera;
 
 /** 
  * GAME OBJECT MANAGER
@@ -18,7 +19,7 @@ public:
 	static void Shutdown();
 
 	static void Update( const double );
-	static void Draw();
+	static void Draw(Camera* const);
 
 	static void AddGameObject( GameObject* const );
 	static void RemoveGameObject( const GameObjectType, const char* );
@@ -32,5 +33,5 @@ private:
 	GameObjectNode* findDepthFirst( GameObjectNode* const, const GameObjectType, const char * ) const;
 	
 	void updatePtC( const double, GameObjectNode* const ) const;
-	void drawPtC( GameObjectNode* const ) const;
+	void drawPtC( GameObjectNode* const, Camera* const ) const;
 };

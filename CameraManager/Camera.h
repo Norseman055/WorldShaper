@@ -10,6 +10,10 @@ public:
 	CameraType getType() const;
 	const char* getName() const;
 
+	Matrix& getViewMatrix();
+	Matrix& getProjectionMatrix();
+	Vect& getPosition();
+
 	void setPerspective( const float, const float, const float, const float );
 	void setViewport( const float, const float, const float, const float );
 	void setOrientationAndPosition( const Vect&, const Vect&, const Vect& );
@@ -25,6 +29,8 @@ private:
 	void updateFrustrumCollisionNormals();
 	void updateViewMatrix();
 	void updateProjectionMatrix();
+
+	void setGlfwViewport()const;
 
 private:
 	// Matrices

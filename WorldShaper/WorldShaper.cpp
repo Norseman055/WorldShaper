@@ -46,19 +46,9 @@ void WorldShaper::update(double gameTime) {
 
 void WorldShaper::draw() {
 
-	// Setup GLFW window and viewport, clear background
-	int width, height;
-
-	glfwGetFramebufferSize( GLFWManager::GetWindow(), &width, &height );
-	glViewport( 0, 0, width, height );
+	// Clear background
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-
-	// Set the projection matrix
-	// UPDATE TO USE CAMERA PROJECTION MATRIX
-	float ratio = width / ( float ) height;
-	glMatrixMode( GL_PROJECTION );
-	glLoadIdentity();
-	glOrtho( -ratio, ratio, -1.f, 1.f, 1.f, -1.f );
+	
 	glMatrixMode( GL_MODELVIEW );
 
 	// Draw triangle
@@ -75,7 +65,7 @@ void WorldShaper::draw() {
 	glEnd();
 
 	// Draw Game Objects
-	GameObjectManager::Draw();
+	GameObjectManager::Draw(CameraManager::GetActiveCamera());
 
 	// Swap buffers and poll for key events
 	glfwSwapBuffers( GLFWManager::GetWindow() );
