@@ -14,4 +14,4 @@ Make singleton managers and create generalized objects:
 - Add OpenGL implementation to draw texture in Texture
 - Add OpenGL implementation to draw using shader in Shader
 - Add logic to use core game engine to draw game object with model and texture using shader
-- Create Camera manager and associated GameObject
+- Add logic to use projection matrix from active camera

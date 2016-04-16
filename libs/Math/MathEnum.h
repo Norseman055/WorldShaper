@@ -1,5 +1,4 @@
-#ifndef MATH_ENUM_H
-#define MATH_ENUM_H
+#pragma once
 
 enum x_enum {
 	x = 0,
@@ -131,5 +130,3 @@ enum MatrixRowType {
 	ROW_2,
 	ROW_3
 };
-
-#endif

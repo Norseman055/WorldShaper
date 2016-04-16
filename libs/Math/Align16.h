@@ -1,5 +1,4 @@
-#ifndef ALIGN_16_H
-#define ALIGN_16_H
+#pragma once
 
 #include <malloc.h>
 
@@ -27,5 +26,3 @@ inline void Align16::operator delete(void* p) {
 inline void Align16::operator delete [] ( void* p ) {
 	_aligned_free( p );
 }
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef MATH_UTIL_H
-#define MATH_UTIL_H
+#pragma once
 
 class Util {
 public:
@@ -9,5 +8,3 @@ public:
 	static bool isNonZero( const float a, const float epsilon );
 	static bool isZero( const float a, const float epsilon );
 };
-
-#endif
