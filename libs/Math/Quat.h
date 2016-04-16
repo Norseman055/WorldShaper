@@ -44,19 +44,20 @@ public:
 	Quat( MatrixSpecialType in );
 	~Quat();
 
-	float operator[]( const x_enum )const;
-	float operator[]( const y_enum )const;
-	float operator[]( const z_enum )const;
-	float operator[]( const w_enum )const;
-	float& operator[]( const x_enum );
-	float& operator[]( const y_enum );
-	float& operator[]( const z_enum );
-	float& operator[]( const w_enum );
+	inline float operator[]( const x_enum )const { return this->qx; }
+	inline float operator[]( const y_enum )const { return this->qy; }
+	inline float operator[]( const z_enum )const { return this->qz; }
+	inline float operator[]( const w_enum )const { return this->qw; }
+	inline float& operator[](const x_enum) { return this->qx; }
+	inline float& operator[](const y_enum) { return this->qy; }
+	inline float& operator[](const z_enum) { return this->qz; }
+	inline float& operator[](const w_enum) { return this->qw; }
 
 	void set( const float f0, const float f1, const float f2, const float f3 );
 	void set( const Vect &v, const float f );
 	void set( const Matrix &m );
 	void set( const __m128 &xm );
+	void set(const Quat &q);
 	void set( RotType in, const float f );
 	void set( RotAxisAngleType, const Vect &v, const float f0 );
 	void set( Rot3AxisType, const float f0, const float f1, const float f2 );
@@ -67,32 +68,32 @@ public:
 	void getVect( Vect &v0 ) const;
 
 	// binary
-	void operator = (const Quat &q);
-	Quat operator + (const Quat &q)const;
-	Quat operator + (const float f0)const;
-	void operator += (const Quat &q);
-	void operator += (const float f0);
-	friend Quat operator + (const float f0, const Quat &t);
-	Quat operator - (const Quat &q)const;
-	Quat operator - (const float f0)const;
-	void operator -= (const Quat &q);
-	void operator -= (const float f0);
-	friend Quat operator - (const float f0, const Quat &q);
-	Quat operator * (const Quat &q)const;
-	Quat operator * (const float f)const;
-	void operator *= (const Quat &q);
-	void operator *= (const float f0);
-	void operator *= (const Matrix &m);
-	friend Quat operator * (const float f0, const Quat &q);
-	Quat operator / (const Quat &q)const;
-	Quat operator / (const float f0)const;
-	void operator /= (const Quat &q);
-	void operator /= (const float f0);
-	friend Quat operator / (const float f0, const Quat &q);
+	void operator=(const Quat &q);
+	Quat operator+(const Quat &q)const;
+	Quat operator+(const float f0)const;
+	void operator+=(const Quat &q);
+	void operator+=(const float f0);
+	friend Quat operator+(const float f0, const Quat &t);
+	Quat operator-(const Quat &q)const;
+	Quat operator-(const float f0)const;
+	void operator-=(const Quat &q);
+	void operator-=(const float f0);
+	friend Quat operator-(const float f0, const Quat &q);
+	Quat operator*(const Quat &q)const;
+	Quat operator*(const float f)const;
+	void operator*=(const Quat &q);
+	void operator*=(const float f0);
+	void operator*=(const Matrix &m);
+	friend Quat operator*(const float f0, const Quat &q);
+	Quat operator/(const Quat &q)const;
+	Quat operator/(const float f0)const;
+	void operator/=(const Quat &q);
+	void operator/=(const float f0);
+	friend Quat operator/(const float f0, const Quat &q);
 
 	// unary
-	friend Quat operator - (const Quat &q);
-	friend Quat operator + (const Quat &q);
+	Quat operator-()const;
+	Quat operator+()const;
 
 	Quat multByElement( const Quat &q ) const;
 	Quat getConj()const;

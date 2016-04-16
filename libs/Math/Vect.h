@@ -17,30 +17,30 @@ public:
 	Vect( const __m128& inM );
 	~Vect();
 
-	void operator = (const Vect &t);
-	Vect operator + (const Vect &t)const;
-	void operator += (const Vect &t);
-	Vect operator - (const Vect &t)const;
-	void operator -= (const Vect &t);
-	Vect operator * (const Matrix &t)const;
-	void operator *= (const Matrix &t);
-	void operator *= (const float f);
-	Vect operator * (const float f)const;	// vect * float
-	friend Vect operator * (const float f, const Vect &v);	// float * vect
-	friend Vect operator + (const Vect &t);
-	friend Vect operator - (const Vect &t);
+	void operator=(const Vect &t);
+	Vect operator+(const Vect &t)const;
+	void operator+=(const Vect &t);
+	Vect operator-(const Vect &t)const;
+	void operator-=(const Vect &t);
+	Vect operator*(const Matrix &t)const;
+	void operator*=(const Matrix &t);
+	void operator*=(const float f);
+	Vect operator*(const float f)const;	// vect * float
+	friend Vect operator*(const float f, const Vect &v);	// float * vect
+	Vect operator+()const;
+	Vect operator-()const;
 
-	float operator[]( const x_enum )const;
-	float& operator[]( const x_enum );
-	float operator[]( const y_enum )const;
-	float& operator[]( const y_enum );
-	float operator[]( const z_enum )const;
-	float& operator[]( const z_enum );
-	float operator[]( const w_enum )const;
-	float& operator[]( const w_enum );
+	inline float operator[](const x_enum)const { return this->vx; }
+	inline float operator[](const y_enum)const { return this->vy; }
+	inline float operator[](const z_enum)const { return this->vz; }
+	inline float operator[](const w_enum)const { return this->vw; }
+	inline float& operator[](const x_enum) { return this->vx; }
+	inline float& operator[](const y_enum) { return this->vy; }
+	inline float& operator[](const z_enum) { return this->vz; }
+	inline float& operator[](const w_enum) { return this->vw; }
 
-	bool isEqual( const Vect &t, const float &precision = MATH_TOLERANCE )const;
-	bool isZero( const float &precision = 0.01f )const;
+	bool isEqual( const Vect &t, const float precision = MATH_TOLERANCE )const;
+	bool isZero( const float precision = MATH_TOLERANCE )const;
 
 	float dot( const Vect &t )const;
 	Vect cross( const Vect &t )const;
@@ -52,6 +52,7 @@ public:
 
 	void set( const float x, const float y, const float z, const float w = 1.0f );
 	void set( const Vect &v );
+	void set(const __m128 &m);
 
 private:
 	friend Matrix;
