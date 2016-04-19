@@ -11,6 +11,18 @@ ModelType Model::getType() const {
 	return this->type;
 }
 
+unsigned int Model::getVao() const {
+	return this->vao;
+}
+
+unsigned int Model::getVboVerts() const {
+	return this->vboVertices;
+}
+
+unsigned int Model::getVboFaces() const {
+	return this->vboFaces;
+}
+
 Vertex* Model::getVertices() const {
 	return this->vertices;
 }

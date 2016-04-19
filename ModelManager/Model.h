@@ -8,6 +8,10 @@ class Model {
 public:
 	ModelType getType() const;
 
+	unsigned int getVao() const;
+	unsigned int getVboVerts() const;
+	unsigned int getVboFaces() const;
+
 	Vertex* getVertices() const;
 	int getNumVertices() const;
 

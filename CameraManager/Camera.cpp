@@ -176,7 +176,7 @@ void Camera::updateProjectionMatrix() {
 }
 
 void Camera::setGlfwViewport() const {
-	glViewport(this->viewportX, this->viewportY, this->viewportWidth, this->viewportHeight);
+	glViewport((GLint)this->viewportX, (GLint)this->viewportY, (GLsizei)this->viewportWidth, (GLsizei)this->viewportHeight);
 }
 
 Camera::Camera( CameraType inType, const char* inName )

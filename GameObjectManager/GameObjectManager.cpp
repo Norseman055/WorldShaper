@@ -36,7 +36,7 @@ void GameObjectManager::Draw(Camera* const camera) {
 	// Draw game objects
 	GameObjectNode* root = static_cast< GameObjectNode* >(GetObjectList()->getRoot());
 	if ( root ) {
-		static_cast< GameObjectManager* >(GetInstance())->drawPtC( root );
+		static_cast< GameObjectManager* >(GetInstance())->drawPtC( root, camera );
 	}
 }
 
@@ -115,7 +115,7 @@ void GameObjectManager::updatePtC( const double gameTime, GameObjectNode* const 
 
 void GameObjectManager::drawPtC( GameObjectNode* const walker, Camera* const camera ) const {
 	// Draw node
-	walker->drawNode();
+	walker->drawNode(camera);
 
 	// Draw siblings, then children
 	if ( walker->getSibling() ) {
