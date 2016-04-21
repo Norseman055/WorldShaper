@@ -59,7 +59,7 @@ void GameObject::draw(Camera* const camera) const {
 	// Since the matrix class has an overloaded 'double *' operator to transparently
 	// cast to a c-style array, we can easily send the matrix to OpenGL just by putting
 	// the matrix object in the last parameter!
-	glUniformMatrix4fv(modelMatrixLoc, 1, false, this->model->getModelMatrix()->AsFloatArray());
+	glUniformMatrix4fv(modelMatrixLoc, 1, false, *this->model->getModelMatrix());
 	glUniformMatrix4fv(viewMatrixLoc, 1, false, viewMatrix);
 	glUniformMatrix4fv(projectionMatrixLoc, 1, false, projectionMatrix);
 

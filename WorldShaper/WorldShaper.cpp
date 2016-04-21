@@ -45,24 +45,7 @@ void WorldShaper::update(double gameTime) {
 }
 
 void WorldShaper::draw() {
-
-	// Clear background
-	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-	
-	glMatrixMode( GL_MODELVIEW );
-
-	// Draw triangle
-	glLoadIdentity();
-	glRotatef( ( float ) glfwGetTime() * 50.f, 0.f, 0.f, 1.f );
-	
-	glBegin( GL_TRIANGLES );
-	glColor3f( 1.f, 0.f, 0.f );
-	glVertex3f( -0.6f, -0.4f, 0.f );
-	glColor3f( 0.f, 1.f, 0.f );
-	glVertex3f( 0.6f, -0.4f, 0.f );
-	glColor3f( 0.f, 0.f, 1.f );
-	glVertex3f( 0.f, 0.6f, 0.f );
-	glEnd();
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Draw Game Objects
 	GameObjectManager::Draw(CameraManager::GetActiveCamera());

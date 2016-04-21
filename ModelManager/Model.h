@@ -3,6 +3,7 @@
 #include "ModelTypes.h"
 
 struct Vertex;
+class Matrix;
 
 class Model {
 public:
@@ -17,6 +18,8 @@ public:
 
 	int* getFaces() const;
 	int getNumFaces() const;
+
+	Matrix* getModelMatrix() const;
 
 	Model( const ModelType );
 	virtual ~Model() = 0;
@@ -35,4 +38,6 @@ protected:
 
 	int* faces;
 	int numFaces;
+
+	Matrix* modelMatrix;
 };
