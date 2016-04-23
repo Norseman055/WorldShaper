@@ -8,15 +8,15 @@
 #include "CameraManager.h"
 
 void WorldShaper::Run() {
-	printf( "===== Starting World Shaper Engine =====\n" );
+	printf("===== Starting World Shaper Engine =====\n");
 	WorldShaper* worldShaper = GetInstance();
-	printf( "===== World Shaper Engine started =====\n\n" );
+	printf("===== World Shaper Engine started =====\n\n");
 
 	Startup();
 	GLFWwindow* window = GLFWManager::GetWindow();
-	while ( !glfwWindowShouldClose(window)) {
+	while(!glfwWindowShouldClose(window)) {
 		// Core game loop, run until game completion
-		worldShaper->update( glfwGetTime() );
+		worldShaper->update(glfwGetTime());
 		worldShaper->draw();
 	}
 	Shutdown();
@@ -29,6 +29,15 @@ void WorldShaper::Startup() {
 	ModelManager::Startup();
 	GameObjectManager::Startup();
 	CameraManager::Startup();
+
+	SetGLFWCallbacks();
+}
+
+void WorldShaper::SetGLFWCallbacks() {
+	// Set callback for keyboard input
+	glfwSetKeyCallback(GLFWManager::GetWindow(), GLFWManager::InputCallback);
+	// Set callback for resize of window
+	glfwSetFramebufferSizeCallback(GLFWManager::GetWindow(), CameraManager::FramebufferResizeCallback);
 }
 
 void WorldShaper::Shutdown() {
@@ -41,7 +50,7 @@ void WorldShaper::Shutdown() {
 }
 
 void WorldShaper::update(double gameTime) {
-	GameObjectManager::Update( gameTime );
+	GameObjectManager::Update(gameTime);
 }
 
 void WorldShaper::draw() {
@@ -54,7 +63,7 @@ void WorldShaper::draw() {
 	GameObjectManager::Draw(CameraManager::GetActiveCamera());
 
 	// Swap buffers and poll for key events
-	glfwSwapBuffers( GLFWManager::GetWindow() );
+	glfwSwapBuffers(GLFWManager::GetWindow());
 	glfwPollEvents();
 }
 

@@ -27,14 +27,14 @@ Vect& Camera::getPosition() {
 	return this->position;
 }
 
-void Camera::setPerspective( const float inNear, const float inFar, const float inFovy, const float inAspect ) {
+void Camera::setPerspective(const float inNear, const float inFar, const float inFovy, const float inAspect) {
 	this->nearDist = inNear;
 	this->farDist = inFar;
 	this->fovy = inFovy;
 	this->aspectRatio = inAspect;
 }
 
-void Camera::setViewport( const int x, const int y, const int height, const int width ) {
+void Camera::setViewport(const int x, const int y, const int height, const int width) {
 	this->viewportX = x;
 	this->viewportY = y;
 	this->viewportHeight = height;
@@ -43,7 +43,14 @@ void Camera::setViewport( const int x, const int y, const int height, const int 
 	this->setGlfwViewport();
 }
 
-void Camera::setOrientationAndPosition( const Vect& inUp, const Vect& inLookAt, const Vect& inPos ) {
+void Camera::setViewportHeightWidth(const int height, const int width) {
+	this->viewportHeight = height;
+	this->viewportWidth = width;
+
+	this->setGlfwViewport();
+}
+
+void Camera::setOrientationAndPosition(const Vect& inUp, const Vect& inLookAt, const Vect& inPos) {
 	this->lookAt = inLookAt;
 
 	// Point out of the screen into your EYE
@@ -51,10 +58,10 @@ void Camera::setOrientationAndPosition( const Vect& inUp, const Vect& inLookAt, 
 	this->forward.norm();
 
 	// Clean up the vectors (Right hand rule)
-	this->right = inUp.cross( this->forward );
+	this->right = inUp.cross(this->forward);
 	this->right.norm();
 
-	this->up = this->forward.cross( this->right );
+	this->up = this->forward.cross(this->right);
 	this->up.norm();
 
 	this->position = inPos;
@@ -78,10 +85,10 @@ void Camera::updateCamera() {
 }
 
 void Camera::updateViewPlane() {
-	this->nearHeight = 2.0f * tanf( (this->fovy * MATH_PI / 180.0f) * .5f ) * this->nearDist;
+	this->nearHeight = 2.0f * tanf((this->fovy * MATH_PI / 180.0f) * .5f) * this->nearDist;
 	this->nearWidth = this->nearHeight * this->aspectRatio;
 
-	this->farHeight = 2.0f * tanf( (this->fovy * MATH_PI / 180.0f) * .5f ) * this->farDist;
+	this->farHeight = 2.0f * tanf((this->fovy * MATH_PI / 180.0f) * .5f) * this->farDist;
 	this->farWidth = this->farHeight * this->aspectRatio;
 }
 
@@ -102,13 +109,13 @@ void Camera::updateFrustrumCollisionNormals() {
 	Vect B = this->nearTopRight - this->nearTopLeft;
 	Vect C = this->farTopLeft - this->nearTopLeft;
 
-	this->frontNormal = A.cross( B );
+	this->frontNormal = A.cross(B);
 	this->frontNormal.norm();
 
-	this->leftNormal = C.cross( A );
+	this->leftNormal = C.cross(A);
 	this->leftNormal.norm();
 
-	this->topNormal = B.cross( C );
+	this->topNormal = B.cross(C);
 	this->topNormal.norm();
 
 	// Normals of the frustum around farBottomRight
@@ -116,13 +123,13 @@ void Camera::updateFrustrumCollisionNormals() {
 	B = this->farTopRight - this->farBottomRight;
 	C = this->nearBottomRight - this->farBottomRight;
 
-	this->backNormal = A.cross( B );
+	this->backNormal = A.cross(B);
 	this->backNormal.norm();
 
-	this->rightNormal = B.cross( C );
+	this->rightNormal = B.cross(C);
 	this->rightNormal.norm();
 
-	this->bottomNormal = C.cross( A );
+	this->bottomNormal = C.cross(A);
 	this->bottomNormal.norm();
 }
 
@@ -147,9 +154,9 @@ void Camera::updateViewMatrix() {
 	this->viewMatrix[m11] = 0.0f;
 
 	// Change of basis (dot with the basis vectors)
-	this->viewMatrix[m12] = -position.dot( right );
-	this->viewMatrix[m13] = -position.dot( up );
-	this->viewMatrix[m14] = -position.dot( forward );
+	this->viewMatrix[m12] = -position.dot(right);
+	this->viewMatrix[m13] = -position.dot(up);
+	this->viewMatrix[m14] = -position.dot(forward);
 	this->viewMatrix[m15] = 1.0f;
 }
 
@@ -179,14 +186,14 @@ void Camera::setGlfwViewport() const {
 	glViewport(this->viewportX, this->viewportY, this->viewportWidth, this->viewportHeight);
 }
 
-Camera::Camera( CameraType inType, const char* inName )
-	: Model( ModelType::Model_None ), type( inType ), name( inName ),
-	nearDist( 0 ), farDist( 0 ), fovy( 0 ), aspectRatio( 0 ),
-	nearHeight( 0 ), nearWidth( 0 ), farHeight( 0 ), farWidth( 0 ),
-	viewportX( 0 ), viewportY( 0 ), viewportHeight( 0 ), viewportWidth( 0 ) {
-	this->viewMatrix.set( IDENTITY );
-	this->projectionMatrix.set( IDENTITY );
-	printf( "    Creating camera...\n" );
+Camera::Camera(CameraType inType, const char* inName)
+	: Model(ModelType::Model_None), type(inType), name(inName),
+	nearDist(0), farDist(0), fovy(0), aspectRatio(0),
+	nearHeight(0), nearWidth(0), farHeight(0), farWidth(0),
+	viewportX(0), viewportY(0), viewportHeight(0), viewportWidth(0) {
+	this->viewMatrix.set(IDENTITY);
+	this->projectionMatrix.set(IDENTITY);
+	printf("    Creating camera...\n");
 }
 
 Camera::~Camera() { }

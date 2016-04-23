@@ -41,6 +41,12 @@ void CameraManager::UpdateActiveCamera() {
 	static_cast<CameraManager*>(GetInstance())->activeCamera->updateCamera();
 }
 
+void CameraManager::FramebufferResizeCallback(GLFWwindow* window, int width, int height) {
+	UNUSED(window);
+
+	static_cast<CameraManager*>(GetInstance())->activeCamera->setViewportHeightWidth(height, width);
+}
+
 void CameraManager::LoadCameras() {
 	printf( "  Loading cameras...\n" );
 	Camera* cam0 = new Camera( CameraType::Camera_Default, "default" );
