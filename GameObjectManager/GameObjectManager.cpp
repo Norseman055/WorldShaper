@@ -24,7 +24,20 @@ void GameObjectManager::Shutdown() {
 
 void GameObjectManager::Update( const double gameTime ) {
 	// Update game objects
-	UNUSED( gameTime );
+	GameObjectNode* root = static_cast< GameObjectNode* >(GetObjectList()->getRoot());
+	if ( root ) {
+		UNUSED(gameTime);
+		// UNCOMMENT THIS WHEN UPDATE LOGIC IS IN!
+		//static_cast< GameObjectManager* >(GetInstance())->updatePtC( gameTime, root );
+	}
+}
+
+void GameObjectManager::Draw(Camera* const camera) {
+	// Draw game objects
+	GameObjectNode* root = static_cast< GameObjectNode* >(GetObjectList()->getRoot());
+	if ( root ) {
+		static_cast< GameObjectManager* >(GetInstance())->drawPtC( root, camera );
+	}
 }
 
 void GameObjectManager::AddGameObject( GameObject* const gameObject ) {
@@ -46,55 +59,69 @@ GameObject* GameObjectManager::FindGameObject( const GameObjectType type, const 
 
 void GameObjectManager::LoadGameObjects() {
 	printf( "  Loading game objects...\n" );
-	GameObject* cubeBrick = new GameObject( GameObject_CubeBrick, "testCube" );
-	cubeBrick->setModel( ModelManager::FindModel( Model_Cube ) );
-	cubeBrick->setTexture( TextureManager::FindTexture( Texture_Brick ) );
-	cubeBrick->setShader( ShaderManager::FindShader( Shader_Phong ) );
+	GameObject* cubeBrick = new GameObject( GameObjectType::GameObject_CubeBrick, "testCube" );
+	cubeBrick->setModel( ModelManager::FindModel( ModelType::Model_Cube ) );
+	cubeBrick->setTexture( TextureManager::FindTexture( TextureType::Texture_Brick ) );
+	cubeBrick->setShader( ShaderManager::FindShader( ShaderType::Shader_Phong ) );
 	AddGameObject( cubeBrick );
 }
 
 GameObjectNode* GameObjectManager::Find( const GameObjectType type, const char* name ) {
 	GameObjectNode* gameObject = nullptr;
-	if ( type != GameObject_None ) {
+	if ( type != GameObjectType::GameObject_None ) {
 		GameObjectNode* root = static_cast< GameObjectNode* >(GetObjectList()->getRoot());
-		GameObjectNode* typeTree = nullptr;
-
 		if ( root ) {
-			GameObjectManager* instance = static_cast< GameObjectManager* >(GetInstance());
-			typeTree = instance->findTypeTree( root, type );
-			if ( typeTree ) {
-				gameObject = instance->findDepthFirst( gameObject, name );
-			}
+			gameObject = static_cast< GameObjectManager* >(GetInstance())->findDepthFirst( root, type, name );
 		}
 	}
 	return gameObject;
 }
 
-GameObjectNode* GameObjectManager::findTypeTree( GameObjectNode* const walker, const GameObjectType type ) {
+GameObjectNode* GameObjectManager::findDepthFirst( GameObjectNode* const walker, const GameObjectType type, const char* name ) const {
 	GameObjectNode* gameObject = nullptr;
 
+	// Look for object of appropriate type and name
 	if ( walker->getType() == type ) {
-		gameObject = walker;
-	} else {
-		if ( walker->getSibling() ) {
-			gameObject = this->findTypeTree( static_cast< GameObjectNode* >(walker->getSibling()), type );
+		if ( strcmp( walker->getName(), name ) == 0 ) {
+			gameObject = walker;
 		}
 	}
-	return gameObject;
-}
 
-GameObjectNode* GameObjectManager::findDepthFirst( GameObjectNode* const walker, const char* name ) {
-	GameObjectNode* gameObject = nullptr;
-
-	if ( strcmp( walker->getName(), name ) == 0 ) {
-		gameObject = walker;
-	} else {
+	// If not what we're looking for, check children and then siblings
+	if ( !gameObject ) {
 		if ( walker->getChild() ) {
-			gameObject = this->findDepthFirst( static_cast< GameObjectNode* >(walker->getChild()), name );
+			gameObject = this->findDepthFirst( static_cast< GameObjectNode* >(walker->getChild()), type, name );
 		}
 		if ( !gameObject && walker->getSibling() ) {
-			gameObject = this->findDepthFirst( static_cast< GameObjectNode* >(walker->getSibling()), name );
+			gameObject = this->findDepthFirst( static_cast< GameObjectNode* >(walker->getSibling()), type, name );
 		}
 	}
+	
 	return gameObject;
+}
+
+void GameObjectManager::updatePtC( const double gameTime, GameObjectNode* const walker ) const {
+	// Update node
+	walker->updateNode( gameTime );
+
+	// Update siblings, then children
+	if ( walker->getSibling() ) {
+		this->updatePtC( gameTime, static_cast< GameObjectNode* >(walker->getSibling()) );
+	}
+	if ( walker->getChild() ) {
+		this->updatePtC( gameTime, static_cast< GameObjectNode* >(walker->getChild()) );
+	}	
+}
+
+void GameObjectManager::drawPtC( GameObjectNode* const walker, Camera* const camera ) const {
+	// Draw node
+	walker->drawNode(camera);
+
+	// Draw siblings, then children
+	if ( walker->getSibling() ) {
+		this->drawPtC( static_cast< GameObjectNode* >(walker->getSibling()), camera );
+	}
+	if ( walker->getChild() ) {
+		this->drawPtC( static_cast< GameObjectNode* >(walker->getChild()), camera );
+	}
 }

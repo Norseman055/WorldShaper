@@ -9,5 +9,3 @@
 #include "Util.h"
 #include "Vect.h"
 #include "VectApp.h"
-
-#define ENGINE_MATH_TOLERANCE 0.0001f

@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 Cube::Cube()
-	: Model( Model_Cube ) {
+	: Model( ModelType::Model_Cube ) {
 	printf( "    Loading cube...\n" );
 
 	this->numVertices = 12 * 2;
@@ -129,7 +129,7 @@ Cube::Cube()
 	this->faces = new int[numFaces];
 
 	// 6 sides to populate square, this is different from rest of models because hard-coded
-	for ( auto i = 0; i < 6; i++ ) {
+	for ( int i = 0; i < 6; i++ ) {
 		faces[6 * i] = 4 * i;
 		faces[6 * i + 1] = 4 * i + 1;  // Move over to the next column
 		faces[6 * i + 2] = 4 * i + 2;    // Now, move up to the top

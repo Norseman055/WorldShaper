@@ -5,7 +5,7 @@
 
 class Shader;
 
-class ShaderNode : public NodeLink<Shader> {
+class ShaderNode : public NodeLink<Shader*> {
 public:
 	ShaderType getType() const;
 

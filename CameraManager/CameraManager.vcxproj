@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F2EC4E09-2C91-4BC2-8B26-3FD5EE293F96}</ProjectGuid>
-    <RootNamespace>GameObjectManager</RootNamespace>
+    <ProjectGuid>{186D93B7-0630-4F6A-A488-F7481E7BBA9E}</ProjectGuid>
+    <RootNamespace>CameraManager</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -51,7 +51,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;$(SolutionDir)libs\PCSTree;$(SolutionDir)ModelManager;$(SolutionDir)TextureManager;$(SolutionDir)ShaderManager;$(SolutionDir)CameraManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;$(SolutionDir)libs\PCSTree;$(SolutionDir)ModelManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -77,7 +77,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;$(SolutionDir)libs\PCSTree;$(SolutionDir)ModelManager;$(SolutionDir)TextureManager;$(SolutionDir)ShaderManager;$(SolutionDir)CameraManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)generics;$(SolutionDir)libs;$(SolutionDir)libs\PCSTree;$(SolutionDir)ModelManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -93,31 +93,24 @@
     </ProjectReference>
     <Lib />
     <Lib />
-    <Lib />
     <Lib>
       <AdditionalOptions>/ignore:4006,4221 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameObjectManager.h" />
-    <ClInclude Include="GameObjectNode.h" />
-    <ClInclude Include="GameObjectTypes.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraManager.h" />
+    <ClInclude Include="CameraNode.h" />
+    <ClInclude Include="CameraTypes.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GameObjectManager.cpp" />
-    <ClCompile Include="GameObjectNode.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraManager.cpp" />
+    <ClCompile Include="CameraNode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModelManager\ModelManager.vcxproj">
       <Project>{0a28ef60-5fc1-4182-a1d5-36d5c37c3799}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\ShaderManager\ShaderManager.vcxproj">
-      <Project>{d75c2593-5ff5-492a-98e2-e53ab3a4b022}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\TextureManager\TextureManager.vcxproj">
-      <Project>{92ee5985-af10-4a38-af4f-5b8ddfbf286d}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

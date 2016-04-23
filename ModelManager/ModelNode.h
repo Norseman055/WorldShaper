@@ -5,7 +5,7 @@
 
 class Model;
 
-class ModelNode : public NodeLink<Model> {
+class ModelNode : public NodeLink<Model*> {
 public:
 	ModelType getType() const;
 

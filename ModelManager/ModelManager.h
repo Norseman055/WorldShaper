@@ -6,7 +6,7 @@
 class ModelNode;
 class Model;
 
-class ModelManager : public Manager<Model> {
+class ModelManager : public Manager<Model*> {
 public: 
 	static void Startup();
 	static void Shutdown();
@@ -15,10 +15,10 @@ public:
 	static void RemoveModel( const ModelType );
 
 	static Model* FindModel( const ModelType );
-	
+
 private:
 	static void LoadModels();
 	static ModelNode* Find( const ModelType );
 
-	ModelNode* findDepthFirst( ModelNode* const, const ModelType );
+	ModelNode* findDepthFirst( ModelNode* const, const ModelType ) const;
 };

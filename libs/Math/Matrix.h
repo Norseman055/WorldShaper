@@ -39,57 +39,62 @@ public:
 	void set( const MatrixRowType in, const Vect &v );
 	void set( const Vect &v0, const Vect &v1, const Vect &v2, const Vect &v3 );
 	void set( const __m128 &m0, const __m128 &m1, const __m128 &m2, const __m128 &m3 );
+	void set(const Matrix &m0);
 	void set( const Quat &q0 );
 
 	Vect get( const MatrixRowType in )const;
 
-	void operator = (const Matrix &t);
-	Matrix operator + (const Matrix &t)const;
-	void operator += (const Matrix &t);
-	Matrix operator - (const Matrix &t)const;
-	void operator -= (const Matrix &t);
-	Matrix operator * (const Matrix &t)const;
-	void operator *= (const Matrix &t);
-	void operator *= (const float f);
-	friend Matrix operator * (const float f, const Matrix &t);
-	friend Matrix operator * (const Matrix &t, const float f);
-	friend Matrix operator + (const Matrix &t);
-	friend Matrix operator - (const Matrix &t);
+	// unary
+	Matrix operator+()const;
+	Matrix operator-()const;
+
+	void operator=(const Matrix &t);
+	Matrix operator+(const Matrix &t)const;
+	void operator+=(const Matrix &t);
+	Matrix operator-(const Matrix &t)const;
+	void operator-=(const Matrix &t);
+	Matrix operator*(const Matrix &t)const;
+	void operator*=(const Matrix &t);
+	void operator*=(const float f);
+	friend Matrix operator*(const float f, const Matrix &t);
+	friend Matrix operator*(const Matrix &t, const float f);
+
+	operator float*() { return *m; }
 
 	Vect operator[]( const MatrixRowType )const;
-	float operator[]( const m0_enum )const;
-	float operator[]( const m1_enum )const;
-	float operator[]( const m2_enum )const;
-	float operator[]( const m3_enum )const;
-	float operator[]( const m4_enum )const;
-	float operator[]( const m5_enum )const;
-	float operator[]( const m6_enum )const;
-	float operator[]( const m7_enum )const;
-	float operator[]( const m8_enum )const;
-	float operator[]( const m9_enum )const;
-	float operator[]( const m10_enum )const;
-	float operator[]( const m11_enum )const;
-	float operator[]( const m12_enum )const;
-	float operator[]( const m13_enum )const;
-	float operator[]( const m14_enum )const;
-	float operator[]( const m15_enum )const;
+	inline float operator[](const m0_enum)const { return this->_m0; }
+	inline float operator[](const m1_enum)const { return this->_m1; }
+	inline float operator[](const m2_enum)const { return this->_m2; }
+	inline float operator[](const m3_enum)const { return this->_m3; }
+	inline float operator[](const m4_enum)const { return this->_m4; }
+	inline float operator[](const m5_enum)const { return this->_m5; }
+	inline float operator[](const m6_enum)const { return this->_m6; }
+	inline float operator[](const m7_enum)const { return this->_m7; }
+	inline float operator[](const m8_enum)const { return this->_m8; }
+	inline float operator[](const m9_enum)const { return this->_m9; }
+	inline float operator[](const m10_enum)const { return this->_m10; }
+	inline float operator[](const m11_enum)const { return this->_m11; }
+	inline float operator[](const m12_enum)const { return this->_m12; }
+	inline float operator[](const m13_enum)const { return this->_m13; }
+	inline float operator[](const m14_enum)const { return this->_m14; }
+	inline float operator[](const m15_enum)const { return this->_m15; }
 	Vect& operator[]( const MatrixRowType );
-	float& operator[]( const m0_enum );
-	float& operator[]( const m1_enum );
-	float& operator[]( const m2_enum );
-	float& operator[]( const m3_enum );
-	float& operator[]( const m4_enum );
-	float& operator[]( const m5_enum );
-	float& operator[]( const m6_enum );
-	float& operator[]( const m7_enum );
-	float& operator[]( const m8_enum );
-	float& operator[]( const m9_enum );
-	float& operator[]( const m10_enum );
-	float& operator[]( const m11_enum );
-	float& operator[]( const m12_enum );
-	float& operator[]( const m13_enum );
-	float& operator[]( const m14_enum );
-	float& operator[]( const m15_enum );
+	inline float& operator[](const m0_enum) { return this->_m0; }
+	inline float& operator[](const m1_enum) { return this->_m1; }
+	inline float& operator[](const m2_enum) { return this->_m2; }
+	inline float& operator[](const m3_enum) { return this->_m3; }
+	inline float& operator[](const m4_enum) { return this->_m4; }
+	inline float& operator[](const m5_enum) { return this->_m5; }
+	inline float& operator[](const m6_enum) { return this->_m6; }
+	inline float& operator[](const m7_enum) { return this->_m7; }
+	inline float& operator[](const m8_enum) { return this->_m8; }
+	inline float& operator[](const m9_enum) { return this->_m9; }
+	inline float& operator[](const m10_enum) { return this->_m10; }
+	inline float& operator[](const m11_enum) { return this->_m11; }
+	inline float& operator[](const m12_enum) { return this->_m12; }
+	inline float& operator[](const m13_enum) { return this->_m13; }
+	inline float& operator[](const m14_enum) { return this->_m14; }
+	inline float& operator[](const m15_enum) { return this->_m15; }
 
 	bool isEqual( const Matrix &t )const;
 	bool isIdentity( const float f = MATH_TOLERANCE )const;
@@ -143,5 +148,7 @@ private:
 			float _m14;
 			float _m15;
 		};
+
+		float m[4][4];
 	};
 };

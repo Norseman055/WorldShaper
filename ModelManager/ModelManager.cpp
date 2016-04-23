@@ -1,4 +1,5 @@
 #include "ModelManager.h"
+#include "Macros.h"
 
 #include "ModelNode.h"
 #include "Model.h"
@@ -43,7 +44,7 @@ void ModelManager::LoadModels() {
 
 ModelNode* ModelManager::Find( const ModelType type ) {
 	ModelNode* model = nullptr;
-	if ( type != Model_None ) {
+	if ( type != ModelType::Model_None ) {
 		ModelNode* root = static_cast< ModelNode* >(GetObjectList()->getRoot());
 
 		if ( root ) {
@@ -54,7 +55,7 @@ ModelNode* ModelManager::Find( const ModelType type ) {
 	return model;
 }
 
-ModelNode* ModelManager::findDepthFirst( ModelNode* const walker, const ModelType type ) {
+ModelNode* ModelManager::findDepthFirst( ModelNode* const walker, const ModelType type ) const {
 	ModelNode* model = nullptr;
 
 	if ( walker->getType() == type ) {

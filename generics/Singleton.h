@@ -16,7 +16,6 @@ public:
 	}
 
 	static void DestroyInstance() {
-		delete instance;
 		instance = nullptr;
 	}
 

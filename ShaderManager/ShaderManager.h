@@ -6,7 +6,7 @@
 class ShaderNode;
 class Shader;
 
-class ShaderManager : public Manager<Shader> {
+class ShaderManager : public Manager<Shader*> {
 public:
 	static void Startup();
 	static void Shutdown();
@@ -20,5 +20,5 @@ private:
 	static void LoadShaders();
 	static ShaderNode* Find( const ShaderType );
 
-	ShaderNode* findDepthFirst( ShaderNode* const, const ShaderType );
+	ShaderNode* findDepthFirst( ShaderNode* const, const ShaderType ) const;
 };

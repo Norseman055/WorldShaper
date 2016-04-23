@@ -10,41 +10,15 @@
     <Filter Include="Core Engine\Source Files">
       <UniqueIdentifier>{96400676-d76a-4efd-b1de-3f0673744855}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GLFW Rendering">
-      <UniqueIdentifier>{936497dd-2ba4-48f0-94b2-c11d769da6b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GLFW Rendering\Header Files">
-      <UniqueIdentifier>{d0ee7cc0-457d-42a5-be81-0e4f6b224ff9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GLFW Rendering\Source Files">
-      <UniqueIdentifier>{60e63599-725e-41ab-a211-4aee6b339b3f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{dc9c8378-6dc4-46f5-95e8-f19b794d2e81}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WorldShaper.cpp">
       <Filter>Core Engine\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GLFWManager.cpp">
-      <Filter>GLFW Rendering\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WorldShaper.h">
       <Filter>Core Engine\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GLFWManager.h">
-      <Filter>GLFW Rendering\Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Phong.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Phong.vert">
-      <Filter>Shaders</Filter>
-    </None>
   </ItemGroup>
 </Project>

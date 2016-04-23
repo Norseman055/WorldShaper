@@ -1,5 +1,7 @@
 #include "Model.h"
 
+#include "Math\MathEngine.h"
+
 #include "Vertex.h"
 #include <stdio.h>
 
@@ -7,9 +9,20 @@
 #include <glew\glew.h>
 #include <GLFW\glfw3.h>
 
-
 ModelType Model::getType() const {
 	return this->type;
+}
+
+unsigned int Model::getVao() const {
+	return this->vao;
+}
+
+unsigned int Model::getVboVerts() const {
+	return this->vboVertices;
+}
+
+unsigned int Model::getVboFaces() const {
+	return this->vboFaces;
 }
 
 Vertex* Model::getVertices() const {
@@ -28,6 +41,10 @@ int Model::getNumFaces() const {
 	return this->numFaces;
 }
 
+Matrix* Model::getModelMatrix() const {
+	return this->modelMatrix;
+}
+
 void Model::setupOpenGLBuffers() {
 	printf( "      Setting OpenGL buffers for model...\n" );
 	glGenVertexArrays( 1, &vao );
@@ -42,8 +59,10 @@ void Model::setupOpenGLBuffers() {
 	glBufferData( GL_ELEMENT_ARRAY_BUFFER, this->numFaces * sizeof( int ), this->faces, GL_STATIC_DRAW );
 }
 
-Model::Model( const ModelType inType )
-	: type( inType ), vao( 0 ), vboVertices( 0 ), vboFaces( 0 ),
-	vertices( nullptr ), numVertices( 0 ), faces( nullptr ), numFaces( 0 ) { }
+Model::Model(const ModelType inType)
+	: type(inType), vao(0), vboVertices(0), vboFaces(0),
+	vertices(nullptr), numVertices(0), faces(nullptr), numFaces(0) {
+	this->modelMatrix = new Matrix(IDENTITY);
+}
 
 Model::~Model() { }

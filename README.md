@@ -7,10 +7,11 @@ Make singleton managers and create generalized objects:
   ModelManager - Complete
   GameObjectManager - Complete
   ShaderManager - Complete
+  CameraManager - In Progress...
 
 # TODO
-- Fix ShaderManager to load proper shader .vert and .frag GLSL files
 - Add OpenGL implementation to draw models in Model
 - Add OpenGL implementation to draw texture in Texture
 - Add OpenGL implementation to draw using shader in Shader
 - Add logic to use core game engine to draw game object with model and texture using shader
+- Add logic to use projection matrix from active camera

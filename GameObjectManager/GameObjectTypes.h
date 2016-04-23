@@ -1,6 +1,6 @@
 #pragma once
 
-enum GameObjectType {
+enum struct GameObjectType {
 	GameObject_None,
 	GameObject_CubeBrick
 };

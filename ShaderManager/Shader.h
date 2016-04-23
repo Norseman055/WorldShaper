@@ -5,6 +5,7 @@
 class Shader {
 public:
 	ShaderType getType() const;
+	unsigned int getShaderID() const;
 
 	void setupGLSLShaders( const char* );
 

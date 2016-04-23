@@ -5,9 +5,9 @@
 
 #include "Macros.h"
 
-void GLFWManager::StartupGLFW() {
+void GLFWManager::Startup() {
 	printf( "===== Starting GLFW Manager =====\n" );
-	auto glfwManager = getInstance();
+	GLFWManager* glfwManager = GetInstance();
 
 	// Set error callback prior to initialization to notify if initialization fails
 	glfwSetErrorCallback( error_callback );
@@ -36,7 +36,7 @@ void GLFWManager::StartupGLFW() {
 	glewExperimental = GL_TRUE;
 	GLenum err = glewInit();
 	if ( err != GLEW_OK ) {
-		ShutdownGLFW();
+		Shutdown();
 		exit( EXIT_FAILURE );
 	}
 	printf( "  Success!\n" );
@@ -53,20 +53,21 @@ void GLFWManager::StartupGLFW() {
 	glfwSetKeyCallback( glfwManager->mWindow, key_callback );
 
 	// Enable OpenGL depth-testing
+	glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
 	glEnable( GL_DEPTH_TEST );
 	glDepthFunc( GL_LESS );
 }
 
-void GLFWManager::ShutdownGLFW() {
+void GLFWManager::Shutdown() {
 	// Destroy game window
-	glfwDestroyWindow( getInstance()->mWindow );
+	glfwDestroyWindow( GetInstance()->mWindow );
 	
 	// Terminate GLFW
 	glfwTerminate();
 }
 
 GLFWwindow* GLFWManager::GetWindow() {
-	return getInstance()->mWindow;
+	return GetInstance()->mWindow;
 }
 
 void GLFWManager::error_callback( int error, const char* description ) {
@@ -81,13 +82,8 @@ void GLFWManager::key_callback( GLFWwindow* window, int key, int scancode, int a
 	UNUSED( mods );
 
 	if ( key == GLFW_KEY_ESCAPE && action == GLFW_PRESS ) {
-		glfwSetWindowShouldClose( getInstance()->mWindow, GL_TRUE );
+		glfwSetWindowShouldClose( GetInstance()->mWindow, GL_TRUE );
 	}
-}
-
-GLFWManager* GLFWManager::getInstance() {
-	static GLFWManager instance;
-	return &instance;
 }
 
 GLFWManager::GLFWManager()

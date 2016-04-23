@@ -6,7 +6,8 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WorldShaper", "WorldShaper\WorldShaper.vcxproj", "{47CB4FDA-1BE9-4808-88EA-9125EC390F95}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F2EC4E09-2C91-4BC2-8B26-3FD5EE293F96} = {F2EC4E09-2C91-4BC2-8B26-3FD5EE293F96}
-		{D75C2593-5FF5-492A-98E2-E53AB3A4B022} = {D75C2593-5FF5-492A-98E2-E53AB3A4B022}
+		{32845016-27A7-4AC3-B0B6-D758FB0C3C16} = {32845016-27A7-4AC3-B0B6-D758FB0C3C16}
+		{186D93B7-0630-4F6A-A488-F7481E7BBA9E} = {186D93B7-0630-4F6A-A488-F7481E7BBA9E}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "UnitTests\UnitTests.vcxproj", "{504AA9A6-D812-48AE-B420-D6AAA96ABEE5}"
@@ -28,6 +29,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameObjectManager", "GameOb
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShaderManager", "ShaderManager\ShaderManager.vcxproj", "{D75C2593-5FF5-492A-98E2-E53AB3A4B022}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLFWManager", "GLFWManager\GLFWManager.vcxproj", "{32845016-27A7-4AC3-B0B6-D758FB0C3C16}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CameraManager", "CameraManager\CameraManager.vcxproj", "{186D93B7-0630-4F6A-A488-F7481E7BBA9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +68,14 @@ Global
 		{D75C2593-5FF5-492A-98E2-E53AB3A4B022}.Debug|Win32.Build.0 = Debug|Win32
 		{D75C2593-5FF5-492A-98E2-E53AB3A4B022}.Release|Win32.ActiveCfg = Release|Win32
 		{D75C2593-5FF5-492A-98E2-E53AB3A4B022}.Release|Win32.Build.0 = Release|Win32
+		{32845016-27A7-4AC3-B0B6-D758FB0C3C16}.Debug|Win32.ActiveCfg = Debug|Win32
+		{32845016-27A7-4AC3-B0B6-D758FB0C3C16}.Debug|Win32.Build.0 = Debug|Win32
+		{32845016-27A7-4AC3-B0B6-D758FB0C3C16}.Release|Win32.ActiveCfg = Release|Win32
+		{32845016-27A7-4AC3-B0B6-D758FB0C3C16}.Release|Win32.Build.0 = Release|Win32
+		{186D93B7-0630-4F6A-A488-F7481E7BBA9E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{186D93B7-0630-4F6A-A488-F7481E7BBA9E}.Debug|Win32.Build.0 = Debug|Win32
+		{186D93B7-0630-4F6A-A488-F7481E7BBA9E}.Release|Win32.ActiveCfg = Release|Win32
+		{186D93B7-0630-4F6A-A488-F7481E7BBA9E}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

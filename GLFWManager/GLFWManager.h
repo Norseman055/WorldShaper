@@ -1,14 +1,17 @@
 #pragma once
 
+#include "Singleton.h"
+
 #define GLEW_STATIC
 #include <glew\glew.h>
 #include <GLFW\glfw3.h>
 
-class GLFWManager {
+class GLFWManager : public Singleton<GLFWManager> {
+	friend class Singleton<GLFWManager>;
 public:
 	// Methods
-	static void StartupGLFW();
-	static void ShutdownGLFW();
+	static void Startup();
+	static void Shutdown();
 
 	static GLFWwindow* GetWindow();
 
@@ -20,8 +23,7 @@ private:
 	static void error_callback( int error, const char* description );
 	static void key_callback( GLFWwindow* window, int key, int scancode, int action, int mods );
 
-	// Singleton methods
-	static GLFWManager* getInstance();
+	// Private constructor
 	GLFWManager();
 
 	// Member variables
