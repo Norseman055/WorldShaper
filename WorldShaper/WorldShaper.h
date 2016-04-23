@@ -13,6 +13,7 @@ public:
 private:
 	// Methods
 	static void Startup();
+	static void SetGLFWCallbacks();
 	static void Shutdown();
 
 	void update(double gameTime);

@@ -14,13 +14,14 @@ public:
 	Matrix& getProjectionMatrix();
 	Vect& getPosition();
 
-	void setPerspective( const float, const float, const float, const float );
-	void setViewport( const int, const int, const int, const int );
-	void setOrientationAndPosition( const Vect&, const Vect&, const Vect& );
+	void setPerspective(const float, const float, const float, const float);
+	void setViewport(const int, const int, const int, const int);
+	void setViewportHeightWidth(const int, const int);
+	void setOrientationAndPosition(const Vect&, const Vect&, const Vect&);
 
 	void updateCamera();
 
-	Camera( const CameraType, const char* );
+	Camera(const CameraType, const char*);
 	~Camera();
 
 private:
@@ -82,5 +83,4 @@ private:
 
 	CameraType type;
 	const char* name;
-
 };

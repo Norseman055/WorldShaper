@@ -17,16 +17,22 @@ unsigned int Texture::getTextureID() const {
 void Texture::setupTexture( const char* filename ) {
 	printf( "    Setting up OpenGL buffers for texture " );
 	printf( filename );
-	printf( "...\n" );
+	printf( "..." );
 
 	int width, height, numComponents;
 	unsigned char* imageData = stbi_load( filename, &width, &height, &numComponents, 0 );
+	if(!imageData) {
+		printf("  Failed! Error: ");
+		printf(stbi_failure_reason());
+		printf("\n");
+		return;
+	}
 
 	glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
 
 	glGenTextures( 1, &this->textureID );
 	glBindTexture( GL_TEXTURE_2D, this->textureID );
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_BGR, GL_UNSIGNED_BYTE, imageData );
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, imageData );
 
 	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
 	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );

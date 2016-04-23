@@ -15,13 +15,14 @@ public:
 
 	static GLFWwindow* GetWindow();
 
+	static void InputCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+
 	// Destructor (virtual just in case)
 	virtual ~GLFWManager();
 
 private:
 	// Methods
-	static void error_callback( int error, const char* description );
-	static void key_callback( GLFWwindow* window, int key, int scancode, int action, int mods );
+	static void ErrorCallback(int error, const char* description);
 
 	// Private constructor
 	GLFWManager();
