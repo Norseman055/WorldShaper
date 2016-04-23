@@ -9,7 +9,7 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resources">
+    <Filter Include="Resource Files">
       <UniqueIdentifier>{488c2a1b-0656-40fb-8ef5-5055db5cfdf3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Bricks.tga">
-      <Filter>Resources</Filter>
+      <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
 </Project>
