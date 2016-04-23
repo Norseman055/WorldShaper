@@ -53,7 +53,7 @@ void GLFWManager::Startup() {
 	glfwSetKeyCallback( glfwManager->mWindow, key_callback );
 
 	// Enable OpenGL depth-testing
-	glClearColor(0.9f, 0.9f, 0.9f, 0.0f);
+	glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
 	glEnable( GL_DEPTH_TEST );
 	glDepthFunc( GL_LESS );
 }

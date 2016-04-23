@@ -15,7 +15,7 @@ public:
 	Vect& getPosition();
 
 	void setPerspective( const float, const float, const float, const float );
-	void setViewport( const float, const float, const float, const float );
+	void setViewport( const int, const int, const int, const int );
 	void setOrientationAndPosition( const Vect&, const Vect&, const Vect& );
 
 	void updateCamera();
@@ -75,10 +75,10 @@ private:
 	float farWidth;
 
 	// Viewport
-	float viewportX;
-	float viewportY;
-	float viewportHeight;
-	float viewportWidth;
+	int viewportX;
+	int viewportY;
+	int viewportHeight;
+	int viewportWidth;
 
 	CameraType type;
 	const char* name;

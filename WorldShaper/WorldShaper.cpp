@@ -47,6 +47,9 @@ void WorldShaper::update(double gameTime) {
 void WorldShaper::draw() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	// Update camera for consistency
+	CameraManager::UpdateActiveCamera();
+
 	// Draw Game Objects
 	GameObjectManager::Draw(CameraManager::GetActiveCamera());
 

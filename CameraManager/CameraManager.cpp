@@ -37,12 +37,16 @@ Camera* CameraManager::GetActiveCamera() {
 	return static_cast< CameraManager* >(GetInstance())->activeCamera;
 }
 
+void CameraManager::UpdateActiveCamera() {
+	static_cast<CameraManager*>(GetInstance())->activeCamera->updateCamera();
+}
+
 void CameraManager::LoadCameras() {
 	printf( "  Loading cameras...\n" );
 	Camera* cam0 = new Camera( CameraType::Camera_Default, "default" );
-	cam0->setPerspective( 35.0f, float( GAME_WIDTH ) / float( GAME_HEIGHT ), 1.0f, 10.0f );
+	cam0->setPerspective(1.0f, 10.0f, 35.0f, float(GAME_WIDTH) / float(GAME_HEIGHT) );
 	cam0->setViewport( 0, 0, GAME_HEIGHT, GAME_WIDTH );
-	cam0->setOrientationAndPosition( Vect( 0.0f, 1.0f, 0.0f ), Vect( 0.0f, 0.0f, 0.0f ), Vect( 0.0f, 0.0f, -10.0f ) );
+	cam0->setOrientationAndPosition( Vect( 0.0f, 1.0f, 0.0f ), Vect( 0.0f, 0.0f, 0.0f ), Vect( 2.0f, 2.0f, -5.0f ) );
 	AddCamera( cam0 );
 	
 	printf( "  Setting default camera to Camera_Default...\n" );

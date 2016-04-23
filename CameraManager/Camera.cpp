@@ -34,7 +34,7 @@ void Camera::setPerspective( const float inNear, const float inFar, const float 
 	this->aspectRatio = inAspect;
 }
 
-void Camera::setViewport( const float x, const float y, const float height, const float width ) {
+void Camera::setViewport( const int x, const int y, const int height, const int width ) {
 	this->viewportX = x;
 	this->viewportY = y;
 	this->viewportHeight = height;
@@ -176,7 +176,7 @@ void Camera::updateProjectionMatrix() {
 }
 
 void Camera::setGlfwViewport() const {
-	glViewport((GLint)this->viewportX, (GLint)this->viewportY, (GLsizei)this->viewportWidth, (GLsizei)this->viewportHeight);
+	glViewport(this->viewportX, this->viewportY, this->viewportWidth, this->viewportHeight);
 }
 
 Camera::Camera( CameraType inType, const char* inName )

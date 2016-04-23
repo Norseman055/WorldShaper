@@ -17,6 +17,8 @@ public:
 	static Camera* FindCamera( const CameraType, const char* );
 	static Camera* GetActiveCamera();
 
+	static void UpdateActiveCamera();
+
 private:
 	static void LoadCameras();
 	static CameraNode* Find( const CameraType, const char* );
