@@ -65,11 +65,8 @@
     </ProjectReference>
     <Lib />
     <Lib />
+    <Lib />
     <Lib>
-      <AdditionalDependencies>PCSTreeDebug.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
-    <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)libs\PCSTree;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4006,4221 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -96,11 +93,8 @@
     </ProjectReference>
     <Lib />
     <Lib />
+    <Lib />
     <Lib>
-      <AdditionalDependencies>PCSTreeRelease.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
-    <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)libs\PCSTree;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4006,4221 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
