@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="PCS">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="UnitTest %28do Not Touch%29">
+      <UniqueIdentifier>{2bee600e-4caa-424f-ab7e-39915f6634a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PCS Tests %28do Not Change%29">
+      <UniqueIdentifier>{c43d2ce2-5120-466f-97df-d980c308dae4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PCSNode_Test.cpp">
+      <Filter>PCS Tests %28do Not Change%29</Filter>
+    </ClCompile>
+    <ClCompile Include="PCSTree_Test.cpp">
+      <Filter>PCS Tests %28do Not Change%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\UnitTest\Failure.cpp">
+      <Filter>UnitTest %28do Not Touch%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\UnitTest\SimpleString.cpp">
+      <Filter>UnitTest %28do Not Touch%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\UnitTest\Test.cpp">
+      <Filter>UnitTest %28do Not Touch%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\UnitTest\TestRegistry.cpp">
+      <Filter>UnitTest %28do Not Touch%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\UnitTest\TestResult.cpp">
+      <Filter>UnitTest %28do Not Touch%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\UnitTest\UnitTest.cpp">
+      <Filter>UnitTest %28do Not Touch%29</Filter>
+    </ClCompile>
+    <ClCompile Include="PCSNode.cpp">
+      <Filter>PCS</Filter>
+    </ClCompile>
+    <ClCompile Include="PCSTree.cpp">
+      <Filter>PCS</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PCSNode.h">
+      <Filter>PCS</Filter>
+    </ClInclude>
+    <ClInclude Include="PCSTree.h">
+      <Filter>PCS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\UnitTest\SimpleString.h">
+      <Filter>UnitTest %28do Not Touch%29</Filter>
+    </ClInclude>
+    <ClInclude Include="..\UnitTest\TestRegistry.h">
+      <Filter>UnitTest %28do Not Touch%29</Filter>
+    </ClInclude>
+    <ClInclude Include="..\UnitTest\UnitTest.h">
+      <Filter>UnitTest %28do Not Touch%29</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
