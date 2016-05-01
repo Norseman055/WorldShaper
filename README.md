@@ -7,11 +7,10 @@ Make singleton managers and create generalized objects:
   ModelManager - Complete
   GameObjectManager - Complete
   ShaderManager - Complete
-  CameraManager - In Progress...
+  CameraManager - Complete
+  AnimationManager - In progres...
 
 # TODO
-- Add OpenGL implementation to draw models in Model
-- Add OpenGL implementation to draw texture in Texture
-- Add OpenGL implementation to draw using shader in Shader
-- Add logic to use core game engine to draw game object with model and texture using shader
-- Add logic to use projection matrix from active camera
+- Add logic for Animation systems
+- Add logic for Archive manager to pull in archived data from file, load at startup
+- Add logic to animate or render models as per archived data file instructions

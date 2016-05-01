@@ -34,6 +34,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLFWManager", "GLFWManager\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CameraManager", "CameraManager\CameraManager.vcxproj", "{186D93B7-0630-4F6A-A488-F7481E7BBA9E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AnimationManager", "AnimationManager\AnimationManager.vcxproj", "{A4E6019A-6DAA-49F7-90FE-A1020C754FAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -76,6 +78,10 @@ Global
 		{186D93B7-0630-4F6A-A488-F7481E7BBA9E}.Debug|Win32.Build.0 = Debug|Win32
 		{186D93B7-0630-4F6A-A488-F7481E7BBA9E}.Release|Win32.ActiveCfg = Release|Win32
 		{186D93B7-0630-4F6A-A488-F7481E7BBA9E}.Release|Win32.Build.0 = Release|Win32
+		{A4E6019A-6DAA-49F7-90FE-A1020C754FAC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A4E6019A-6DAA-49F7-90FE-A1020C754FAC}.Debug|Win32.Build.0 = Debug|Win32
+		{A4E6019A-6DAA-49F7-90FE-A1020C754FAC}.Release|Win32.ActiveCfg = Release|Win32
+		{A4E6019A-6DAA-49F7-90FE-A1020C754FAC}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
