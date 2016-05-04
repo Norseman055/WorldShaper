@@ -6,6 +6,7 @@
 #include "TextureManager.h"
 #include "GameObjectManager.h"
 #include "CameraManager.h"
+#include "AnimationManager.h"
 
 void WorldShaper::Run() {
 	printf("===== Starting World Shaper Engine =====\n");
@@ -29,6 +30,7 @@ void WorldShaper::Startup() {
 	ModelManager::Startup();
 	GameObjectManager::Startup();
 	CameraManager::Startup();
+	AnimationManager::Startup();
 
 	SetGLFWCallbacks();
 }
@@ -41,6 +43,7 @@ void WorldShaper::SetGLFWCallbacks() {
 }
 
 void WorldShaper::Shutdown() {
+	AnimationManager::Shutdown();
 	CameraManager::Shutdown();
 	GameObjectManager::Shutdown();
 	ModelManager::Shutdown();
