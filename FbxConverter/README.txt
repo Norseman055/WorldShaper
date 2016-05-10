@@ -1,0 +1,1 @@
+This FbxConverter is heavily influenced by the brilliant work of Vitor Fernandes. Some modifications have been made so that it uses less STL where possible (char* rather than std::string) and it makes use of my custom File system for opening/closing/writing to file, but other than that it is largely unchanged. All credit for this converter really goes to him. 
