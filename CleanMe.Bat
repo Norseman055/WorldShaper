@@ -19,6 +19,9 @@ rmdir /S /Q GLFWManager\Release
 rmdir /S /Q CameraManager\Debug
 rmdir /S /Q CameraManager\Release
 
+rmdir /S /Q AnimationManager\Debug
+rmdir /S /Q AnimationManager\Release
+
 rmdir /S /Q GameObjectManager\Debug
 rmdir /S /Q GameObjectManager\Release
 
