@@ -35,6 +35,9 @@
     <ClInclude Include="Cube.h">
       <Filter>_Models\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GenericModel.h">
+      <Filter>_Models\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModelManager.cpp">
@@ -47,6 +50,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Cube.cpp">
+      <Filter>_Models\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GenericModel.cpp">
       <Filter>_Models\Source Files</Filter>
     </ClCompile>
   </ItemGroup>

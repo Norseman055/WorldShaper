@@ -140,5 +140,4 @@ Cube::Cube()
 	}
 
 	this->setupOpenGLBuffers();
-	printf( "    Cube loaded successfully!\n" );
 }

@@ -5,6 +5,10 @@
 
 class ModelNode;
 class Model;
+struct ModelFileHeader;
+struct VerticesHeader;
+struct NormalHeader;
+struct TriangleHeader;
 
 class ModelManager : public Manager<Model*> {
 public: 
@@ -16,9 +20,15 @@ public:
 
 	static Model* FindModel( const ModelType );
 
+	static void LoadModelFromBuffer(ModelFileHeader&, char* const);
+
 private:
 	static void LoadModels();
 	static ModelNode* Find( const ModelType );
 
 	ModelNode* findDepthFirst( ModelNode* const, const ModelType ) const;
+	
+	void loadVerticesFromBuffer(Model&, const VerticesHeader&, const char*);
+	void loadNormalsFromBuffer(Model&, const NormalHeader&, const char*);
+	void loadTrianglesFromBuffer(Model&, const TriangleHeader&, const char*);
 };

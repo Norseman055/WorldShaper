@@ -6,9 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WorldShaper", "WorldShaper\WorldShaper.vcxproj", "{47CB4FDA-1BE9-4808-88EA-9125EC390F95}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F2EC4E09-2C91-4BC2-8B26-3FD5EE293F96} = {F2EC4E09-2C91-4BC2-8B26-3FD5EE293F96}
-		{32845016-27A7-4AC3-B0B6-D758FB0C3C16} = {32845016-27A7-4AC3-B0B6-D758FB0C3C16}
 		{A4E6019A-6DAA-49F7-90FE-A1020C754FAC} = {A4E6019A-6DAA-49F7-90FE-A1020C754FAC}
 		{186D93B7-0630-4F6A-A488-F7481E7BBA9E} = {186D93B7-0630-4F6A-A488-F7481E7BBA9E}
+		{745413F7-663B-4144-A28A-F09DD7CD0B56} = {745413F7-663B-4144-A28A-F09DD7CD0B56}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "UnitTests\UnitTests.vcxproj", "{504AA9A6-D812-48AE-B420-D6AAA96ABEE5}"
@@ -36,6 +36,11 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CameraManager", "CameraManager\CameraManager.vcxproj", "{186D93B7-0630-4F6A-A488-F7481E7BBA9E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AnimationManager", "AnimationManager\AnimationManager.vcxproj", "{A4E6019A-6DAA-49F7-90FE-A1020C754FAC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArchiveManager", "ArchiveManager\ArchiveManager.vcxproj", "{745413F7-663B-4144-A28A-F09DD7CD0B56}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0A28EF60-5FC1-4182-A1D5-36D5C37C3799} = {0A28EF60-5FC1-4182-A1D5-36D5C37C3799}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +88,10 @@ Global
 		{A4E6019A-6DAA-49F7-90FE-A1020C754FAC}.Debug|Win32.Build.0 = Debug|Win32
 		{A4E6019A-6DAA-49F7-90FE-A1020C754FAC}.Release|Win32.ActiveCfg = Release|Win32
 		{A4E6019A-6DAA-49F7-90FE-A1020C754FAC}.Release|Win32.Build.0 = Release|Win32
+		{745413F7-663B-4144-A28A-F09DD7CD0B56}.Debug|Win32.ActiveCfg = Debug|Win32
+		{745413F7-663B-4144-A28A-F09DD7CD0B56}.Debug|Win32.Build.0 = Debug|Win32
+		{745413F7-663B-4144-A28A-F09DD7CD0B56}.Release|Win32.ActiveCfg = Release|Win32
+		{745413F7-663B-4144-A28A-F09DD7CD0B56}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
