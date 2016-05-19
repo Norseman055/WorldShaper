@@ -64,6 +64,12 @@ void GameObjectManager::LoadGameObjects() {
 	cubeBrick->setTexture( TextureManager::FindTexture( TextureType::Texture_Brick ) );
 	cubeBrick->setShader( ShaderManager::FindShader( ShaderType::Shader_Phong ) );
 	AddGameObject( cubeBrick );
+
+	GameObject* humanoid2 = new GameObject(GameObjectType::GameObject_Generic, "humanoid2");
+	humanoid2->setModel(ModelManager::FindModel(ModelType::Model_Generic));
+	humanoid2->setTexture(TextureManager::FindTexture(TextureType::Texture_Brick));
+	humanoid2->setShader(ShaderManager::FindShader(ShaderType::Shader_Phong));
+	AddGameObject(humanoid2);
 }
 
 GameObjectNode* GameObjectManager::Find( const GameObjectType type, const char* name ) {

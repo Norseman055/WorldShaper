@@ -30,17 +30,28 @@ namespace Export {
 		VerticesHeader verticesHeader;
 		verticesHeader.numVertices = importer.GetVertices().size();
 		verticesHeader.dataSize = verticesHeader.numVertices * sizeof(Vector);
+		printf("Vertex data:\n");
+		printf("Num vertices: %i\n", verticesHeader.numVertices);
+		printf("Data size: %i\n", verticesHeader.dataSize);
 		// make normals header
 		NormalHeader normalHeader;
 		normalHeader.numNormals = importer.GetNormals().size();
 		normalHeader.dataSize = normalHeader.numNormals * sizeof(Vector);
+		printf("Normal data:\n");
+		printf("Num normals: %i\n", normalHeader.numNormals);
+		printf("Data size: %i\n", normalHeader.dataSize);
 		// make triangles header
 		TriangleHeader triangleHeader;
 		triangleHeader.numTriangles = importer.GetTriangles().size();
 		triangleHeader.dataSize = triangleHeader.numTriangles * sizeof(Triangle);
+		printf("Triangle data:\n");
+		printf("Num triangles: %i\n", triangleHeader.numTriangles);
+		printf("Data size: %i\n", triangleHeader.dataSize);
 		// make model file header
 		ModelFileHeader modelHeader;
-		modelHeader.sizeofModelData = verticesHeader.dataSize + normalHeader.dataSize + triangleHeader.dataSize;
+		modelHeader.sizeofModelData = sizeof(verticesHeader) + verticesHeader.dataSize 
+			+ sizeof(normalHeader) + normalHeader.dataSize 
+			+ sizeof(triangleHeader) + triangleHeader.dataSize;
 		int filenameLen = strlen(path);
 		if(filenameLen < 24) {
 			memcpy(modelHeader.modelName, path, filenameLen);
@@ -52,7 +63,7 @@ namespace Export {
 	
 		// write file header
 		printf("Writing file header... ");
-		error = File::write(file, reinterpret_cast<const char* const>(&modelHeader), sizeof(modelHeader));
+		error = File::write(file, reinterpret_cast<const char* const>(&modelHeader), sizeof(ModelFileHeader));
 		if(error == FILE_WRITE_FAIL) {
 			printf("FAILURE!\n");
 			CloseFile(file);
@@ -62,14 +73,14 @@ namespace Export {
 
 		// write vertices
 		printf("Writing vertices to file... ");
-		error = File::write(file, reinterpret_cast<const char* const>(&verticesHeader), sizeof(verticesHeader));
+		error = File::write(file, reinterpret_cast<const char* const>(&verticesHeader), sizeof(VerticesHeader));
 		if(error == FILE_WRITE_FAIL) {
 			printf("FAILURE!\n");
 			CloseFile(file);
 			exit(EXIT_FAILURE);
 		}
 		for(const Vector& vertex : importer.GetVertices()) {
-			error = File::write(file, reinterpret_cast<const char* const>(&vertex), sizeof(vertex));
+			error = File::write(file, reinterpret_cast<const char* const>(&vertex), sizeof(Vector));
 			if(error == FILE_WRITE_FAIL) {
 				printf("FAILURE!\n");
 				CloseFile(file);
@@ -80,14 +91,14 @@ namespace Export {
 
 		// write normals
 		printf("Writing normals to file... ");
-		error = File::write(file, reinterpret_cast<const char* const>(&normalHeader), sizeof(normalHeader));
+		error = File::write(file, reinterpret_cast<const char* const>(&normalHeader), sizeof(NormalHeader));
 		if(error == FILE_WRITE_FAIL) {
 			printf("FAILURE!\n");
 			CloseFile(file);
 			exit(EXIT_FAILURE);
 		}
 		for(const Vector& vertex : importer.GetNormals()) {
-			error = File::write(file, reinterpret_cast<const char* const>(&vertex), sizeof(vertex));
+			error = File::write(file, reinterpret_cast<const char* const>(&vertex), sizeof(Vector));
 			if(error == FILE_WRITE_FAIL) {
 				printf("FAILURE!\n");
 				CloseFile(file);
@@ -98,14 +109,14 @@ namespace Export {
 
 		// write triangles
 		printf("Writing triangles to file... ");
-		error = File::write(file, reinterpret_cast<const char* const>(&triangleHeader), sizeof(triangleHeader));
+		error = File::write(file, reinterpret_cast<const char* const>(&triangleHeader), sizeof(TriangleHeader));
 		if(error == FILE_WRITE_FAIL) {
 			printf("FAILURE!\n");
 			CloseFile(file);
 			exit(EXIT_FAILURE);
 		}
 		for(const Triangle& triangle : importer.GetTriangles()) {
-			error = File::write(file, reinterpret_cast<const char* const>(&triangle), sizeof(triangle));
+			error = File::write(file, reinterpret_cast<const char* const>(&triangle), sizeof(Triangle));
 			if(error == FILE_WRITE_FAIL) {
 				printf("FAILURE!\n");
 				CloseFile(file);

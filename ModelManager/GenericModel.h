@@ -12,5 +12,5 @@ private:
 	// NO DEFAULT CONSTRUCTOR! NAME THE MODEL!
 	GenericModel() = delete;
 
-	const char* name;
+	char* name;
 };

@@ -14,10 +14,16 @@ public:
 	unsigned int getVboFaces() const;
 
 	Vertex* getVertices() const;
+	void setVertices(Vertex* const);
 	int getNumVertices() const;
+	void setNumVertices(const int);
 
 	int* getFaces() const;
+	void setFaces(int* const);
 	int getNumFaces() const;
+	void setNumFaces(const int);
+
+	void updateVbos();
 
 	Matrix* getModelMatrix() const;
 

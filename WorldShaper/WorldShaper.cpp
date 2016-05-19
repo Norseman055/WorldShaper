@@ -29,10 +29,10 @@ void WorldShaper::Startup() {
 	ShaderManager::Startup();
 	TextureManager::Startup();
 	ModelManager::Startup();
+	ArchiveManager::Startup();
 	GameObjectManager::Startup();
 	CameraManager::Startup();
 	AnimationManager::Startup();
-	ArchiveManager::Startup();
 
 	SetGLFWCallbacks();
 }

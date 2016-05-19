@@ -34,8 +34,8 @@ void ArchiveManager::LoadModelFromFile(const char* filename) {
 		if(error != FILE_SUCCESS) {
 			printf(" Failed to read file header!\n");
 		} else {
-			buffer = new char[fileHeader.sizeofModelData];
-			error = File::read(file, buffer, fileHeader.sizeofModelData);
+			buffer = new char[fileHeader.sizeofModelData + sizeof(fileHeader)];
+			error = File::read(file, buffer, fileHeader.sizeofModelData + sizeof(fileHeader));
 			if(error != FILE_SUCCESS) {
 				printf(" Failed to read file into buffer!\n");
 			} else {

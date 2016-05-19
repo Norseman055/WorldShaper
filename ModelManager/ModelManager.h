@@ -28,7 +28,7 @@ private:
 
 	ModelNode* findDepthFirst( ModelNode* const, const ModelType ) const;
 	
-	void loadVerticesFromBuffer(Model&, const VerticesHeader&, const char*);
-	void loadNormalsFromBuffer(Model&, const NormalHeader&, const char*);
-	void loadTrianglesFromBuffer(Model&, const TriangleHeader&, const char*);
+	void loadVerticesFromBuffer(Model&, const VerticesHeader&, void* const);
+	void loadNormalsFromBuffer(Model&, const NormalHeader&, void* const);
+	void loadTrianglesFromBuffer(Model&, const TriangleHeader&, void* const);
 };
