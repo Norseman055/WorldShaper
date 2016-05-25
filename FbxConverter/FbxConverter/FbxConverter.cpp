@@ -1,3 +1,8 @@
+/// This converter class and almost every method in it is written by Vitor Fernandes. While some modifications may
+/// have been made to a few of the functions, the majority of these functions are either direct copies or very close copies
+/// of his work. All credit goes to him for this converter and the functionality therein. It has been modified for use
+/// with my game engine, but is in no way work attributable to me.
+
 #include "FbxConverter.h"
 #include "Structures.h"
 
@@ -5,6 +10,7 @@
 #include <assert.h>
 
 fbxsdk::FbxNode* const FindNode(const fbxsdk::FbxNodeAttribute::EType criteria, FbxNode* const root);
+void ImportSkeletonRecursive(const fbxsdk::FbxNode * const node, const int parentIndex, const unsigned int level, vector<const Bone> & skeleton);
 
 void FbxConverter::Import(const char* filename) {
 
@@ -34,6 +40,7 @@ void FbxConverter::Import(const char* filename) {
 	this->ImportVertices();
 	this->ImportNormals();
 	this->ImportTriangles();
+	this->ImportSkeleton();
 }
 
 const vector<const Vector>& FbxConverter::GetVertices() const {
@@ -46,6 +53,10 @@ const vector<const Vector>& FbxConverter::GetNormals() const {
 
 const vector<const Triangle>& FbxConverter::GetTriangles() const {
 	return this->triangles;
+}
+
+const vector<const Bone>& FbxConverter::GetSkeleton() const {
+	return this->skeleton;
 }
 
 void FbxConverter::ImportVertices() {
@@ -129,6 +140,42 @@ void FbxConverter::ImportTriangles() {
 		triangle.b = static_cast<unsigned int>(polygons[3 * index + 1]);
 		triangle.a = static_cast<unsigned int>(polygons[3 * index + 2]);
 		this->triangles.push_back(triangle);
+	}
+}
+
+void FbxConverter::ImportSkeleton() {
+	printf("Importing skeleton heirarchy...\n");
+	using namespace fbxsdk;
+
+	const FbxNode* skeletonRoot = FindNode(FbxNodeAttribute::eSkeleton, this->fbxScene->GetRootNode());
+	assert(skeletonRoot);
+
+	ImportSkeletonRecursive(skeletonRoot, -1, 0, this->skeleton);
+}
+
+void ImportSkeletonRecursive(const fbxsdk::FbxNode* const node, const int parentIndex, const unsigned int level, vector<const Bone>& skeleton) {
+	assert(node);
+	assert(&skeleton);
+
+	const char* boneName = node->GetName();
+
+	Bone bone;
+	int boneNameLen = strlen(boneName);
+	if(boneNameLen < 32) {
+		memcpy(bone.boneName, boneName, boneNameLen);
+		bone.boneName[boneNameLen] = '\0';
+	} else {
+		memcpy(bone.boneName, boneName, 31);
+		bone.boneName[31] = '\0';
+	}
+
+	bone.parentIndex = parentIndex;
+	bone.level = level;
+	const int myIndex = skeleton.size();
+	skeleton.push_back(bone);
+
+	for(int i = 0; i < node->GetChildCount(); i++) {
+		ImportSkeletonRecursive(node->GetChild(i), myIndex, level + 1, skeleton);
 	}
 }
 

@@ -1,11 +1,14 @@
+/// This converter class and almost every method in it is written by Vitor Fernandes. While some modifications may
+/// have been made to a few of the functions, the majority of these functions are either direct copies or very close copies
+/// of his work. All credit goes to him for this converter and the functionality therein. It has been modified for use
+/// with my game engine, but is in no way work attributable to me.
+
 #include "Export.h"
 #include "FbxConverter.h"
 #include "Structures.h"
 #include <stdio.h>
 #include <algorithm>
 #include <assert.h>
-
-#define UNUSED(x) (void)x
 
 namespace Export {
 	void Save(const FbxConverter & importer, const char* path) {
@@ -47,15 +50,24 @@ namespace Export {
 		printf("Triangle data:\n");
 		printf("Num triangles: %i\n", triangleHeader.numTriangles);
 		printf("Data size: %i\n", triangleHeader.dataSize);
+		// make skeleton header
+		SkeletonHeader skeletonHeader;
+		skeletonHeader.numBones = importer.GetSkeleton().size();
+		skeletonHeader.dataSize = skeletonHeader.numBones * sizeof(Bone);
+		printf("Skeleton data:\n");
+		printf("Num bones: %i\n", skeletonHeader.numBones);
+		printf("Data size: %i\n", skeletonHeader.dataSize);
 		// make model file header
 		ModelFileHeader modelHeader;
-		modelHeader.sizeofModelData = sizeof(verticesHeader) + verticesHeader.dataSize 
+		modelHeader.sizeofModelData = 
+			sizeof(verticesHeader) + verticesHeader.dataSize 
 			+ sizeof(normalHeader) + normalHeader.dataSize 
-			+ sizeof(triangleHeader) + triangleHeader.dataSize;
+			+ sizeof(triangleHeader) + triangleHeader.dataSize
+			+ sizeof(skeletonHeader) + skeletonHeader.dataSize;
 		int filenameLen = strlen(path);
 		if(filenameLen < 24) {
 			memcpy(modelHeader.modelName, path, filenameLen);
-			modelHeader.modelName[strlen(path)] = '\0';
+			modelHeader.modelName[filenameLen] = '\0';
 		} else {
 			memcpy(modelHeader.modelName, path, 23);
 			modelHeader.modelName[23] = '\0';
@@ -125,26 +137,71 @@ namespace Export {
 		}
 		printf("Success!\n");
 
+		// write skeleton heirarchy
+		printf("Writing skeleton to file... ");
+		error = File::write(file, reinterpret_cast<const char* const>(&skeletonHeader), sizeof(SkeletonHeader));
+		if(error == FILE_WRITE_FAIL) {
+			printf("FAILURE!\n");
+			CloseFile(file);
+			exit(EXIT_FAILURE);
+		}
+		for(const Bone& bone : importer.GetSkeleton()) {
+			error = File::write(file, reinterpret_cast<const char* const>(&bone), sizeof(Bone));
+			if(error == FILE_WRITE_FAIL) {
+				printf("FAILURE!\n");
+				CloseFile(file);
+				exit(EXIT_FAILURE);
+			}
+		}
+		printf("Success!\n");
+
 		CloseFile(file);
 	}
 
 	void Print(const FbxConverter & importer) {
+		printVerts(importer);
+		printNorms(importer);
+		printTris(importer);
+		printSkeleton(importer);
+	}
+
+	void printVerts(const FbxConverter& importer) {
 		printf("\nVertices\n");
 		for(unsigned int i = 0; i < importer.GetVertices().size(); i++) {
 			const Vector & v = importer.GetVertices()[i];
 			printf("i: %u x: %f y: %f z: %f \n", i, v.x, v.y, v.z);
 		}
+	}
 
+	void printNorms(const FbxConverter& importer) {
 		printf("\nNormals\n");
 		for(unsigned int i = 0; i < importer.GetNormals().size(); i++) {
 			const Vector & v = importer.GetNormals()[i];
 			printf("i: %u nx: %f ny: %f nz: %f \n", i, v.x, v.y, v.z);
 		}
+	}
 
+	void printTris(const FbxConverter& importer) {
 		printf("\nTriangles\n");
 		for(unsigned int i = 0; i < importer.GetTriangles().size(); i++) {
 			const Triangle & t = importer.GetTriangles()[i];
 			printf("i: %u a: %u b: %u c: %u \n", i, t.a, t.b, t.c);
+		}
+	}
+
+	void printSkeleton(const FbxConverter& importer) {
+		printf("\nSkeleton\n");
+		for(unsigned int i = 0; i < importer.GetSkeleton().size(); i++) {
+			const Bone & b = importer.GetSkeleton()[i];
+			printf("%i: ", i);
+			for(unsigned int i = 0; i < b.level; i++) {
+				printf(" ");
+			}
+			printf("%s \tParent: %i", b.boneName, b.parentIndex);
+			if(b.parentIndex >= 0) {
+				printf(" (%s)", importer.GetSkeleton()[b.parentIndex].boneName);
+			}
+			printf("\n");
 		}
 	}
 
