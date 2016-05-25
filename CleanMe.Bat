@@ -34,3 +34,6 @@ rmdir /S /Q ShaderManager\Release
 
 rmdir /S /Q TextureManager\Debug
 rmdir /S /Q TextureManager\Release
+
+rmdir /S /Q ArchiveManager\Debug
+rmdir /S /Q ArchiveManager\Release
