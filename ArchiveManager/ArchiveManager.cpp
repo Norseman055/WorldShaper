@@ -4,6 +4,7 @@
 #include "Macros.h"
 #include "ArchiveStructures.h"
 #include "ModelManager.h"
+#include "AnimationManager.h"
 
 void ArchiveManager::Startup() {
 	printf("\n===== Starting Archive Manager =====\n");
@@ -42,6 +43,7 @@ void ArchiveManager::LoadModelFromFile(const char* filename) {
 				printf(" Success! \n    Closing file and sending to ModelManager to load.\n");
 				CloseFile(file);
 				ModelManager::LoadModelFromBuffer(fileHeader, buffer);
+				AnimationManager::LoadAnimationFromBuffer(fileHeader, buffer);
 			}
 		}
 	}

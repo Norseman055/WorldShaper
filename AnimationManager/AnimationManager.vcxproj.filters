@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="_skeleton">
+      <UniqueIdentifier>{382cf3cc-025f-4302-9a6a-fbb1ee29edeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_skeleton\Header Files">
+      <UniqueIdentifier>{db61d267-b807-4b1c-872f-50af37e8d990}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_skeleton\Source Files">
+      <UniqueIdentifier>{3ffa5f39-8296-4e2d-a041-8f2899176326}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationManager.h">
@@ -24,6 +33,12 @@
     <ClInclude Include="Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Skeleton.h">
+      <Filter>_skeleton\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bone.h">
+      <Filter>_skeleton\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimationManager.cpp">
@@ -34,6 +49,12 @@
     </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Skeleton.cpp">
+      <Filter>_skeleton\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bone.cpp">
+      <Filter>_skeleton\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

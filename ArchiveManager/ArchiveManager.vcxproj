@@ -52,7 +52,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)_generics;$(SolutionDir)_libs\release;$(SolutionDir)ModelManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)_generics;$(SolutionDir)_libs\release;$(SolutionDir)ModelManager;$(SolutionDir)AnimationManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
@@ -73,7 +73,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)_generics;$(SolutionDir)_libs\release;$(SolutionDir)ModelManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)_generics;$(SolutionDir)_libs\release;$(SolutionDir)ModelManager;$(SolutionDir)AnimationManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
@@ -95,6 +95,9 @@
     <ClCompile Include="ArchiveManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AnimationManager\AnimationManager.vcxproj">
+      <Project>{a4e6019a-6daa-49f7-90fe-a1020c754fac}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\ModelManager\ModelManager.vcxproj">
       <Project>{0a28ef60-5fc1-4182-a1d5-36d5c37c3799}</Project>
     </ProjectReference>

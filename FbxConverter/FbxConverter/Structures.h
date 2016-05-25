@@ -17,7 +17,7 @@ struct Triangle {
 struct Bone {
 	char boneName[32];
 	int parentIndex;
-	unsigned int level;
+	int level;
 };
 
 struct ModelFileHeader {

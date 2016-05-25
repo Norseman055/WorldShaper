@@ -29,10 +29,10 @@ void WorldShaper::Startup() {
 	ShaderManager::Startup();
 	TextureManager::Startup();
 	ModelManager::Startup();
+	AnimationManager::Startup();
 	ArchiveManager::Startup();
 	GameObjectManager::Startup();
 	CameraManager::Startup();
-	AnimationManager::Startup();
 
 	SetGLFWCallbacks();
 }
@@ -45,10 +45,10 @@ void WorldShaper::SetGLFWCallbacks() {
 }
 
 void WorldShaper::Shutdown() {
-	ArchiveManager::Shutdown();
-	AnimationManager::Shutdown();
 	CameraManager::Shutdown();
 	GameObjectManager::Shutdown();
+	ArchiveManager::Shutdown();
+	AnimationManager::Shutdown();
 	ModelManager::Shutdown();
 	TextureManager::Shutdown();
 	ShaderManager::Shutdown();

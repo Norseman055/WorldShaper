@@ -144,7 +144,7 @@ void FbxConverter::ImportTriangles() {
 }
 
 void FbxConverter::ImportSkeleton() {
-	printf("Importing skeleton heirarchy...\n");
+	printf("Importing skeleton hierarchy...\n");
 	using namespace fbxsdk;
 
 	const FbxNode* skeletonRoot = FindNode(FbxNodeAttribute::eSkeleton, this->fbxScene->GetRootNode());

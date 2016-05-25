@@ -1,9 +1,13 @@
 #include "AnimationManager.h"
 #include "Macros.h"
 
+#include "ArchiveStructures.h"
 #include "AnimationNode.h"
 #include "Animation.h"
+#include "Skeleton.h"
+#include "Bone.h"
 
+#include <assert.h>
 #include <string.h>
 
 void AnimationManager::Startup() {
@@ -51,6 +55,28 @@ AnimationNode* AnimationManager::Find(const char* name) {
 	return animation;
 }
 
+void AnimationManager::LoadAnimationFromBuffer(ModelFileHeader& fileHeader, char* const buffer) {
+	printf("  Loading animation data from buffer... \n");
+	AnimationManager* instance = static_cast<AnimationManager*>(GetInstance());
+	void* ptr = buffer;
+
+	Skeleton* skeleton = new Skeleton(fileHeader.modelName);
+
+	// Go to skeleton header
+	VerticesHeader* verticesHeader = reinterpret_cast<VerticesHeader*>(ptr);
+	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(verticesHeader) + verticesHeader->dataSize);
+	NormalHeader* normalHeader = reinterpret_cast<NormalHeader*>(ptr);
+	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(normalHeader) + normalHeader->dataSize);
+	TriangleHeader* triangleHeader = reinterpret_cast<TriangleHeader*>(ptr);
+	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(triangleHeader) + triangleHeader->dataSize);
+
+	// Load skeleton hierarchy
+	printf("    Loading skeleton hierarchy from buffer...\n");
+	SkeletonHeader* skeletonHeader = reinterpret_cast<SkeletonHeader*>(ptr);
+	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(skeletonHeader));
+	instance->loadSkeletonFromBuffer(*skeleton, *skeletonHeader, ptr);
+}
+
 AnimationNode* AnimationManager::findDepthFirst(AnimationNode* const walker, const char* name) const {
 	AnimationNode* animation = nullptr;
 	if(strcmp(name, walker->getName())) {
@@ -64,4 +90,40 @@ AnimationNode* AnimationManager::findDepthFirst(AnimationNode* const walker, con
 		}
 	}
 	return animation;
+}
+
+void AnimationManager::loadSkeletonFromBuffer(Skeleton& skeleton, const SkeletonHeader& header, void* const buffer) {
+	printf("      Loading %i bones...\n ", header.numBones);
+	ArchiveBone* buffBones = reinterpret_cast<ArchiveBone*>(buffer);
+	Bone** bonePointers = new Bone*[header.numBones];
+	PCSTree* bones = skeleton.getBones();
+
+	if(!bones) {
+		bones = new PCSTree();
+	}
+
+	ArchiveBone& firstBone = buffBones[0];
+
+	bonePointers[0] = new Bone(firstBone.boneName);
+	bonePointers[0]->parentIndex = firstBone.parentIndex;
+	bonePointers[0]->level = firstBone.level;
+
+	assert(firstBone.parentIndex == -1);
+	bones->insert(bonePointers[0], bones->getRoot());
+
+	for(int boneIndex = 1; boneIndex < header.numBones; ++boneIndex) {
+		const ArchiveBone& currentBone = buffBones[boneIndex];
+		
+		bonePointers[boneIndex] = new Bone(buffBones[boneIndex].boneName);
+		bonePointers[boneIndex]->parentIndex = buffBones[boneIndex].parentIndex;
+		bonePointers[boneIndex]->level = buffBones[boneIndex].level;
+
+		assert(currentBone.parentIndex != -1);
+		bones->insert(bonePointers[boneIndex], bonePointers[currentBone.parentIndex]);
+		if(skeleton.getNumLevels() < currentBone.level) {
+			skeleton.setNumLevels(currentBone.level);
+		}
+	}
+
+	skeleton.setBones(bones);
 }

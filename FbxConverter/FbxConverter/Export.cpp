@@ -137,7 +137,7 @@ namespace Export {
 		}
 		printf("Success!\n");
 
-		// write skeleton heirarchy
+		// write skeleton hierarchy
 		printf("Writing skeleton to file... ");
 		error = File::write(file, reinterpret_cast<const char* const>(&skeletonHeader), sizeof(SkeletonHeader));
 		if(error == FILE_WRITE_FAIL) {

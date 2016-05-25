@@ -8,10 +8,10 @@ struct Triangle {
 	unsigned int a, b, c;
 };
 
-struct Bone {
+struct ArchiveBone {
 	char boneName[32];
 	int parentIndex;
-	unsigned int level;
+	int level;
 };
 
 struct ModelFileHeader {
