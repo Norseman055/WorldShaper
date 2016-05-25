@@ -96,7 +96,7 @@ void GameObject::draw(Camera* const camera) const {
 	glEnableVertexAttribArray(uvLoc);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->model->getVboFaces());
-	glDrawElements(GL_TRIANGLES, this->model->getNumFaces(), GL_UNSIGNED_INT, nullptr);
+	glDrawElements(GL_TRIANGLES, 3 * this->model->getNumFaces(), GL_UNSIGNED_INT, nullptr);
 }
 
 GameObject::GameObject( const GameObjectType inType, const char* inName )

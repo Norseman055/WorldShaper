@@ -52,7 +52,7 @@ void CameraManager::LoadCameras() {
 	Camera* cam0 = new Camera( CameraType::Camera_Default, "default" );
 	cam0->setPerspective(1.0f, 10000.0f, 35.0f, float(GAME_WIDTH) / float(GAME_HEIGHT) );
 	cam0->setViewport( 0, 0, GAME_HEIGHT, GAME_WIDTH );
-	cam0->setOrientationAndPosition( Vect( 0.0f, 1.0f, 0.0f ), Vect( 0.0f, 0.0f, 0.0f ), Vect( 0.0f, 400.0f, 500.0f ) );
+	cam0->setOrientationAndPosition( Vect( 0.0f, 1.0f, 0.0f ), Vect( 0.0f, 0.0f, 0.0f ), Vect( 250.0f, 400.0f, 400.0f ) );
 	AddCamera( cam0 );
 	
 	printf( "  Setting default camera to Camera_Default...\n" );

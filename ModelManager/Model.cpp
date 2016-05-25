@@ -80,7 +80,7 @@ void Model::setupOpenGLBuffers() {
 
 	glGenBuffers( 1, &vboFaces );
 	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, vboFaces );
-	glBufferData( GL_ELEMENT_ARRAY_BUFFER, this->numFaces * sizeof( int ), this->faces, GL_STATIC_DRAW );
+	glBufferData( GL_ELEMENT_ARRAY_BUFFER, 3 * this->numFaces * sizeof( unsigned int ), this->faces, GL_STATIC_DRAW );
 }
 
 Model::Model(const ModelType inType)
