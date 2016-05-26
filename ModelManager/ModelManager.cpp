@@ -120,6 +120,7 @@ void ModelManager::loadVerticesFromBuffer(Model& model, const VerticesHeader& he
 		verts[index].pos[Y] = buffVerts[index].y;
 		verts[index].pos[Z] = buffVerts[index].z;
 		verts[index].pos[W] = 1.0f;
+		verts[index].color = Vect(0.8f, 0.8f, 0.8f);
 	}
 	model.setVertices(verts);
 	model.setNumVertices(header.numVertices);

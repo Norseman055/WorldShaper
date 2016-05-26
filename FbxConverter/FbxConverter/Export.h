@@ -19,6 +19,9 @@ namespace Export {
 	void printNorms(const FbxConverter& converter);
 	void printTris(const FbxConverter& converter);
 	void printSkeleton(const FbxConverter& converter);
+	void printAnimations(const FbxConverter& converter);
+
+	void checkError(FileHandle& file, const FileError error);
 }
 
 #endif

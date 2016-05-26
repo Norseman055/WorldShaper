@@ -18,6 +18,7 @@ namespace fbxsdk {
 struct Vector;
 struct Triangle;
 struct Bone;
+struct Animation;
 
 class FbxConverter {
 public:
@@ -26,6 +27,7 @@ public:
 	const vector<const Vector>& GetNormals() const;
 	const vector<const Triangle>& GetTriangles() const;
 	const vector<const Bone>& GetSkeleton() const;
+	const vector<const Animation>& GetAnimations() const;
 
 	FbxConverter();
 	~FbxConverter();
@@ -39,12 +41,14 @@ private:
 	void ImportNormals();
 	void ImportTriangles();
 	void ImportSkeleton();
+	void ImportAnimations();
 
 private:
 	vector<const Vector> vertices;
 	vector<const Vector> normals;
 	vector<const Triangle> triangles;
 	vector<const Bone> skeleton;
+	vector<const Animation> animations;
 
 	fbxsdk::FbxManager* const fbxManager;
 	fbxsdk::FbxScene* const fbxScene;

@@ -13,21 +13,14 @@
 namespace Export {
 	void Save(const FbxConverter & importer, const char* path) {
 		FileHandle file;
-		FileError error;
 
 		std::string fullPath = std::string(path) + std::string(".model");
 		printf("Writing to file: %s \n", fullPath.c_str());
 
 		// open file
 		printf("Opening file... ");
-		error = File::open(file, fullPath.c_str(), FILE_WRITE);
-		if(error != FILE_OPEN_FAIL) {
-			printf("Success!\n");
-		} else {
-			printf("FAILURE!\n");
-			CloseFile(file);
-			exit(EXIT_FAILURE);
-		}
+		checkError(file, File::open(file, fullPath.c_str(), FILE_WRITE));
+		printf("Success!\n");
 		
 		// make vertices header
 		VerticesHeader verticesHeader;
@@ -57,6 +50,24 @@ namespace Export {
 		printf("Skeleton data:\n");
 		printf("Num bones: %i\n", skeletonHeader.numBones);
 		printf("Data size: %i\n", skeletonHeader.dataSize);
+		// make animations header
+		AnimationHeader animationHeader;
+		animationHeader.numAnimations = importer.GetAnimations().size();
+		// need to update data size as we get size of animations dynamically
+		int dataSize = 0; 
+		for(const Animation& animation : importer.GetAnimations()) {
+			dataSize += 16;
+			dataSize += sizeof(int);
+			for(const Keyframe& keyframe : animation.keyframes) {
+				dataSize += (sizeof(TransformData) * keyframe.numTransforms);
+				dataSize += sizeof(float);
+				dataSize += sizeof(int);
+			}
+		}
+		animationHeader.dataSize = dataSize;
+		printf("Animation data:\n");
+		printf("Num animations: %i\n", animationHeader.numAnimations);
+		printf("Data size: %i\n", animationHeader.dataSize);
 		// make model file header
 		ModelFileHeader modelHeader;
 		modelHeader.sizeofModelData = 
@@ -75,82 +86,53 @@ namespace Export {
 	
 		// write file header
 		printf("Writing file header... ");
-		error = File::write(file, reinterpret_cast<const char* const>(&modelHeader), sizeof(ModelFileHeader));
-		if(error == FILE_WRITE_FAIL) {
-			printf("FAILURE!\n");
-			CloseFile(file);
-			exit(EXIT_FAILURE);
-		}
+		checkError(file, File::write(file, reinterpret_cast<const char* const>(&modelHeader), sizeof(ModelFileHeader)));
 		printf("Success!\n");
 
 		// write vertices
 		printf("Writing vertices to file... ");
-		error = File::write(file, reinterpret_cast<const char* const>(&verticesHeader), sizeof(VerticesHeader));
-		if(error == FILE_WRITE_FAIL) {
-			printf("FAILURE!\n");
-			CloseFile(file);
-			exit(EXIT_FAILURE);
-		}
+		checkError(file, File::write(file, reinterpret_cast<const char* const>(&verticesHeader), sizeof(VerticesHeader)));
 		for(const Vector& vertex : importer.GetVertices()) {
-			error = File::write(file, reinterpret_cast<const char* const>(&vertex), sizeof(Vector));
-			if(error == FILE_WRITE_FAIL) {
-				printf("FAILURE!\n");
-				CloseFile(file);
-				exit(EXIT_FAILURE);
-			}
+			checkError(file, File::write(file, reinterpret_cast<const char* const>(&vertex), sizeof(Vector)));
 		}
 		printf("Success!\n");
 
 		// write normals
 		printf("Writing normals to file... ");
-		error = File::write(file, reinterpret_cast<const char* const>(&normalHeader), sizeof(NormalHeader));
-		if(error == FILE_WRITE_FAIL) {
-			printf("FAILURE!\n");
-			CloseFile(file);
-			exit(EXIT_FAILURE);
-		}
+		checkError(file, File::write(file, reinterpret_cast<const char* const>(&normalHeader), sizeof(NormalHeader)));
 		for(const Vector& vertex : importer.GetNormals()) {
-			error = File::write(file, reinterpret_cast<const char* const>(&vertex), sizeof(Vector));
-			if(error == FILE_WRITE_FAIL) {
-				printf("FAILURE!\n");
-				CloseFile(file);
-				exit(EXIT_FAILURE);
-			}
+			checkError(file, File::write(file, reinterpret_cast<const char* const>(&vertex), sizeof(Vector)));
 		}
 		printf("Success!\n");
 
 		// write triangles
 		printf("Writing triangles to file... ");
-		error = File::write(file, reinterpret_cast<const char* const>(&triangleHeader), sizeof(TriangleHeader));
-		if(error == FILE_WRITE_FAIL) {
-			printf("FAILURE!\n");
-			CloseFile(file);
-			exit(EXIT_FAILURE);
-		}
+		checkError(file, File::write(file, reinterpret_cast<const char* const>(&triangleHeader), sizeof(TriangleHeader)));
 		for(const Triangle& triangle : importer.GetTriangles()) {
-			error = File::write(file, reinterpret_cast<const char* const>(&triangle), sizeof(Triangle));
-			if(error == FILE_WRITE_FAIL) {
-				printf("FAILURE!\n");
-				CloseFile(file);
-				exit(EXIT_FAILURE);
-			}
+			checkError(file, File::write(file, reinterpret_cast<const char* const>(&triangle), sizeof(Triangle)));
 		}
 		printf("Success!\n");
 
 		// write skeleton hierarchy
 		printf("Writing skeleton to file... ");
-		error = File::write(file, reinterpret_cast<const char* const>(&skeletonHeader), sizeof(SkeletonHeader));
-		if(error == FILE_WRITE_FAIL) {
-			printf("FAILURE!\n");
-			CloseFile(file);
-			exit(EXIT_FAILURE);
-		}
+		checkError(file, File::write(file, reinterpret_cast<const char* const>(&skeletonHeader), sizeof(SkeletonHeader)));
 		for(const Bone& bone : importer.GetSkeleton()) {
-			error = File::write(file, reinterpret_cast<const char* const>(&bone), sizeof(Bone));
-			if(error == FILE_WRITE_FAIL) {
-				printf("FAILURE!\n");
-				CloseFile(file);
-				exit(EXIT_FAILURE);
+			checkError(file, File::write(file, reinterpret_cast<const char* const>(&bone), sizeof(Bone)));
+		}
+		printf("Success!\n");
+
+		// write animations
+		printf("Writing animations to file... ");
+		checkError(file, File::write(file, reinterpret_cast<const char* const>(&animationHeader), sizeof(AnimationHeader)));
+		for(const Animation& animation : importer.GetAnimations()) {
+			checkError(file, File::write(file, animation.animName, 16));
+			checkError(file, File::write(file, reinterpret_cast<const char* const>(&animation.numKeyframes), sizeof(int)));
+			for(const Keyframe& keyframe : animation.keyframes) {
+				checkError(file, File::write(file, reinterpret_cast<const char* const>(&keyframe.time), sizeof(float)));
+				checkError(file, File::write(file, reinterpret_cast<const char* const>(&keyframe.numTransforms), sizeof(int)));
+				for(const TransformData& transform : keyframe.boneTransforms) {
+					checkError(file, File::write(file, reinterpret_cast<const char* const>(&transform), sizeof(TransformData)));
+				}
 			}
 		}
 		printf("Success!\n");
@@ -163,6 +145,7 @@ namespace Export {
 		printNorms(importer);
 		printTris(importer);
 		printSkeleton(importer);
+		printAnimations(importer);
 	}
 
 	void printVerts(const FbxConverter& importer) {
@@ -194,7 +177,7 @@ namespace Export {
 		for(unsigned int i = 0; i < importer.GetSkeleton().size(); i++) {
 			const Bone & b = importer.GetSkeleton()[i];
 			printf("%i: ", i);
-			for(unsigned int i = 0; i < b.level; i++) {
+			for(int i = 0; i < b.level; i++) {
 				printf(" ");
 			}
 			printf("%s \tParent: %i", b.boneName, b.parentIndex);
@@ -202,6 +185,14 @@ namespace Export {
 				printf(" (%s)", importer.GetSkeleton()[b.parentIndex].boneName);
 			}
 			printf("\n");
+		}
+	}
+
+	void printAnimations(const FbxConverter& importer) {
+		printf("\nAnimations\n");
+		for(unsigned int i = 0; i < importer.GetAnimations().size(); i++) {
+			const Animation& animation = importer.GetAnimations()[i];
+			printf("%s:\tFrames: %i\tDuration: %fs\n", animation.animName, animation.numKeyframes, animation.keyframes.back().time);
 		}
 	}
 
@@ -215,6 +206,14 @@ namespace Export {
 			printf("Success!\n");
 		} else {
 			printf("FAILURE!\n");
+			exit(EXIT_FAILURE);
+		}
+	}
+
+	void checkError(FileHandle& file, const FileError error) {
+		if(error != FILE_SUCCESS) {
+			printf("FAILURE!\n");
+			CloseFile(file);
 			exit(EXIT_FAILURE);
 		}
 	}

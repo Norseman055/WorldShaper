@@ -7,6 +7,7 @@ class Animation;
 class Skeleton;
 struct ModelFileHeader;
 struct SkeletonHeader;
+struct AnimationHeader;
 
 class AnimationManager : public Manager<Animation*> {
 public:
@@ -27,4 +28,5 @@ private:
 	AnimationNode* findDepthFirst(AnimationNode* const, const char *) const;
 
 	void loadSkeletonFromBuffer(Skeleton&, const SkeletonHeader&, void* const);
+	void loadAnimationsFromBuffer(const AnimationHeader&, void* const);
 };

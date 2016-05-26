@@ -75,6 +75,13 @@ void AnimationManager::LoadAnimationFromBuffer(ModelFileHeader& fileHeader, char
 	SkeletonHeader* skeletonHeader = reinterpret_cast<SkeletonHeader*>(ptr);
 	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(skeletonHeader));
 	instance->loadSkeletonFromBuffer(*skeleton, *skeletonHeader, ptr);
+
+	// Load animations
+	printf("    Loading animations from buffer...\n");
+	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +skeletonHeader->dataSize);
+	AnimationHeader* animationHeader = reinterpret_cast<AnimationHeader*>(ptr);
+	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(animationHeader));
+	instance->loadAnimationsFromBuffer(*animationHeader, ptr);
 }
 
 AnimationNode* AnimationManager::findDepthFirst(AnimationNode* const walker, const char* name) const {
@@ -126,4 +133,14 @@ void AnimationManager::loadSkeletonFromBuffer(Skeleton& skeleton, const Skeleton
 	}
 
 	skeleton.setBones(bones);
+}
+
+void AnimationManager::loadAnimationsFromBuffer(const AnimationHeader& animationHeader, void* const buffer) {
+	// Add logic to import animation data from buffer
+
+	// Animation header has number of animations
+	// For each animation, name is specified as well as number of keyframes
+		// For each keyframe, keyframe time is specified as well as number of transforms
+			// For each transform, store away the data as part of bone data for the given timespan
+
 }

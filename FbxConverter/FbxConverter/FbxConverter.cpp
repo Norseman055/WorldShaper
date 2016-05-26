@@ -6,11 +6,12 @@
 #include "FbxConverter.h"
 #include "Structures.h"
 
-#include <fbxsdk.h>
+#include "fbxsdk.h"
 #include <assert.h>
 
 fbxsdk::FbxNode* const FindNode(const fbxsdk::FbxNodeAttribute::EType criteria, FbxNode* const root);
 void ImportSkeletonRecursive(const fbxsdk::FbxNode * const node, const int parentIndex, const unsigned int level, vector<const Bone> & skeleton);
+void ImportKeyframeRecursive(fbxsdk::FbxNode * const node, const FbxTime & time, Keyframe & keyframe);
 
 void FbxConverter::Import(const char* filename) {
 
@@ -41,6 +42,7 @@ void FbxConverter::Import(const char* filename) {
 	this->ImportNormals();
 	this->ImportTriangles();
 	this->ImportSkeleton();
+	this->ImportAnimations();
 }
 
 const vector<const Vector>& FbxConverter::GetVertices() const {
@@ -57,6 +59,10 @@ const vector<const Triangle>& FbxConverter::GetTriangles() const {
 
 const vector<const Bone>& FbxConverter::GetSkeleton() const {
 	return this->skeleton;
+}
+
+const vector<const Animation>& FbxConverter::GetAnimations() const {
+	return this->animations;
 }
 
 void FbxConverter::ImportVertices() {
@@ -176,6 +182,72 @@ void ImportSkeletonRecursive(const fbxsdk::FbxNode* const node, const int parent
 
 	for(int i = 0; i < node->GetChildCount(); i++) {
 		ImportSkeletonRecursive(node->GetChild(i), myIndex, level + 1, skeleton);
+	}
+}
+
+void FbxConverter::ImportAnimations() {
+	printf("Importing animation keyframes...\n");
+	using namespace fbxsdk;
+
+	const int animStackCount = this->fbxScene->GetSrcObjectCount<FbxAnimStack>();
+	this->animations.reserve(animStackCount);
+	for(int index = 0; index < animStackCount; index++) {
+		FbxAnimStack* const animStack = this->fbxScene->GetSrcObject<FbxAnimStack>(index);
+		this->fbxScene->SetCurrentAnimationStack(animStack);
+		const FbxTime start = animStack->GetLocalTimeSpan().GetStart();
+		const FbxTime stop = animStack->GetLocalTimeSpan().GetStop();
+
+		Animation animation;
+		int animNameLen = strlen(animStack->GetName());
+		if(animNameLen < 16) {
+			memcpy(animation.animName, animStack->GetName(), animNameLen);
+			animation.animName[animNameLen] = '\0';
+		} else {
+			memcpy(animation.animName, animStack->GetName(), 15);
+			animation.animName[15] = '\0';
+		}
+
+		animation.numKeyframes = static_cast<int>(stop.GetFrameCount());
+		animation.keyframes.reserve(animation.numKeyframes);
+		FbxTime time;
+		for(int frame = 0; frame < animation.numKeyframes; frame++) {
+			time.SetTime(0, 0, 0, frame, 0, 0, FbxTime::GetGlobalTimeMode());
+			FbxNode* const skeletonRoot = FindNode(FbxNodeAttribute::eSkeleton, this->fbxScene->GetRootNode());
+			assert(skeletonRoot);
+			Keyframe keyframe;
+			keyframe.time = time.GetMilliSeconds() * 0.001f;
+			ImportKeyframeRecursive(skeletonRoot, time, keyframe);
+			keyframe.numTransforms = keyframe.boneTransforms.size();
+			animation.keyframes.push_back(keyframe);
+		}
+		this->animations.push_back(animation);
+	}
+}
+
+void ImportKeyframeRecursive(fbxsdk::FbxNode * const root, const FbxTime & time, Keyframe & keyframe) {
+	assert(root);
+	assert(&time);
+	assert(&keyframe);
+
+	const FbxAMatrix matrix = root->EvaluateLocalTransform(time);
+	const FbxVector4 translation = matrix.GetT();
+	const FbxQuaternion rotation = matrix.GetQ();
+	const FbxVector4 scale = matrix.GetS();
+	TransformData transform;
+	transform.translation.x = static_cast<float>(translation[0]);
+	transform.translation.y = static_cast<float>(translation[1]);
+	transform.translation.z = static_cast<float>(translation[2]);
+	transform.rotation.x = static_cast<float>(rotation[0]);
+	transform.rotation.y = static_cast<float>(rotation[1]);
+	transform.rotation.z = static_cast<float>(rotation[2]);
+	transform.rotation.w = static_cast<float>(rotation[3]);
+	transform.scale.x = static_cast<float>(scale[0]);
+	transform.scale.y = static_cast<float>(scale[1]);
+	transform.scale.z = static_cast<float>(scale[2]);
+
+	keyframe.boneTransforms.push_back(transform);
+	for(int i = 0; i < root->GetChildCount(); i++) {
+		ImportKeyframeRecursive(root->GetChild(i), time, keyframe);
 	}
 }
 

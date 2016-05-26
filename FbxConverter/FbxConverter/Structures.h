@@ -10,6 +10,10 @@ struct Vector {
 	float x, y, z;
 };
 
+struct Quaternion {
+	float x, y, z, w;
+};
+
 struct Triangle {
 	unsigned int a, b, c;
 };
@@ -18,6 +22,24 @@ struct Bone {
 	char boneName[32];
 	int parentIndex;
 	int level;
+};
+
+struct TransformData {
+	Quaternion rotation;
+	Vector translation;
+	Vector scale;
+};
+
+struct Keyframe {
+	float time;
+	int numTransforms;
+	vector<TransformData> boneTransforms;
+};
+
+struct Animation {
+	char animName[16];
+	int numKeyframes;
+	vector<Keyframe> keyframes;
 };
 
 struct ModelFileHeader {
@@ -42,6 +64,11 @@ struct TriangleHeader {
 
 struct SkeletonHeader {
 	int numBones;
+	int dataSize;
+};
+
+struct AnimationHeader {
+	int numAnimations;
 	int dataSize;
 };
 
