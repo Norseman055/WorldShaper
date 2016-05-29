@@ -89,17 +89,31 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationController.h" />
+    <ClInclude Include="AnimationControllerManager.h" />
+    <ClInclude Include="AnimationControllerNode.h" />
     <ClInclude Include="AnimationManager.h" />
     <ClInclude Include="AnimationNode.h" />
     <ClInclude Include="Bone.h" />
+    <ClInclude Include="Keyframe.h" />
     <ClInclude Include="Skeleton.h" />
+    <ClInclude Include="SkeletonManager.h" />
+    <ClInclude Include="SkeletonNode.h" />
+    <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationController.cpp" />
+    <ClCompile Include="AnimationControllerManager.cpp" />
+    <ClCompile Include="AnimationControllerNode.cpp" />
     <ClCompile Include="AnimationManager.cpp" />
     <ClCompile Include="AnimationNode.cpp" />
     <ClCompile Include="Bone.cpp" />
+    <ClCompile Include="Keyframe.cpp" />
     <ClCompile Include="Skeleton.cpp" />
+    <ClCompile Include="SkeletonManager.cpp" />
+    <ClCompile Include="SkeletonNode.cpp" />
+    <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -26,7 +26,7 @@ struct TransformData {
 	Vector scale;
 };
 
-struct Keyframe {
+struct ArchiveKeyframe {
 	float time;
 	int numTransforms;
 	std::vector<TransformData> boneTransforms;
@@ -35,7 +35,7 @@ struct Keyframe {
 struct ArchiveAnimation {
 	char animName[16];
 	int numKeyframes;
-	std::vector<Keyframe> keyframes;
+	std::vector<ArchiveKeyframe> keyframes;
 };
 
 struct ModelFileHeader {

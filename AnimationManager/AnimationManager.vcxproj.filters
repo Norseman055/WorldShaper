@@ -22,6 +22,24 @@
     <Filter Include="_skeleton\Source Files">
       <UniqueIdentifier>{3ffa5f39-8296-4e2d-a041-8f2899176326}</UniqueIdentifier>
     </Filter>
+    <Filter Include="_animation">
+      <UniqueIdentifier>{d4c2c69f-86e0-404e-93c9-ff5ab911c9af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_animation\Header Files">
+      <UniqueIdentifier>{ee4a9fc1-f746-4e2e-aac7-09a97ca6e42a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_animation\Source Files">
+      <UniqueIdentifier>{3c28b7d3-39a9-49d6-bf16-155c0acf2145}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_animation\_controller">
+      <UniqueIdentifier>{990e7afe-5ac4-4338-b8a2-867ab8cf6450}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_animation\_controller\Header Files">
+      <UniqueIdentifier>{cabbc7f1-0936-4968-9ebc-7f9dbc48710b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_animation\_controller\Source Files">
+      <UniqueIdentifier>{a85d0359-da01-4cfc-8233-42ae74d1b465}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationManager.h">
@@ -30,14 +48,35 @@
     <ClInclude Include="AnimationNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Skeleton.h">
       <Filter>_skeleton\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Bone.h">
       <Filter>_skeleton\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>_animation\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyframe.h">
+      <Filter>_animation\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>_animation\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationController.h">
+      <Filter>_animation\_controller\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonManager.h">
+      <Filter>_skeleton\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationControllerManager.h">
+      <Filter>_animation\_controller\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonNode.h">
+      <Filter>_skeleton\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationControllerNode.h">
+      <Filter>_animation\_controller\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -47,14 +86,35 @@
     <ClCompile Include="AnimationNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Skeleton.cpp">
       <Filter>_skeleton\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Bone.cpp">
       <Filter>_skeleton\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>_animation\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyframe.cpp">
+      <Filter>_animation\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>_animation\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationController.cpp">
+      <Filter>_animation\_controller\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationControllerManager.cpp">
+      <Filter>_animation\_controller\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonManager.cpp">
+      <Filter>_skeleton\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonNode.cpp">
+      <Filter>_skeleton\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationControllerNode.cpp">
+      <Filter>_animation\_controller\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
