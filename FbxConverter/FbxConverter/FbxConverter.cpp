@@ -43,6 +43,7 @@ void FbxConverter::Import(const char* filename) {
 	this->ImportTriangles();
 	this->ImportSkeleton();
 	this->ImportAnimations();
+	this->ImportSkin();
 }
 
 const vector<const Vector>& FbxConverter::GetVertices() const {
@@ -61,8 +62,16 @@ const vector<const Bone>& FbxConverter::GetSkeleton() const {
 	return this->skeleton;
 }
 
+const vector<const Matrix>& FbxConverter::GetBindPose() const {
+	return this->bindPose;
+}
+
 const vector<const Animation>& FbxConverter::GetAnimations() const {
 	return this->animations;
+}
+
+const vector<vector<SkinInfluence>>& FbxConverter::GetSkin() const {
+	return this->skin;
 }
 
 void FbxConverter::ImportVertices() {
@@ -182,6 +191,78 @@ void ImportSkeletonRecursive(const fbxsdk::FbxNode* const node, const int parent
 
 	for(int i = 0; i < node->GetChildCount(); i++) {
 		ImportSkeletonRecursive(node->GetChild(i), myIndex, level + 1, skeleton);
+	}
+}
+
+void FbxConverter::ImportSkin() {
+	printf("Importing skeleton bind pose and skin...\n");
+	using namespace fbxsdk;
+
+	assert(this->fbxScene->GetRootNode());
+	FbxNode* const node = FindNode(FbxNodeAttribute::eMesh, this->fbxScene->GetRootNode());
+	assert(nullptr != node);
+	FbxMesh* const mesh = static_cast<FbxMesh*>(node->GetNodeAttribute());
+	assert(nullptr != mesh);
+
+	const unsigned int skinCount = mesh->GetDeformerCount(FbxDeformer::eSkin);
+	assert(1 == skinCount); // We will only handle one skin
+	for (unsigned int skinIndex = 0; skinIndex < skinCount; skinIndex++)
+	{
+		const FbxSkin* const skin = static_cast<FbxSkin*>(mesh->GetDeformer(skinIndex, FbxDeformer::eSkin));
+		const unsigned int clusterCount = skin->GetClusterCount();
+		this->skin.resize(mesh->GetControlPointsCount());
+		this->bindPose.resize(this->skeleton.size());
+		for (unsigned int clusterIndex = 0; clusterIndex < clusterCount; clusterIndex++)
+		{
+			const FbxCluster* const cluster = skin->GetCluster(clusterIndex);
+
+			bool foundBone = false;
+			unsigned int boneIndex;
+			for (boneIndex = 0; boneIndex < this->skeleton.size(); boneIndex++)
+			{
+				if (nullptr != cluster->GetLink() && cluster->GetLink()->GetName() == this->skeleton[boneIndex].boneName)
+				{
+					foundBone = true;
+					break;
+				}
+			}
+			if (foundBone)
+			{
+				// Usually Identity, but the SDK states that it should also be used
+				const FbxNode* const node = cluster->GetLink();
+				const FbxVector4 geometricTranslation = node->GetGeometricTranslation(FbxNode::eSourcePivot);
+				const FbxVector4 geometricRotation = node->GetGeometricRotation(FbxNode::eSourcePivot);
+				const FbxVector4 geometricScaling = node->GetGeometricScaling(FbxNode::eSourcePivot);
+				const FbxAMatrix geometryMatrix(geometricTranslation, geometricRotation, geometricScaling);
+
+				// Node Transform
+				FbxAMatrix nodeTransform;
+				cluster->GetTransformMatrix(nodeTransform);
+
+				// Link Transform - This should be the bind pose
+				FbxAMatrix linkTransform;
+				cluster->GetTransformLinkMatrix(linkTransform);
+
+				FbxAMatrix bindPoseMatrix = linkTransform.Inverse() * nodeTransform * geometryMatrix;
+				for (int row = 0; row < 4; row++)
+				{
+					for (int col = 0; col < 4; col++)
+					{
+						this->bindPose[boneIndex].elements[row][col] = static_cast<float>(bindPoseMatrix[row][col]);
+					}
+				}
+				const unsigned int vertexCount = cluster->GetControlPointIndicesCount();
+				const int * const vertexIndices = cluster->GetControlPointIndices();
+				const double* const vertexWeights = cluster->GetControlPointWeights();
+				for (unsigned int i = 0; i < vertexCount; i++)
+				{
+					SkinInfluence influence;
+					influence.boneIndex = boneIndex;
+					influence.weight = static_cast<float>(vertexWeights[i]);
+					this->skin[vertexIndices[i]].push_back(influence);
+				}
+			}
+		}
 	}
 }
 

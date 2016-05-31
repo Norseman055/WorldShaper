@@ -16,9 +16,11 @@ namespace fbxsdk {
 }
 
 struct Vector;
+struct Matrix;
 struct Triangle;
 struct Bone;
 struct Animation;
+struct SkinInfluence;
 
 class FbxConverter {
 public:
@@ -27,7 +29,9 @@ public:
 	const vector<const Vector>& GetNormals() const;
 	const vector<const Triangle>& GetTriangles() const;
 	const vector<const Bone>& GetSkeleton() const;
+	const vector<const Matrix>& GetBindPose() const;
 	const vector<const Animation>& GetAnimations() const;
+	const vector<vector<SkinInfluence>>& GetSkin() const;
 
 	FbxConverter();
 	~FbxConverter();
@@ -42,13 +46,16 @@ private:
 	void ImportTriangles();
 	void ImportSkeleton();
 	void ImportAnimations();
+	void ImportSkin();
 
 private:
 	vector<const Vector> vertices;
 	vector<const Vector> normals;
 	vector<const Triangle> triangles;
 	vector<const Bone> skeleton;
+	vector<const Matrix> bindPose;
 	vector<const Animation> animations;
+	vector<vector<SkinInfluence>> skin;
 
 	fbxsdk::FbxManager* const fbxManager;
 	fbxsdk::FbxScene* const fbxScene;

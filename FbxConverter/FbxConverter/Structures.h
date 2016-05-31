@@ -10,6 +10,10 @@ struct Vector {
 	float x, y, z;
 };
 
+struct Matrix {
+	float elements[4][4];
+};
+
 struct Quaternion {
 	float x, y, z, w;
 };
@@ -42,6 +46,11 @@ struct Animation {
 	vector<Keyframe> keyframes;
 };
 
+struct SkinInfluence {
+	unsigned int boneIndex;
+	float weight;
+};
+
 struct ModelFileHeader {
 	char modelName[24];
 	int sizeofModelData;
@@ -67,8 +76,18 @@ struct SkeletonHeader {
 	int dataSize;
 };
 
+struct BindPoseHeader {
+	int numMatrices;
+	int dataSize;
+};
+
 struct AnimationHeader {
 	int numAnimations;
+	int dataSize;
+};
+
+struct SkinningHeader {
+	int numInfluenceVectors;
 	int dataSize;
 };
 

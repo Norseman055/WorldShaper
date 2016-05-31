@@ -20,6 +20,7 @@ namespace Export {
 	void printTris(const FbxConverter& converter);
 	void printSkeleton(const FbxConverter& converter);
 	void printAnimations(const FbxConverter& converter);
+	void printSkin(const FbxConverter& converter);
 
 	void checkError(FileHandle& file, const FileError error);
 }
