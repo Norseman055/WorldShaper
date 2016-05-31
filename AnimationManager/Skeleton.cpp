@@ -1,7 +1,5 @@
 #include "Skeleton.h"
 
-#include "AnimationController.h"
-#include "Animation.h"
 #include <PCSTree\PCSTree.h>
 #include <assert.h>
 #include <string.h>
@@ -18,16 +16,16 @@ void Skeleton::setBones(PCSTree* const inBones) {
 	this->bones = inBones;
 }
 
-void Skeleton::addAnimation(Animation* const animation) {
-	this->animations->AddAnimation(animation);
+void Skeleton::addAnimations(AnimationController* const animations) {
+	this->animations = animations;
 }
 
-void Skeleton::removeAnimation(Animation* const animation) {
-	this->animations->RemoveAnimation(animation);
+void Skeleton::removeAnimations() {
+	this->animations = nullptr;
 }
 
-Animation* Skeleton::find(const char* name) const {
-	return this->animations->FindAnimation(name);
+AnimationController* Skeleton::getAnimations() const {
+	return this->animations;
 }
 
 int Skeleton::getNumLevels() const {
@@ -39,14 +37,12 @@ void Skeleton::setNumLevels(const int numLevels) {
 }
 
 Skeleton::Skeleton(const char* inName) 
-	: bones(nullptr), numBones(0), numLevels(0)
+	: bones(nullptr), animations(nullptr), numBones(0), numLevels(0)
 {
 	assert(inName);
 	int nameLen = strlen(inName);
 	this->name = new char[nameLen + 1];
 	strcpy(this->name, inName);
-
-	this->animations = new AnimationController(this->name);
 }
 
 Skeleton::~Skeleton() { }

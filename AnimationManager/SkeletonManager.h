@@ -4,12 +4,14 @@
 
 class SkeletonNode;
 class Skeleton;
+class AnimationController;
 struct SkeletonHeader;
 
 class SkeletonManager : public Manager<Skeleton*> {
 public:
 	static void AddSkeleton(Skeleton* const);
 	static void RemoveSkeleton(const char*);
+	static void AssignAnimationsToSkeleton(const char*, AnimationController* const);
 
 	static Skeleton* FindSkeleton(const char*);
 

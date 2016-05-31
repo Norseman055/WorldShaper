@@ -39,4 +39,7 @@ void AnimationManager::LoadAnimationFromBuffer(ModelFileHeader& fileHeader, char
 	AnimationHeader* animationHeader = reinterpret_cast<AnimationHeader*>(ptr);
 	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(animationHeader));
 	AnimationControllerManager::LoadAnimationsFromBuffer(fileHeader.modelName, *animationHeader, ptr);
+
+	// Assign animations controller to skeleton
+	SkeletonManager::AssignAnimationsToSkeleton(fileHeader.modelName, AnimationControllerManager::FindAnimationController(fileHeader.modelName));
 }

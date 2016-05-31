@@ -2,7 +2,6 @@
 
 class PCSTree;
 class AnimationController;
-class Animation;
 
 class Skeleton {
 public:
@@ -11,9 +10,9 @@ public:
 	PCSTree* getBones() const;
 	void setBones(PCSTree* const bones);
 
-	void addAnimation(Animation* const);
-	void removeAnimation(Animation* const);
-	Animation* find(const char*) const;
+	void addAnimations(AnimationController* const);
+	void removeAnimations();
+	AnimationController* getAnimations() const;
 
 	int getNumLevels() const;
 	void setNumLevels(const int);

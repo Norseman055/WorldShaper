@@ -10,6 +10,9 @@ const char* AnimationController::getName() const {
 
 void AnimationController::AddAnimation(Animation* const animation) {
 	animations.push_back(animation);
+	if(!currentAnimation) {
+		currentAnimation = animation;
+	}
 }
 
 void AnimationController::RemoveAnimation(Animation* const animation) {
@@ -26,7 +29,9 @@ Animation* AnimationController::FindAnimation(const char* name) const {
 	return retAnimation;
 }
 
-AnimationController::AnimationController(const char* inName) { 
+AnimationController::AnimationController(const char* inName) 
+	: currentAnimation(nullptr)
+{ 
 	assert(inName);
 	int nameLen = strlen(inName);
 	this->skeletonName = new char[nameLen + 1];

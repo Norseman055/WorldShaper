@@ -15,6 +15,13 @@ void SkeletonManager::RemoveSkeleton(const char* name) {
 	Remove(Find(name));
 }
 
+void SkeletonManager::AssignAnimationsToSkeleton(const char* skeletonName, AnimationController* const animationController) {
+	Skeleton* skeleton = FindSkeleton(skeletonName);
+	if(skeleton) {
+		skeleton->addAnimations(animationController);
+	}
+}
+
 Skeleton* SkeletonManager::FindSkeleton(const char* name) {
 	Skeleton* skeleton = nullptr;
 	SkeletonNode* skeletonNode = Find(name);

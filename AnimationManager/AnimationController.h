@@ -19,4 +19,5 @@ public:
 private:
 	char* skeletonName;	// name of skeleton animations are associated with
 	std::list<Animation*> animations;
+	Animation* currentAnimation;
 };
