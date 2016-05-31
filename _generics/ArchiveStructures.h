@@ -28,13 +28,13 @@ struct TransformData {
 
 struct ArchiveKeyframe {
 	float time;
-	int numTransforms;
+	unsigned int numTransforms;
 	std::vector<TransformData> boneTransforms;
 };
 
 struct ArchiveAnimation {
 	char animName[16];
-	int numKeyframes;
+	unsigned int numKeyframes;
 	std::vector<ArchiveKeyframe> keyframes;
 };
 

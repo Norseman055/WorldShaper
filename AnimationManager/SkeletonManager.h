@@ -13,11 +13,11 @@ public:
 
 	static Skeleton* FindSkeleton(const char*);
 
-	static void LoadSkeletonFromBuffer(const char*, const SkeletonHeader&, char*);
+	static void LoadSkeletonFromBuffer(const char*, const SkeletonHeader&, void*);
 private:
 	static SkeletonNode* Find(const char*);
 
 	SkeletonNode* findDepthFirst(SkeletonNode* const, const char*) const;
 
-	static Skeleton* loadSkeletonFromBuffer(const char*, const SkeletonHeader&, char*);
+	static Skeleton* loadSkeletonFromBuffer(const char*, const SkeletonHeader&, void*);
 };

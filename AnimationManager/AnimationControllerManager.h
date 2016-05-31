@@ -13,12 +13,12 @@ public:
 
 	static AnimationController* FindAnimationController(const char*);
 
-	static void LoadAnimationsFromBuffer(const char*, const AnimationHeader&, char*);
+	static void LoadAnimationsFromBuffer(const char*, const AnimationHeader&, void*);
 
 private:
 	static AnimationControllerNode* Find(const char*);
 
 	AnimationControllerNode* findDepthFirst(AnimationControllerNode* const, const char*) const;
 
-	static AnimationController* loadAnimationsFromBuffer(const char*, const AnimationHeader&, char*);
+	static AnimationController* loadAnimationsFromBuffer(const char*, const AnimationHeader&, void*);
 };

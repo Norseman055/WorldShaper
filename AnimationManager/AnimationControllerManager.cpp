@@ -39,7 +39,7 @@ AnimationControllerNode* AnimationControllerManager::Find(const char* name) {
 	return animControllerNode;
 }
 
-void AnimationControllerManager::LoadAnimationsFromBuffer(const char* controllerName, const AnimationHeader& animationHeader, char* buffer) {
+void AnimationControllerManager::LoadAnimationsFromBuffer(const char* controllerName, const AnimationHeader& animationHeader, void* buffer) {
 	AddAnimationController(loadAnimationsFromBuffer(controllerName, animationHeader, buffer));
 }
 
@@ -58,45 +58,45 @@ AnimationControllerNode* AnimationControllerManager::findDepthFirst(AnimationCon
 	return animControllerNode;
 }
 
-AnimationController* AnimationControllerManager::loadAnimationsFromBuffer(const char* controllerName, const AnimationHeader& animationHeader, char* buffer) {
+AnimationController* AnimationControllerManager::loadAnimationsFromBuffer(const char* controllerName, const AnimationHeader& animationHeader, void* buffer) {
 	printf("      Loading animations...\n");
 	AnimationController* animController = new AnimationController(controllerName);
-	char* ptr = buffer;
+	void* ptr = buffer;
 
 	// Set up animations
 	for(int animIndex = 0; animIndex < animationHeader.numAnimations; animIndex++) {
 		Animation* animation = new Animation();
-		animation->setName(ptr);
-		ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +16);
-		animation->setNumKeyframes(*reinterpret_cast<int*>(ptr));
-		ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) + sizeof(ptr) +sizeof(int));
+		animation->setName(reinterpret_cast<char*>(ptr));
+		ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +16);
+		animation->setNumKeyframes(*reinterpret_cast<unsigned int*>(ptr));
+		ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +sizeof(unsigned int));
 
 		// Increment ptr to keyframe location, set up keyframes
 		Keyframe* keyframes = new Keyframe[animation->getNumKeyframes()];
 		for(int keyframeIndex = 0; keyframeIndex < animation->getNumKeyframes(); keyframeIndex++) {
 			Keyframe& keyframe = keyframes[keyframeIndex];
 			keyframe.setTime(*reinterpret_cast<float*>(ptr));
-			ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +sizeof(float));
-			keyframe.setNumTransforms(*reinterpret_cast<int*>(ptr));
+			ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +sizeof(float));
+			keyframe.setNumTransforms(*reinterpret_cast<unsigned int*>(ptr));
 
 			// Increment ptr to transform data location, set up transforms
 			Transform* transforms = new Transform[keyframe.getNumTransforms()];
-			ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +sizeof(float) + sizeof(int));
+			ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +sizeof(unsigned int));
 			for(int transformIndex = 0; transformIndex < keyframe.getNumTransforms(); transformIndex++) {
 				Transform& transform = transforms[transformIndex];
-				TransformData* buffTransform = reinterpret_cast<TransformData*>(ptr);
+				TransformData buffTransform = *reinterpret_cast<TransformData*>(ptr);
 
-				Vector buffTrans = buffTransform->translation;
+				Vector buffTrans = buffTransform.translation;
 				transform.setTranslation(new Vect(buffTrans.x, buffTrans.y, buffTrans.z));
 
-				Quaternion buffRot = buffTransform->rotation;
+				Quaternion buffRot = buffTransform.rotation;
 				transform.setRotation(new Quat(buffRot.x, buffRot.y, buffRot.z, buffRot.w));
 
-				Vector buffScale = buffTransform->scale;
+				Vector buffScale = buffTransform.scale;
 				transform.setScale(new Vect(buffScale.x, buffScale.y, buffScale.z));
 
 				// Increment ptr to next transform location
-				ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +sizeof(TransformData));
+				ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +sizeof(TransformData));
 			}
 			keyframe.setTransforms(transforms);
 		}

@@ -37,7 +37,7 @@ SkeletonNode* SkeletonManager::Find(const char* name) {
 }
 
 
-void SkeletonManager::LoadSkeletonFromBuffer(const char* skeletonName, const SkeletonHeader& header, char* buffer) {
+void SkeletonManager::LoadSkeletonFromBuffer(const char* skeletonName, const SkeletonHeader& header, void* buffer) {
 	AddSkeleton(loadSkeletonFromBuffer(skeletonName, header, buffer));
 }
 
@@ -56,7 +56,7 @@ SkeletonNode* SkeletonManager::findDepthFirst(SkeletonNode* const walker, const 
 	return skeleton;
 }
 
-Skeleton* SkeletonManager::loadSkeletonFromBuffer(const char* skeletonName, const SkeletonHeader& header, char* buffer) {
+Skeleton* SkeletonManager::loadSkeletonFromBuffer(const char* skeletonName, const SkeletonHeader& header, void* buffer) {
 	printf("      Loading %i bones...\n ", header.numBones);
 	Skeleton* skeleton = new Skeleton(skeletonName);
 	ArchiveBone* buffBones = reinterpret_cast<ArchiveBone*>(buffer);

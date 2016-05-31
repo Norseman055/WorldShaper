@@ -52,7 +52,7 @@ void GLFWManager::Startup() {
 	glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
 void GLFWManager::Shutdown() {
