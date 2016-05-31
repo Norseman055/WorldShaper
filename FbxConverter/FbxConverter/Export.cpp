@@ -70,11 +70,12 @@ namespace Export {
 		printf("Data size: %i\n", animationHeader.dataSize);
 		// make model file header
 		ModelFileHeader modelHeader;
-		modelHeader.sizeofModelData = 
-			sizeof(verticesHeader) + verticesHeader.dataSize 
-			+ sizeof(normalHeader) + normalHeader.dataSize 
+		modelHeader.sizeofModelData =
+			sizeof(verticesHeader) + verticesHeader.dataSize
+			+ sizeof(normalHeader) + normalHeader.dataSize
 			+ sizeof(triangleHeader) + triangleHeader.dataSize
-			+ sizeof(skeletonHeader) + skeletonHeader.dataSize;
+			+ sizeof(skeletonHeader) + skeletonHeader.dataSize
+			+ sizeof(animationHeader) + animationHeader.dataSize;
 		int filenameLen = strlen(path);
 		if(filenameLen < 24) {
 			memcpy(modelHeader.modelName, path, filenameLen);

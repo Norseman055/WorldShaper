@@ -32,13 +32,13 @@ struct TransformData {
 
 struct Keyframe {
 	float time;
-	int numTransforms;
+	unsigned int numTransforms;
 	vector<TransformData> boneTransforms;
 };
 
 struct Animation {
 	char animName[16];
-	int numKeyframes;
+	unsigned int numKeyframes;
 	vector<Keyframe> keyframes;
 };
 

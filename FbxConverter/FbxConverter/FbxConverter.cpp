@@ -207,10 +207,10 @@ void FbxConverter::ImportAnimations() {
 			animation.animName[15] = '\0';
 		}
 
-		animation.numKeyframes = static_cast<int>(stop.GetFrameCount());
+		animation.numKeyframes = static_cast<unsigned int>(stop.GetFrameCount()) + 1;
 		animation.keyframes.reserve(animation.numKeyframes);
 		FbxTime time;
-		for(int frame = 0; frame < animation.numKeyframes; frame++) {
+		for(unsigned int frame = 0; frame < animation.numKeyframes; frame++) {
 			time.SetTime(0, 0, 0, frame, 0, 0, FbxTime::GetGlobalTimeMode());
 			FbxNode* const skeletonRoot = FindNode(FbxNodeAttribute::eSkeleton, this->fbxScene->GetRootNode());
 			assert(skeletonRoot);
