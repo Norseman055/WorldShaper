@@ -11,7 +11,7 @@ public:
 	GameObjectType getType() const;
 	const char* getName() const;
 
-	void updateNode(const double);
+	void updateNode(const float);
 	void drawNode(Camera* const);
 
 	GameObjectNode(GameObject* const);

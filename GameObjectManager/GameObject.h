@@ -18,18 +18,19 @@ public:
 	void setShader(Shader* const);
 	void setSkeleton(Skeleton* const);
 
-	void update(const double) const;
-	void draw(Camera* const) const;
+	virtual void update(const float) const;
+	virtual void draw(Camera* const) const;
 
 	GameObject(const GameObjectType, const char*);
-	~GameObject();
+	virtual ~GameObject() = 0;
 
-private:
-	GameObjectType type;
-	const char* name;
-
+protected:
 	Model* model;
 	Texture* texture;
 	Shader* shader;
 	Skeleton* skeleton;
+
+private:
+	GameObjectType type;
+	const char* name;
 };

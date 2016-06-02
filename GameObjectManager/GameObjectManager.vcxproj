@@ -103,11 +103,15 @@
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GameObjectNode.h" />
     <ClInclude Include="GameObjectTypes.h" />
+    <ClInclude Include="GO_Cube.h" />
+    <ClInclude Include="GO_Humanoid.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GameObjectNode.cpp" />
+    <ClCompile Include="GO_Cube.cpp" />
+    <ClCompile Include="GO_Humanoid.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AnimationManager\AnimationManager.vcxproj">

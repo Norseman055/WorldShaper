@@ -10,7 +10,7 @@ const char* GameObjectNode::getName() const {
 	return this->name;
 }
 
-void GameObjectNode::updateNode(const double gameTime) {
+void GameObjectNode::updateNode(const float gameTime) {
 	this->getData()->update(gameTime);
 }
 

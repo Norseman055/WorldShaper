@@ -16,7 +16,7 @@ private:
 	static void SetGLFWCallbacks();
 	static void Shutdown();
 
-	void update(double gameTime);
+	void update(const float);
 	void draw();
 
 	// Member variables

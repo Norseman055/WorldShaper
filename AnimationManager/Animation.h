@@ -9,7 +9,6 @@ public:
 
 	int getNumKeyframes() const;
 	void setNumKeyframes(const int);
-
 	Keyframe* const getKeyframes() const;
 	void setKeyframes(Keyframe* const);
 
@@ -20,4 +19,5 @@ private:
 	char* name;
 	int numKeyframes;
 	Keyframe* keyframes;
+	Keyframe* currentKeyframe;
 };

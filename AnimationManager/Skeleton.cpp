@@ -1,5 +1,7 @@
 #include "Skeleton.h"
 
+#include "AnimationController.h"
+
 #include <PCSTree\PCSTree.h>
 #include <assert.h>
 #include <string.h>
@@ -18,6 +20,14 @@ void Skeleton::setBones(PCSTree* const inBones) {
 
 void Skeleton::addAnimations(AnimationController* const animations) {
 	this->animations = animations;
+}
+
+void Skeleton::setCurrentAnimation(const char* animName) {
+	this->animations->setCurrentAnimation(animName);
+}
+
+void Skeleton::updateAnimation(const float gametime) const {
+	this->animations->updateAnimation(gametime);
 }
 
 void Skeleton::removeAnimations() {

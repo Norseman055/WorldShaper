@@ -29,10 +29,11 @@ Keyframe* const Animation::getKeyframes() const {
 
 void Animation::setKeyframes(Keyframe* const keyframeTree) {
 	this->keyframes = keyframeTree;
+	this->currentKeyframe = this->keyframes;
 }
 
 Animation::Animation()
-	: name(nullptr), numKeyframes(0), keyframes(nullptr) { }
+	: name(nullptr), numKeyframes(0), keyframes(nullptr), currentKeyframe(nullptr) { }
 
 Animation::~Animation() {
 	if(keyframes) {

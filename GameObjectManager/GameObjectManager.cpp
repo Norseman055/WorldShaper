@@ -3,6 +3,8 @@
 
 #include "GameObjectNode.h"
 #include "GameObject.h"
+#include "GO_Cube.h"
+#include "GO_Humanoid.h"
 
 #include "ModelManager.h"
 #include "TextureManager.h"
@@ -23,13 +25,11 @@ void GameObjectManager::Shutdown() {
 	DestroyInstance();
 }
 
-void GameObjectManager::Update(const double gameTime) {
+void GameObjectManager::Update(const float gameTime) {
 	// Update game objects
 	GameObjectNode* root = static_cast<GameObjectNode*>(GetObjectList()->getRoot());
 	if(root) {
-		UNUSED(gameTime);
-		// UNCOMMENT THIS WHEN UPDATE LOGIC IS IN!
-		//static_cast< GameObjectManager* >(GetInstance())->updatePtC( gameTime, root );
+		static_cast<GameObjectManager*>(GetInstance())->updatePtC(gameTime, root);
 	}
 }
 
@@ -60,18 +60,8 @@ GameObject* GameObjectManager::FindGameObject(const GameObjectType type, const c
 
 void GameObjectManager::LoadGameObjects() {
 	printf("  Loading game objects...\n");
-	GameObject* cubeBrick = new GameObject(GameObjectType::GameObject_CubeBrick, "testCube");
-	cubeBrick->setModel(ModelManager::FindModel(ModelType::Model_Cube));
-	cubeBrick->setTexture(TextureManager::FindTexture(TextureType::Texture_Brick));
-	cubeBrick->setShader(ShaderManager::FindShader(ShaderType::Shader_Phong));
-	AddGameObject(cubeBrick);
-
-	GameObject* humanoid2 = new GameObject(GameObjectType::GameObject_Generic, "humanoid2");
-	humanoid2->setModel(ModelManager::FindModel(ModelType::Model_Generic));
-	humanoid2->setTexture(TextureManager::FindTexture(TextureType::Texture_Brick));
-	humanoid2->setShader(ShaderManager::FindShader(ShaderType::Shader_Phong));
-	humanoid2->setSkeleton(SkeletonManager::FindSkeleton("humanoid2"));
-	AddGameObject(humanoid2);
+	AddGameObject(new GO_Cube("testCube"));
+	AddGameObject(new GO_Humanoid("humanoid2"));
 }
 
 GameObjectNode* GameObjectManager::Find(const GameObjectType type, const char* name) {
@@ -108,7 +98,7 @@ GameObjectNode* GameObjectManager::findDepthFirst(GameObjectNode* const walker, 
 	return gameObject;
 }
 
-void GameObjectManager::updatePtC(const double gameTime, GameObjectNode* const walker) const {
+void GameObjectManager::updatePtC(const float gameTime, GameObjectNode* const walker) const {
 	// Update node
 	walker->updateNode(gameTime);
 

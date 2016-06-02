@@ -13,6 +13,8 @@ public:
 	void setBones(PCSTree* const bones);
 
 	void addAnimations(AnimationController* const);
+	void setCurrentAnimation(const char*);
+	void updateAnimation(const float) const;
 	void removeAnimations();
 	AnimationController* getAnimations() const;
 

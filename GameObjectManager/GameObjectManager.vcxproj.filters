@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="_gameObjects">
+      <UniqueIdentifier>{35450002-13ce-4404-9fe1-23b2bfd6ad91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_gameObjects\Header Files">
+      <UniqueIdentifier>{e8f728ba-03b4-4ba4-b3d3-760b16715b76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_gameObjects\Source Files">
+      <UniqueIdentifier>{a82fb6ff-644e-4048-b0f9-6890a924018b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObjectManager.h">
@@ -21,11 +30,17 @@
     <ClInclude Include="GameObjectNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectTypes.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GO_Cube.h">
+      <Filter>_gameObjects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GO_Humanoid.h">
+      <Filter>_gameObjects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>_gameObjects\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -35,8 +50,14 @@
     <ClCompile Include="GameObjectNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GO_Cube.cpp">
+      <Filter>_gameObjects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GO_Humanoid.cpp">
+      <Filter>_gameObjects\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>_gameObjects\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

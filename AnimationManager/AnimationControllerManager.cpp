@@ -101,7 +101,7 @@ AnimationController* AnimationControllerManager::loadAnimationsFromBuffer(const 
 			keyframe.setTransforms(transforms);
 		}
 		animation->setKeyframes(keyframes);
-		animController->AddAnimation(animation);
+		animController->addAnimation(animation);
 	}
 	return animController;
 }

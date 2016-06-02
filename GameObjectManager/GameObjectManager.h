@@ -18,7 +18,7 @@ public:
 	static void Startup();
 	static void Shutdown();
 
-	static void Update(const double);
+	static void Update(const float);
 	static void Draw(Camera* const);
 
 	static void AddGameObject(GameObject* const);
@@ -32,6 +32,6 @@ private:
 
 	GameObjectNode* findDepthFirst(GameObjectNode* const, const GameObjectType, const char *) const;
 
-	void updatePtC(const double, GameObjectNode* const) const;
+	void updatePtC(const float, GameObjectNode* const) const;
 	void drawPtC(GameObjectNode* const, Camera* const) const;
 };

@@ -16,7 +16,7 @@ void main(void)
 {
 	vec4 lightColor = vec4(1, 1, 1, 1);
 	vec3 lightPos = vec3(4.0f, -1.0f, -3.0f);
-	vec4 ambient = vec4(0.0f, 0.0f, 0.0f, 0.0f);
+	vec4 ambient = vec4(0.2f, 0.2f, 0.2f, 0.0f);
 
 	vec4 color = texture(tex, surfaceUV.xy) * interpColor * lightColor;
 

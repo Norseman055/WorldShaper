@@ -44,7 +44,7 @@ void GameObject::setSkeleton(Skeleton* const inSkeleton) {
 	this->skeleton = inSkeleton;
 }
 
-void GameObject::update(const double gameTime) const {
+void GameObject::update(const float gameTime) const {
 	// Add update logic here
 	UNUSED(gameTime);
 }

@@ -18,7 +18,7 @@ void WorldShaper::Run() {
 	GLFWwindow* window = GLFWManager::GetWindow();
 	while(!glfwWindowShouldClose(window)) {
 		// Core game loop, run until game completion
-		worldShaper->update(glfwGetTime());
+		worldShaper->update(static_cast<float>(glfwGetTime()));
 		worldShaper->draw();
 	}
 	Shutdown();
@@ -55,7 +55,7 @@ void WorldShaper::Shutdown() {
 	GLFWManager::Shutdown();
 }
 
-void WorldShaper::update(double gameTime) {
+void WorldShaper::update(const float gameTime) {
 	GameObjectManager::Update(gameTime);
 }
 
