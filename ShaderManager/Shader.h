@@ -7,9 +7,9 @@ public:
 	ShaderType getType() const;
 	unsigned int getShaderID() const;
 
-	void setupGLSLShaders( const char* );
+	void setupGLSLShaders(const char*);
 
-	Shader( const ShaderType, const char* );
+	Shader(const ShaderType, const char*);
 	~Shader();
 
 private:

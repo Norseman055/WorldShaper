@@ -2,6 +2,8 @@
 
 class PCSTree;
 class AnimationController;
+class Matrix;
+struct SkinArray;
 
 class Skeleton {
 public:
@@ -14,6 +16,12 @@ public:
 	void removeAnimations();
 	AnimationController* getAnimations() const;
 
+	void addBindPose(Matrix* const);
+	Matrix* getBindPose() const;
+
+	void addSkinInfluence(SkinArray* const);
+	SkinArray* getSkinInfluence() const;
+
 	int getNumLevels() const;
 	void setNumLevels(const int);
 
@@ -24,6 +32,8 @@ private:
 	char* name;
 	PCSTree* bones;
 	AnimationController* animations;
+	Matrix* bindPose;
+	SkinArray* skinInfluence;
 	int numBones;
 	int numLevels;
 };

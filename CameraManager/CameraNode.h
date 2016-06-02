@@ -10,7 +10,7 @@ public:
 	CameraType getType() const;
 	const char* getName() const;
 
-	CameraNode( Camera* const );
+	CameraNode(Camera* const);
 	~CameraNode();
 
 private:

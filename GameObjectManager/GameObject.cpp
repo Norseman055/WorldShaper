@@ -8,6 +8,7 @@
 #include "Texture.h"
 #include "Model.h"
 #include "Camera.h"
+#include "Skeleton.h"
 
 #include <stdio.h>
 
@@ -23,24 +24,29 @@ const char* GameObject::getName() const {
 	return this->name;
 }
 
-void GameObject::setModel( Model* const inModel ) {
-	printf( "      Setting model...\n" );
+void GameObject::setModel(Model* const inModel) {
+	printf("      Setting model...\n");
 	this->model = inModel;
 }
 
-void GameObject::setTexture( Texture* const inTexture ) {
-	printf( "      Setting texture...\n" );
+void GameObject::setTexture(Texture* const inTexture) {
+	printf("      Setting texture...\n");
 	this->texture = inTexture;
 }
 
-void GameObject::setShader( Shader* const inShader ) {
-	printf( "      Setting shader...\n" );
+void GameObject::setShader(Shader* const inShader) {
+	printf("      Setting shader...\n");
 	this->shader = inShader;
 }
 
-void GameObject::update( const double gameTime ) const {
+void GameObject::setSkeleton(Skeleton* const inSkeleton) {
+	printf("      Setting skeleton...\n");
+	this->skeleton = inSkeleton;
+}
+
+void GameObject::update(const double gameTime) const {
 	// Add update logic here
-	UNUSED( gameTime );
+	UNUSED(gameTime);
 }
 
 void GameObject::draw(Camera* const camera) const {
@@ -83,25 +89,25 @@ void GameObject::draw(Camera* const camera) const {
 
 	glBindBuffer(GL_ARRAY_BUFFER, this->model->getVboVerts());
 
-	glVertexAttribPointer(vertPosLoc, 4, GL_FLOAT, false, sizeof(Vertex), static_cast< void * >(nullptr));
+	glVertexAttribPointer(vertPosLoc, 4, GL_FLOAT, false, sizeof(Vertex), static_cast<void *>(nullptr));
 	glEnableVertexAttribArray(vertPosLoc);
 
-	glVertexAttribPointer(vertNormalLoc, 4, GL_FLOAT, false, sizeof(Vertex), reinterpret_cast< void * >(sizeof(Vect)));
+	glVertexAttribPointer(vertNormalLoc, 4, GL_FLOAT, false, sizeof(Vertex), reinterpret_cast<void *>(sizeof(Vect)));
 	glEnableVertexAttribArray(vertNormalLoc);
 
-	glVertexAttribPointer(vertColorLoc, 4, GL_FLOAT, false, sizeof(Vertex), reinterpret_cast< void * >(2 * sizeof(Vect)));
+	glVertexAttribPointer(vertColorLoc, 4, GL_FLOAT, false, sizeof(Vertex), reinterpret_cast<void *>(2 * sizeof(Vect)));
 	glEnableVertexAttribArray(vertColorLoc);
 
-	glVertexAttribPointer(uvLoc, 4, GL_FLOAT, false, sizeof(Vertex), reinterpret_cast< void * >(3 * sizeof(Vect)));
+	glVertexAttribPointer(uvLoc, 4, GL_FLOAT, false, sizeof(Vertex), reinterpret_cast<void *>(3 * sizeof(Vect)));
 	glEnableVertexAttribArray(uvLoc);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->model->getVboFaces());
 	glDrawElements(GL_TRIANGLES, 3 * this->model->getNumFaces(), GL_UNSIGNED_INT, nullptr);
 }
 
-GameObject::GameObject( const GameObjectType inType, const char* inName )
-	: type( inType ), name( inName ), model( nullptr ), texture( nullptr ), shader( nullptr ) {
-	printf( "    Creating game object...\n" );
+GameObject::GameObject(const GameObjectType inType, const char* inName)
+	: type(inType), name(inName), model(nullptr), texture(nullptr), shader(nullptr), skeleton(nullptr) {
+	printf("    Creating game object...\n");
 }
 
 GameObject::~GameObject() { }

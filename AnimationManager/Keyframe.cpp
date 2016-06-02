@@ -29,7 +29,7 @@ void Keyframe::setTransforms(Transform* const transforms) {
 Keyframe::Keyframe()
 	: time(0.0f), numTransforms(0), transforms(nullptr) { }
 
-Keyframe::~Keyframe() { 
+Keyframe::~Keyframe() {
 	if(transforms) {
 		delete[] transforms;
 	}

@@ -7,7 +7,7 @@ class GameObjectNode;
 class GameObject;
 class Camera;
 
-/** 
+/**
  * GAME OBJECT MANAGER
  *   This manager handles adding, removing, updating and drawing game objects stored in a PCSTree organized as a scene graph.
  *   The update function will update the objects in the scene graph, with the parent objects being updated first.
@@ -18,20 +18,20 @@ public:
 	static void Startup();
 	static void Shutdown();
 
-	static void Update( const double );
+	static void Update(const double);
 	static void Draw(Camera* const);
 
-	static void AddGameObject( GameObject* const );
-	static void RemoveGameObject( const GameObjectType, const char* );
+	static void AddGameObject(GameObject* const);
+	static void RemoveGameObject(const GameObjectType, const char*);
 
-	static GameObject* FindGameObject( const GameObjectType, const char* );
+	static GameObject* FindGameObject(const GameObjectType, const char*);
 
 private:
 	static void LoadGameObjects();
-	static GameObjectNode* Find( const GameObjectType, const char* );
+	static GameObjectNode* Find(const GameObjectType, const char*);
 
-	GameObjectNode* findDepthFirst( GameObjectNode* const, const GameObjectType, const char * ) const;
-	
-	void updatePtC( const double, GameObjectNode* const ) const;
-	void drawPtC( GameObjectNode* const, Camera* const ) const;
+	GameObjectNode* findDepthFirst(GameObjectNode* const, const GameObjectType, const char *) const;
+
+	void updatePtC(const double, GameObjectNode* const) const;
+	void drawPtC(GameObjectNode* const, Camera* const) const;
 };

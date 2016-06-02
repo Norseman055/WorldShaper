@@ -70,17 +70,17 @@ Matrix* Model::getModelMatrix() const {
 }
 
 void Model::setupOpenGLBuffers() {
-	printf( "      Setting OpenGL buffers for model...\n" );
-	glGenVertexArrays( 1, &vao );
-	glBindVertexArray( vao );
+	printf("      Setting OpenGL buffers for model...\n");
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
 
-	glGenBuffers( 1, &vboVertices );
-	glBindBuffer( GL_ARRAY_BUFFER, vboVertices );
-	glBufferData( GL_ARRAY_BUFFER, this->numVertices * sizeof( Vertex ), this->vertices, GL_STATIC_DRAW );
+	glGenBuffers(1, &vboVertices);
+	glBindBuffer(GL_ARRAY_BUFFER, vboVertices);
+	glBufferData(GL_ARRAY_BUFFER, this->numVertices * sizeof(Vertex), this->vertices, GL_STATIC_DRAW);
 
-	glGenBuffers( 1, &vboFaces );
-	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, vboFaces );
-	glBufferData( GL_ELEMENT_ARRAY_BUFFER, 3 * this->numFaces * sizeof( unsigned int ), this->faces, GL_STATIC_DRAW );
+	glGenBuffers(1, &vboFaces);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboFaces);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 3 * this->numFaces * sizeof(unsigned int), this->faces, GL_STATIC_DRAW);
 }
 
 Model::Model(const ModelType inType)

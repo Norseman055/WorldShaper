@@ -51,7 +51,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)_generics;$(SolutionDir)_libs\release;$(SolutionDir)ModelManager;$(SolutionDir)TextureManager;$(SolutionDir)ShaderManager;$(SolutionDir)CameraManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)_generics;$(SolutionDir)_libs\release;$(SolutionDir)ModelManager;$(SolutionDir)TextureManager;$(SolutionDir)ShaderManager;$(SolutionDir)CameraManager;$(SolutionDir)AnimationManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -77,7 +77,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)_generics;$(SolutionDir)_libs\release;$(SolutionDir)ModelManager;$(SolutionDir)TextureManager;$(SolutionDir)ShaderManager;$(SolutionDir)CameraManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)_generics;$(SolutionDir)_libs\release;$(SolutionDir)ModelManager;$(SolutionDir)TextureManager;$(SolutionDir)ShaderManager;$(SolutionDir)CameraManager;$(SolutionDir)AnimationManager;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -110,6 +110,9 @@
     <ClCompile Include="GameObjectNode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AnimationManager\AnimationManager.vcxproj">
+      <Project>{a4e6019a-6daa-49f7-90fe-a1020c754fac}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\ModelManager\ModelManager.vcxproj">
       <Project>{0a28ef60-5fc1-4182-a1d5-36d5c37c3799}</Project>
     </ProjectReference>

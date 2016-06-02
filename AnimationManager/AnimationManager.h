@@ -10,7 +10,7 @@ struct SkeletonHeader;
 struct AnimationHeader;
 
 class AnimationManager : Singleton<AnimationManager> {
-friend class Singleton<AnimationManager>;
+	friend class Singleton<AnimationManager>;
 public:
 	static void Startup();
 	static void Shutdown();

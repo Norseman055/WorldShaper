@@ -11,14 +11,14 @@ public:
 	static void Startup();
 	static void Shutdown();
 
-	static void AddShader( Shader* const );
-	static void RemoveShader( const ShaderType );
+	static void AddShader(Shader* const);
+	static void RemoveShader(const ShaderType);
 
-	static Shader* FindShader( const ShaderType );
+	static Shader* FindShader(const ShaderType);
 
 private:
 	static void LoadShaders();
-	static ShaderNode* Find( const ShaderType );
+	static ShaderNode* Find(const ShaderType);
 
-	ShaderNode* findDepthFirst( ShaderNode* const, const ShaderType ) const;
+	ShaderNode* findDepthFirst(ShaderNode* const, const ShaderType) const;
 };

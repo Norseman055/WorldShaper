@@ -14,7 +14,7 @@ public:
 	void updateNode(const double);
 	void drawNode(Camera* const);
 
-	GameObjectNode( GameObject* const );
+	GameObjectNode(GameObject* const);
 	~GameObjectNode();
 
 private:

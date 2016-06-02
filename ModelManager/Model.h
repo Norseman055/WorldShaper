@@ -27,7 +27,7 @@ public:
 
 	Matrix* getModelMatrix() const;
 
-	Model( const ModelType );
+	Model(const ModelType);
 	virtual ~Model() = 0;
 
 protected:
@@ -38,7 +38,7 @@ protected:
 	unsigned int vao;
 	unsigned int vboVertices;
 	unsigned int vboFaces;
-	
+
 	Vertex* vertices;
 	int numVertices;
 

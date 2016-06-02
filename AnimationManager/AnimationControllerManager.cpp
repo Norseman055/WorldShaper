@@ -45,7 +45,7 @@ void AnimationControllerManager::LoadAnimationsFromBuffer(const char* controller
 
 AnimationControllerNode* AnimationControllerManager::findDepthFirst(AnimationControllerNode* const walker, const char* name) const {
 	AnimationControllerNode* animControllerNode = nullptr;
-	if(strcmp(name, walker->getName())) {
+	if(strcmp(name, walker->getName()) == 0) {
 		animControllerNode = walker;
 	} else {
 		if(walker->getChild()) {
@@ -59,7 +59,7 @@ AnimationControllerNode* AnimationControllerManager::findDepthFirst(AnimationCon
 }
 
 AnimationController* AnimationControllerManager::loadAnimationsFromBuffer(const char* controllerName, const AnimationHeader& animationHeader, void* buffer) {
-	printf("      Loading animations...\n");
+	printf("      Loading %i animations...\n", animationHeader.numAnimations);
 	AnimationController* animController = new AnimationController(controllerName);
 	void* ptr = buffer;
 

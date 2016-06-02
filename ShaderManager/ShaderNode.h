@@ -9,7 +9,7 @@ class ShaderNode : public NodeLink<Shader*> {
 public:
 	ShaderType getType() const;
 
-	ShaderNode( Shader* const );
+	ShaderNode(Shader* const);
 	~ShaderNode();
 
 private:

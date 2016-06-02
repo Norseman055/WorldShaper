@@ -20,7 +20,7 @@ void ArchiveManager::Shutdown() {
 void ArchiveManager::LoadModelFromFile(const char* filename) {
 	printf("  Loading model from %s... \n", filename);
 	char* buffer;
-	
+
 	FileHandle file;
 	FileError error;
 
@@ -40,7 +40,8 @@ void ArchiveManager::LoadModelFromFile(const char* filename) {
 			if(error != FILE_SUCCESS) {
 				printf(" Failed to read file into buffer!\n");
 			} else {
-				printf(" Success! \n    Closing file and sending to ModelManager to load.\n");
+				printf(" Success! \n");
+				printf("    Closing file and sending to ModelManager to load.\n");
 				CloseFile(file);
 				ModelManager::LoadModelFromBuffer(fileHeader, buffer);
 				AnimationManager::LoadAnimationFromBuffer(fileHeader, buffer);

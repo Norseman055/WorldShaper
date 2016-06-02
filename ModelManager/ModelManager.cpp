@@ -57,14 +57,14 @@ void ModelManager::LoadModelFromBuffer(ModelFileHeader& fileHeader, char* const 
 
 	// Load normals
 	printf("   Loading normals from buffer...\n");
-	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) + verticesHeader->dataSize);
+	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +verticesHeader->dataSize);
 	NormalHeader* normalHeader = reinterpret_cast<NormalHeader*>(ptr);
 	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(normalHeader));
 	instance->loadNormalsFromBuffer(*model, *normalHeader, ptr);
 
 	// Load triangles
 	printf("   Loading triangle list from buffer...\n");
-	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) + normalHeader->dataSize);
+	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +normalHeader->dataSize);
 	TriangleHeader* triangleHeader = reinterpret_cast<TriangleHeader*>(ptr);
 	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(triangleHeader));
 	instance->loadTrianglesFromBuffer(*model, *triangleHeader, ptr);
@@ -108,7 +108,7 @@ ModelNode* ModelManager::findDepthFirst(ModelNode* const walker, const ModelType
 }
 
 void ModelManager::loadVerticesFromBuffer(Model& model, const VerticesHeader& header, void* const buffer) {
-	printf("      Loading %i vertices...\n ", header.numVertices);
+	printf("      Loading %i vertices...\n", header.numVertices);
 	Vector* buffVerts = reinterpret_cast<Vector*>(buffer);
 	Vertex* verts = model.getVertices();
 
@@ -126,7 +126,7 @@ void ModelManager::loadVerticesFromBuffer(Model& model, const VerticesHeader& he
 }
 
 void ModelManager::loadNormalsFromBuffer(Model& model, const NormalHeader& header, void* const buffer) {
-	printf("      Loading %i normals...\n ", header.numNormals);
+	printf("      Loading %i normals...\n", header.numNormals);
 	Vector* buffNorms = reinterpret_cast<Vector*>(buffer);
 	Vertex* norms = model.getVertices();
 
@@ -144,7 +144,7 @@ void ModelManager::loadNormalsFromBuffer(Model& model, const NormalHeader& heade
 }
 
 void ModelManager::loadTrianglesFromBuffer(Model& model, const TriangleHeader& header, void* const buffer) {
-	printf("      Loading %i triangles...\n ", header.numTriangles);
+	printf("      Loading %i triangles...\n", header.numTriangles);
 	Triangle* buffTris = reinterpret_cast<Triangle*>(buffer);
 	int* faces = model.getFaces();
 

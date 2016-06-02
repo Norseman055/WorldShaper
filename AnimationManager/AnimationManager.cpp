@@ -33,12 +33,26 @@ void AnimationManager::LoadAnimationFromBuffer(ModelFileHeader& fileHeader, char
 	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(skeletonHeader));
 	SkeletonManager::LoadSkeletonFromBuffer(fileHeader.modelName, *skeletonHeader, ptr);
 
+	// Load bind pose
+	printf("    Loading bind pose from buffer...\n");
+	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +skeletonHeader->dataSize);
+	BindPoseHeader* bindPoseHeader = reinterpret_cast<BindPoseHeader*>(ptr);
+	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(bindPoseHeader));
+	SkeletonManager::LoadBindPoseFromBuffer(fileHeader.modelName, *bindPoseHeader, ptr);
+
 	// Load animations
 	printf("    Loading animations from buffer...\n");
-	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +skeletonHeader->dataSize);
+	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +bindPoseHeader->dataSize);
 	AnimationHeader* animationHeader = reinterpret_cast<AnimationHeader*>(ptr);
 	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(animationHeader));
 	AnimationControllerManager::LoadAnimationsFromBuffer(fileHeader.modelName, *animationHeader, ptr);
+
+	// Load skin
+	printf("    Loading skin from buffer...\n");
+	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +animationHeader->dataSize);
+	SkinningHeader* skinningHeader = reinterpret_cast<SkinningHeader*>(ptr);
+	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(skinningHeader));
+	SkeletonManager::LoadSkinFromBuffer(fileHeader.modelName, *skinningHeader, ptr);
 
 	// Assign animations controller to skeleton
 	SkeletonManager::AssignAnimationsToSkeleton(fileHeader.modelName, AnimationControllerManager::FindAnimationController(fileHeader.modelName));

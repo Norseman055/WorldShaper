@@ -220,7 +220,7 @@ void FbxConverter::ImportSkin() {
 			unsigned int boneIndex;
 			for (boneIndex = 0; boneIndex < this->skeleton.size(); boneIndex++)
 			{
-				if (nullptr != cluster->GetLink() && cluster->GetLink()->GetName() == this->skeleton[boneIndex].boneName)
+				if (nullptr != cluster->GetLink() && strcmp(cluster->GetLink()->GetName(), this->skeleton[boneIndex].boneName) == 0)
 				{
 					foundBone = true;
 					break;

@@ -5,10 +5,10 @@
 #include "Camera.h"
 
 void CameraManager::Startup() {
-	printf( "\n===== Starting Camera Manager =====\n" );
+	printf("\n===== Starting Camera Manager =====\n");
 	GetInstance();
 	LoadCameras();
-	printf( "===== Camera Manager started =====\n\n" );
+	printf("===== Camera Manager started =====\n\n");
 }
 
 void CameraManager::Shutdown() {
@@ -16,25 +16,25 @@ void CameraManager::Shutdown() {
 	DestroyInstance();
 }
 
-void CameraManager::AddCamera( Camera* const camera ) {
-	Add( new CameraNode( camera ) );
+void CameraManager::AddCamera(Camera* const camera) {
+	Add(new CameraNode(camera));
 }
 
-void CameraManager::RemoveCamera( const CameraType type, const char* name ) {
-	Remove( Find( type, name ) );
+void CameraManager::RemoveCamera(const CameraType type, const char* name) {
+	Remove(Find(type, name));
 }
 
-Camera* CameraManager::FindCamera( const CameraType type, const char* name ) {
+Camera* CameraManager::FindCamera(const CameraType type, const char* name) {
 	Camera* camera = nullptr;
-	CameraNode* cameraNode = Find( type, name );
-	if ( cameraNode ) {
+	CameraNode* cameraNode = Find(type, name);
+	if(cameraNode) {
 		camera = cameraNode->getData();
 	}
 	return camera;
 }
 
 Camera* CameraManager::GetActiveCamera() {
-	return static_cast< CameraManager* >(GetInstance())->activeCamera;
+	return static_cast<CameraManager*>(GetInstance())->activeCamera;
 }
 
 void CameraManager::UpdateActiveCamera() {
@@ -48,39 +48,39 @@ void CameraManager::FramebufferResizeCallback(GLFWwindow* window, int width, int
 }
 
 void CameraManager::LoadCameras() {
-	printf( "  Loading cameras...\n" );
-	Camera* cam0 = new Camera( CameraType::Camera_Default, "default" );
-	cam0->setPerspective(1.0f, 10000.0f, 35.0f, float(GAME_WIDTH) / float(GAME_HEIGHT) );
-	cam0->setViewport( 0, 0, GAME_HEIGHT, GAME_WIDTH );
-	cam0->setOrientationAndPosition( Vect( 0.0f, 1.0f, 0.0f ), Vect( 0.0f, 0.0f, 0.0f ), Vect( 250.0f, 400.0f, 400.0f ) );
-	AddCamera( cam0 );
-	
-	printf( "  Setting default camera to Camera_Default...\n" );
-	static_cast< CameraManager* >(GetInstance())->activeCamera = FindCamera( CameraType::Camera_Default, "default" );
+	printf("  Loading cameras...\n");
+	Camera* cam0 = new Camera(CameraType::Camera_Default, "default");
+	cam0->setPerspective(1.0f, 10000.0f, 35.0f, float(GAME_WIDTH) / float(GAME_HEIGHT));
+	cam0->setViewport(0, 0, GAME_HEIGHT, GAME_WIDTH);
+	cam0->setOrientationAndPosition(Vect(0.0f, 1.0f, 0.0f), Vect(0.0f, 0.0f, 0.0f), Vect(250.0f, 400.0f, 400.0f));
+	AddCamera(cam0);
+
+	printf("  Setting default camera to Camera_Default...\n");
+	static_cast<CameraManager*>(GetInstance())->activeCamera = FindCamera(CameraType::Camera_Default, "default");
 }
 
-CameraNode* CameraManager::Find( const CameraType type, const char* name ) {
+CameraNode* CameraManager::Find(const CameraType type, const char* name) {
 	CameraNode* camera = nullptr;
-	if ( type != CameraType::Camera_None ) {
-		CameraNode* root = static_cast< CameraNode* >(GetObjectList()->getRoot());
+	if(type != CameraType::Camera_None) {
+		CameraNode* root = static_cast<CameraNode*>(GetObjectList()->getRoot());
 
-		if ( root ) {
-			camera = static_cast< CameraManager* >(GetInstance())->findDepthFirst( root, type, name );
+		if(root) {
+			camera = static_cast<CameraManager*>(GetInstance())->findDepthFirst(root, type, name);
 		}
 	}
 	return camera;
 }
 
-CameraNode* CameraManager::findDepthFirst( CameraNode* const walker, const CameraType type, const char* name ) const {
+CameraNode* CameraManager::findDepthFirst(CameraNode* const walker, const CameraType type, const char* name) const {
 	CameraNode* camera = nullptr;
-	if ( walker->getType() == type ) {
+	if(walker->getType() == type) {
 		camera = walker;
 	} else {
-		if ( walker->getChild() ) {
-			camera = this->findDepthFirst( static_cast< CameraNode* >(walker->getChild()), type, name );
+		if(walker->getChild()) {
+			camera = this->findDepthFirst(static_cast<CameraNode*>(walker->getChild()), type, name);
 		}
-		if ( !camera && walker->getSibling() ) {
-			camera = this->findDepthFirst( static_cast< CameraNode* >(walker->getSibling()), type, name );
+		if(!camera && walker->getSibling()) {
+			camera = this->findDepthFirst(static_cast<CameraNode*>(walker->getSibling()), type, name);
 		}
 	}
 	return camera;

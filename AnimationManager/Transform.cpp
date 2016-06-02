@@ -27,8 +27,7 @@ void Transform::setScale(Vect* const scale) {
 }
 
 Transform::Transform()
-	: translation(nullptr), rotation(nullptr), scale(nullptr)
-{ }
+	: translation(nullptr), rotation(nullptr), scale(nullptr) { }
 
 Transform::~Transform() {
 	delete translation;

@@ -6,6 +6,10 @@ struct Vector {
 	float x, y, z;
 };
 
+struct ArchiveMatrix {
+	float elements[4][4];
+};
+
 struct Quaternion {
 	float x, y, z, w;
 };
@@ -38,6 +42,15 @@ struct ArchiveAnimation {
 	std::vector<ArchiveKeyframe> keyframes;
 };
 
+struct SkinInfluence {
+	unsigned int boneIndex;
+	float weight;
+};
+
+struct SkinArray {
+	SkinInfluence skinWeights[4];
+};
+
 struct ModelFileHeader {
 	char modelName[24];
 	int sizeofModelData;
@@ -63,7 +76,17 @@ struct SkeletonHeader {
 	int dataSize;
 };
 
+struct BindPoseHeader {
+	int numMatrices;
+	int dataSize;
+};
+
 struct AnimationHeader {
 	int numAnimations;
+	int dataSize;
+};
+
+struct SkinningHeader {
+	int numInfluenceVectors;
 	int dataSize;
 };

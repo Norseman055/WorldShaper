@@ -19,6 +19,7 @@ namespace Export {
 	void printNorms(const FbxConverter& converter);
 	void printTris(const FbxConverter& converter);
 	void printSkeleton(const FbxConverter& converter);
+	void printBindPose(const FbxConverter& converter);
 	void printAnimations(const FbxConverter& converter);
 	void printSkin(const FbxConverter& converter);
 

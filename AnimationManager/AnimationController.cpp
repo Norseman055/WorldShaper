@@ -29,9 +29,8 @@ Animation* AnimationController::FindAnimation(const char* name) const {
 	return retAnimation;
 }
 
-AnimationController::AnimationController(const char* inName) 
-	: currentAnimation(nullptr)
-{ 
+AnimationController::AnimationController(const char* inName)
+	: currentAnimation(nullptr) {
 	assert(inName);
 	int nameLen = strlen(inName);
 	this->skeletonName = new char[nameLen + 1];

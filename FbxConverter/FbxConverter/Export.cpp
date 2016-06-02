@@ -209,6 +209,7 @@ namespace Export {
 		printNorms(importer);
 		printTris(importer);
 		printSkeleton(importer);
+		printBindPose(importer);
 		printAnimations(importer);
 		printSkin(importer);
 	}
@@ -250,6 +251,18 @@ namespace Export {
 				printf(" (%s)", importer.GetSkeleton()[b.parentIndex].boneName);
 			}
 			printf("\n");
+		}
+	}
+
+	void printBindPose(const FbxConverter& converter) {
+		printf("\nBind Pose\n");
+		for(unsigned int i = 0; i < converter.GetBindPose().size(); i++) {
+			const Matrix& m = converter.GetBindPose()[i];
+			printf("%i:", i);
+			printf("\t[ %f, %f, %f, %f ]\n", m.elements[0][0], m.elements[0][1], m.elements[0][2], m.elements[0][3]);
+			printf("\t[ %f, %f, %f, %f ]\n", m.elements[1][0], m.elements[1][1], m.elements[1][2], m.elements[1][3]);
+			printf("\t[ %f, %f, %f, %f ]\n", m.elements[2][0], m.elements[2][1], m.elements[2][2], m.elements[2][3]);
+			printf("\t[ %f, %f, %f, %f ]\n\n", m.elements[3][0], m.elements[3][1], m.elements[3][2], m.elements[3][3]);
 		}
 	}
 

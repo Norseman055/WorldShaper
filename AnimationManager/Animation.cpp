@@ -32,10 +32,9 @@ void Animation::setKeyframes(Keyframe* const keyframeTree) {
 }
 
 Animation::Animation()
-	: name(nullptr), numKeyframes(0), keyframes(nullptr)
-{ }
+	: name(nullptr), numKeyframes(0), keyframes(nullptr) { }
 
-Animation::~Animation() { 
+Animation::~Animation() {
 	if(keyframes) {
 		delete[] keyframes;
 	}

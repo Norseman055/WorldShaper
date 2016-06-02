@@ -5,7 +5,11 @@
 class SkeletonNode;
 class Skeleton;
 class AnimationController;
+class Matrix;
 struct SkeletonHeader;
+struct BindPoseHeader;
+struct SkinningHeader;
+struct SkinArray;
 
 class SkeletonManager : public Manager<Skeleton*> {
 public:
@@ -16,10 +20,14 @@ public:
 	static Skeleton* FindSkeleton(const char*);
 
 	static void LoadSkeletonFromBuffer(const char*, const SkeletonHeader&, void*);
+	static void LoadBindPoseFromBuffer(const char*, const BindPoseHeader&, void*);
+	static void LoadSkinFromBuffer(const char*, const SkinningHeader&, void*);
 private:
 	static SkeletonNode* Find(const char*);
 
 	SkeletonNode* findDepthFirst(SkeletonNode* const, const char*) const;
 
 	static Skeleton* loadSkeletonFromBuffer(const char*, const SkeletonHeader&, void*);
+	static Matrix* loadBindPoseFromBuffer(const BindPoseHeader&, void*);
+	static SkinArray* loadSkinFromBuffer(const SkinningHeader&, void*);
 };

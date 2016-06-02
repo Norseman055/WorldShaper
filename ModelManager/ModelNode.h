@@ -9,7 +9,7 @@ class ModelNode : public NodeLink<Model*> {
 public:
 	ModelType getType() const;
 
-	ModelNode( Model* const );
+	ModelNode(Model* const);
 	~ModelNode();
 
 private:

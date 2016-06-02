@@ -9,7 +9,7 @@ class TextureNode : public NodeLink<Texture*> {
 public:
 	TextureType getType() const;
 
-	TextureNode( Texture* const texture );
+	TextureNode(Texture* const texture);
 	~TextureNode();
 
 private:
