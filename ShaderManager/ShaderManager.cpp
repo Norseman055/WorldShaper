@@ -4,10 +4,10 @@
 #include "Shader.h"
 
 void ShaderManager::Startup() {
-	printf("\n===== Starting Shader Manager =====\n");
+	printf("\n===== SHADER MANAGER : START =====\n");
 	GetInstance();
 	LoadShaders();
-	printf("===== Shader Manager started =====\n\n");
+	printf("===== SHADER MANAGER : FINISHED STARTING =====\n\n");
 }
 
 void ShaderManager::Shutdown() {
@@ -36,7 +36,7 @@ Shader* ShaderManager::FindShader(const ShaderType type) {
 }
 
 void ShaderManager::LoadShaders() {
-	printf("  Loading shaders...\n");
+	printf("SHADER MANAGER: Loading shaders...\n");
 	AddShader(new Shader(ShaderType::Shader_Phong, "../ShaderManager/Phong"));
 }
 

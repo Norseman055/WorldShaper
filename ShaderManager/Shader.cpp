@@ -17,7 +17,7 @@ unsigned int Shader::getShaderID() const {
 }
 
 void Shader::setupGLSLShaders(const char* shaderName) {
-	printf("      Compiling GLSL shaders and creating shader program...\n");
+	printf("SHADER: Compiling GLSL shaders and creating shader program...\n");
 
 	// Make fragment and vertex shader name
 	int nameLen = strlen(shaderName);
@@ -37,7 +37,7 @@ void Shader::setupGLSLShaders(const char* shaderName) {
 	char* vertexShaderSrc = new char[2048];
 	fopen_s(&vertF, vertShaderName, "rb");
 	if(!vertF) {
-		perror("      Could not load vertex shader file ");
+		perror("SHADER: Could not load vertex shader file\n");
 		return;
 	}
 	int charCount = fread(vertexShaderSrc, 1, 2048, vertF);
@@ -45,7 +45,7 @@ void Shader::setupGLSLShaders(const char* shaderName) {
 	fclose(vertF);
 
 	// Now send the source to OpenGL and compile the vertex shader
-	printf("      Making vertex shader...");
+	printf("SHADER: Making vertex shader...");
 	this->vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(this->vertexShader, 1, const_cast<const char **>(&vertexShaderSrc), nullptr);
 	glCompileShader(this->vertexShader);
@@ -64,7 +64,7 @@ void Shader::setupGLSLShaders(const char* shaderName) {
 	FILE* fragF;
 	fopen_s(&fragF, fragShaderName, "rb");
 	if(!fragF) {
-		perror("      Could not load fragment shader file ");
+		perror("      Could not load fragment shader file\n");
 		return;
 	}
 	charCount = fread(fragmentShaderSrc, 1, 2048, fragF);
@@ -72,7 +72,7 @@ void Shader::setupGLSLShaders(const char* shaderName) {
 	fclose(fragF);
 
 	// Now compile the fragment shader
-	printf("      Making fragment shader...");
+	printf("SHADER: Making fragment shader...");
 	this->fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(this->fragmentShader, 1, const_cast<const char **>(&fragmentShaderSrc), nullptr);
 	glCompileShader(this->fragmentShader);
@@ -86,7 +86,7 @@ void Shader::setupGLSLShaders(const char* shaderName) {
 	}
 	printf("  Success!\n");
 
-	printf("      Compiling GLSL shader...");
+	printf("SHADER: Compiling GLSL shader...");
 	this->shaderProgram = glCreateProgram();
 	glAttachShader(this->shaderProgram, this->vertexShader);
 	glAttachShader(this->shaderProgram, this->fragmentShader);

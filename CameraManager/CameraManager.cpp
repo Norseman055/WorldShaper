@@ -5,10 +5,10 @@
 #include "Camera.h"
 
 void CameraManager::Startup() {
-	printf("\n===== Starting Camera Manager =====\n");
+	printf("\n===== CAMERA MANAGER : START =====\n");
 	GetInstance();
 	LoadCameras();
-	printf("===== Camera Manager started =====\n\n");
+	printf("===== CAMERA MANAGER : FINISHED STARTING =====\n\n");
 }
 
 void CameraManager::Shutdown() {
@@ -48,14 +48,14 @@ void CameraManager::FramebufferResizeCallback(GLFWwindow* window, int width, int
 }
 
 void CameraManager::LoadCameras() {
-	printf("  Loading cameras...\n");
+	printf("CAMERA MANAGER: Loading cameras...\n");
 	Camera* cam0 = new Camera(CameraType::Camera_Default, "default");
 	cam0->setPerspective(1.0f, 10000.0f, 35.0f, float(GAME_WIDTH) / float(GAME_HEIGHT));
 	cam0->setViewport(0, 0, GAME_HEIGHT, GAME_WIDTH);
 	cam0->setOrientationAndPosition(Vect(0.0f, 1.0f, 0.0f), Vect(0.0f, 0.0f, 0.0f), Vect(250.0f, 400.0f, 400.0f));
 	AddCamera(cam0);
 
-	printf("  Setting default camera to Camera_Default...\n");
+	printf("CAMERA MANAGER: Setting default camera to \"default\"\n");
 	static_cast<CameraManager*>(GetInstance())->activeCamera = FindCamera(CameraType::Camera_Default, "default");
 }
 

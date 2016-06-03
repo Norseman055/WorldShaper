@@ -12,6 +12,7 @@ void GO_Cube::setupCube() {
 
 GO_Cube::GO_Cube(const char* name)
 	: GameObject(GameObjectType::GameObject_CubeBrick, name) {
+	printf("GO_CUBE: Creating Cube - %s...\n", name);
 	this->setupCube();
 }
 

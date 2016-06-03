@@ -11,13 +11,19 @@ public:
 	virtual ~WorldShaper();
 
 private:
+	WorldShaper();
+
 	// Methods
 	static void Startup();
 	static void SetGLFWCallbacks();
 	static void Shutdown();
 
+	void runGameLoop();
 	void update(const float);
 	void draw();
 
 	// Member variables
+	float tCurrent;
+	float tPrevious;
+	float tDelta;
 };

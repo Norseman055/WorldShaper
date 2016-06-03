@@ -5,7 +5,7 @@
 
 Cube::Cube()
 	: Model(ModelType::Model_Cube) {
-	printf("    Loading cube...\n");
+	printf("CUBE: Loading cube...\n");
 
 	this->numVertices = 12 * 2;
 	this->vertices = new Vertex[numVertices];

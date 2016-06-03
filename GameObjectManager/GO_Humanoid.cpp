@@ -50,6 +50,7 @@ void GO_Humanoid::setupHumanoid() {
 
 GO_Humanoid::GO_Humanoid(const char* name)
 	: GameObject(GameObjectType::GameObject_Generic, name), currAnim(HumanoidAnim::Anim_BindPose) {
+	printf("GO_HUMANOID: Creating Humanoid - %s...\n", name);
 	this->setupHumanoid();
 }
 

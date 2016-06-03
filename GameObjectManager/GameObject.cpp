@@ -25,27 +25,27 @@ const char* GameObject::getName() const {
 }
 
 void GameObject::setModel(Model* const inModel) {
-	printf("      Setting model...\n");
+	printf("GAME OBJECT: Setting model...\n");
 	this->model = inModel;
 }
 
 void GameObject::setTexture(Texture* const inTexture) {
-	printf("      Setting texture...\n");
+	printf("GAME OBJECT: Setting texture...\n");
 	this->texture = inTexture;
 }
 
 void GameObject::setShader(Shader* const inShader) {
-	printf("      Setting shader...\n");
+	printf("GAME OBJECT: Setting shader...\n");
 	this->shader = inShader;
 }
 
 void GameObject::setSkeleton(Skeleton* const inSkeleton) {
-	printf("      Setting skeleton...\n");
+	printf("GAME OBJECT: Setting skeleton...\n");
 	this->skeleton = inSkeleton;
 }
 
 void GameObject::update(const float gameTime) const {
-	// Add update logic here
+	// OVERRIDE THIS METHOD IN INHERITED GAMEOBJECT CLASSES
 	UNUSED(gameTime);
 }
 
@@ -107,7 +107,7 @@ void GameObject::draw(Camera* const camera) const {
 
 GameObject::GameObject(const GameObjectType inType, const char* inName)
 	: type(inType), name(inName), model(nullptr), texture(nullptr), shader(nullptr), skeleton(nullptr) {
-	printf("    Creating game object...\n");
+	printf("GAME OBJECT: Creating game object...\n");
 }
 
 GameObject::~GameObject() { }

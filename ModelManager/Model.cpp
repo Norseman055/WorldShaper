@@ -70,7 +70,7 @@ Matrix* Model::getModelMatrix() const {
 }
 
 void Model::setupOpenGLBuffers() {
-	printf("      Setting OpenGL buffers for model...\n");
+	printf("MODEL: Setting OpenGL buffers for model...\n");
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 

@@ -11,10 +11,10 @@
 #include <memory.h>
 
 void ModelManager::Startup() {
-	printf("\n===== Starting Model Manager =====\n");
+	printf("\n===== MODEL MANAGER : START =====\n");
 	GetInstance();
 	LoadModels();
-	printf("===== Model Manager started =====\n\n");
+	printf("===== MODEL MANAGER : FINISHED STARTING =====\n\n");
 }
 
 void ModelManager::Shutdown() {
@@ -43,27 +43,27 @@ Model* ModelManager::FindModel(const ModelType type) {
 }
 
 void ModelManager::LoadModelFromBuffer(ModelFileHeader& fileHeader, char* const buffer) {
-	printf("  Loading model from buffer...\n");
+	printf("MODEL MANAGER: Loading model from buffer...\n");
 	ModelManager* instance = static_cast<ModelManager*>(GetInstance());
 	void* ptr = buffer;
 
 	GenericModel* model = new GenericModel(fileHeader.modelName);
 
 	// Load vertices
-	printf("    Loading vertices from buffer...\n");
+	printf("MODEL MANAGER: Loading vertices from buffer...\n");
 	VerticesHeader* verticesHeader = reinterpret_cast<VerticesHeader*>(ptr);
 	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(verticesHeader));
 	instance->loadVerticesFromBuffer(*model, *verticesHeader, ptr);
 
 	// Load normals
-	printf("   Loading normals from buffer...\n");
+	printf("MODEL MANAGER: Loading normals from buffer...\n");
 	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +verticesHeader->dataSize);
 	NormalHeader* normalHeader = reinterpret_cast<NormalHeader*>(ptr);
 	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(normalHeader));
 	instance->loadNormalsFromBuffer(*model, *normalHeader, ptr);
 
 	// Load triangles
-	printf("   Loading triangle list from buffer...\n");
+	printf("MODEL MANAGER: Loading triangle list from buffer...\n");
 	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +normalHeader->dataSize);
 	TriangleHeader* triangleHeader = reinterpret_cast<TriangleHeader*>(ptr);
 	ptr = reinterpret_cast<void*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(triangleHeader));
@@ -74,7 +74,7 @@ void ModelManager::LoadModelFromBuffer(ModelFileHeader& fileHeader, char* const 
 }
 
 void ModelManager::LoadModels() {
-	printf("  Loading models...\n");
+	printf("MODEL MANAGER: Loading models...\n");
 	AddModel(new Cube);
 }
 
@@ -108,7 +108,7 @@ ModelNode* ModelManager::findDepthFirst(ModelNode* const walker, const ModelType
 }
 
 void ModelManager::loadVerticesFromBuffer(Model& model, const VerticesHeader& header, void* const buffer) {
-	printf("      Loading %i vertices...\n", header.numVertices);
+	printf("MODEL MANAGER: Loading %i vertices...\n", header.numVertices);
 	Vector* buffVerts = reinterpret_cast<Vector*>(buffer);
 	Vertex* verts = model.getVertices();
 
@@ -126,7 +126,7 @@ void ModelManager::loadVerticesFromBuffer(Model& model, const VerticesHeader& he
 }
 
 void ModelManager::loadNormalsFromBuffer(Model& model, const NormalHeader& header, void* const buffer) {
-	printf("      Loading %i normals...\n", header.numNormals);
+	printf("MODEL MANAGER: Loading %i normals...\n", header.numNormals);
 	Vector* buffNorms = reinterpret_cast<Vector*>(buffer);
 	Vertex* norms = model.getVertices();
 
@@ -144,7 +144,7 @@ void ModelManager::loadNormalsFromBuffer(Model& model, const NormalHeader& heade
 }
 
 void ModelManager::loadTrianglesFromBuffer(Model& model, const TriangleHeader& header, void* const buffer) {
-	printf("      Loading %i triangles...\n", header.numTriangles);
+	printf("MODEL MANAGER: Loading %i triangles...\n", header.numTriangles);
 	Triangle* buffTris = reinterpret_cast<Triangle*>(buffer);
 	int* faces = model.getFaces();
 

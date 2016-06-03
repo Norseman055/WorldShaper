@@ -10,17 +10,12 @@
 #include "ArchiveManager\ArchiveManager.h"
 
 void WorldShaper::Run() {
-	printf("===== Starting World Shaper Engine =====\n");
+	printf("========== WORLD SHAPER : START ==========\n\n");
 	WorldShaper* worldShaper = GetInstance();
-	printf("===== World Shaper Engine started =====\n\n");
-
 	Startup();
-	GLFWwindow* window = GLFWManager::GetWindow();
-	while(!glfwWindowShouldClose(window)) {
-		// Core game loop, run until game completion
-		worldShaper->update(static_cast<float>(glfwGetTime()));
-		worldShaper->draw();
-	}
+	printf("========== WORLD SHAPER : FINISHED STARTING ==========\n\n");
+
+	worldShaper->runGameLoop();
 	Shutdown();
 }
 
@@ -34,6 +29,7 @@ void WorldShaper::Startup() {
 	GameObjectManager::Startup();
 	CameraManager::Startup();
 
+	// Set callbacks for GLFW
 	SetGLFWCallbacks();
 }
 
@@ -45,6 +41,7 @@ void WorldShaper::SetGLFWCallbacks() {
 }
 
 void WorldShaper::Shutdown() {
+	printf("========== WORLD SHAPER : EXITING ==========\n\n");
 	CameraManager::Shutdown();
 	GameObjectManager::Shutdown();
 	ArchiveManager::Shutdown();
@@ -53,6 +50,24 @@ void WorldShaper::Shutdown() {
 	TextureManager::Shutdown();
 	ShaderManager::Shutdown();
 	GLFWManager::Shutdown();
+}
+
+void WorldShaper::runGameLoop() {
+	printf("========== WORLD SHAPER : GAME LOOP START ==========\n\n");
+	GLFWwindow* window = GLFWManager::GetWindow();
+	while(!glfwWindowShouldClose(window)) {
+		this->tCurrent = static_cast<float>(glfwGetTime());
+		this->tDelta = this->tCurrent - this->tPrevious;
+
+		// Game loop set to 60fps maximum
+		if(tDelta > 0.1666f) {
+			this->update(tDelta);
+		}
+
+		this->draw();
+
+		this->tPrevious = this->tCurrent;
+	}
 }
 
 void WorldShaper::update(const float gameTime) {
@@ -72,5 +87,8 @@ void WorldShaper::draw() {
 	glfwSwapBuffers(GLFWManager::GetWindow());
 	glfwPollEvents();
 }
+
+WorldShaper::WorldShaper()
+	: tCurrent(0.0f), tPrevious(0.0f), tDelta(0.0f) { }
 
 WorldShaper::~WorldShaper() { }

@@ -5,8 +5,8 @@
 template<typename T>
 class NodeLink : public PCSNode {
 public:
-	NodeLink( T node )
-		: PCSNode(), data( node ) { }
+	NodeLink(T node)
+		: PCSNode(), data(node) { }
 
 	T getData() {
 		return this->data;
@@ -18,7 +18,7 @@ public:
 
 private:
 	NodeLink() :
-		PCSNode(), data( nullptr ) { }
+		PCSNode(), data(nullptr) { }
 
 	T data;
 };

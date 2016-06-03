@@ -193,7 +193,7 @@ Camera::Camera(CameraType inType, const char* inName)
 	viewportX(0), viewportY(0), viewportHeight(0), viewportWidth(0) {
 	this->viewMatrix.set(IDENTITY);
 	this->projectionMatrix.set(IDENTITY);
-	printf("    Creating camera...\n");
+	printf("CAMERA: Creating camera - %s...\n", inName);
 }
 
 Camera::~Camera() { }

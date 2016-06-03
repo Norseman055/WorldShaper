@@ -6,28 +6,31 @@ Vect* Transform::getTranslation() const {
 	return this->translation;
 }
 
-void Transform::setTranslation(Vect* const translation) {
-	this->translation = translation;
+void Transform::setTranslation(const Vect* const translation) {
+	this->translation->set(*translation);
 }
 
 Quat* Transform::getRotation() const {
 	return this->rotation;
 }
 
-void Transform::setRotation(Quat* const rotation) {
-	this->rotation = rotation;
+void Transform::setRotation(const Quat* const rotation) {
+	this->rotation->set(*rotation);
 }
 
 Vect* Transform::getScale() const {
 	return this->scale;
 }
 
-void Transform::setScale(Vect* const scale) {
-	this->scale = scale;
+void Transform::setScale(const Vect* const scale) {
+	this->scale->set(*scale);
 }
 
-Transform::Transform()
-	: translation(nullptr), rotation(nullptr), scale(nullptr) { }
+Transform::Transform() {
+	this->translation = new Vect;
+	this->rotation = new Quat;
+	this->scale = new Vect;
+}
 
 Transform::~Transform() {
 	delete translation;

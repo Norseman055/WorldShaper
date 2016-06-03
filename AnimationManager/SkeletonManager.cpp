@@ -78,7 +78,7 @@ SkeletonNode* SkeletonManager::findDepthFirst(SkeletonNode* const walker, const 
 }
 
 Skeleton* SkeletonManager::loadSkeletonFromBuffer(const char* skeletonName, const SkeletonHeader& header, void* buffer) {
-	printf("      Loading %i bones...\n", header.numBones);
+	printf("SKELETON MANAGER: Loading %i bones...\n", header.numBones);
 	Skeleton* skeleton = new Skeleton(skeletonName);
 	ArchiveBone* buffBones = reinterpret_cast<ArchiveBone*>(buffer);
 	Bone** bonePointers = new Bone*[header.numBones];
@@ -112,7 +112,7 @@ Skeleton* SkeletonManager::loadSkeletonFromBuffer(const char* skeletonName, cons
 }
 
 Matrix* SkeletonManager::loadBindPoseFromBuffer(const BindPoseHeader& header, void* buffer) {
-	printf("      Loading %i matrices...\n", header.numMatrices);
+	printf("SKELETON MANAGER: Loading %i matrices...\n", header.numMatrices);
 	ArchiveMatrix* buffArray = reinterpret_cast<ArchiveMatrix*>(buffer);
 	Matrix* matrixArray = new Matrix[header.numMatrices];
 
@@ -129,7 +129,7 @@ Matrix* SkeletonManager::loadBindPoseFromBuffer(const BindPoseHeader& header, vo
 }
 
 SkinArray* SkeletonManager::loadSkinFromBuffer(const SkinningHeader& header, void* buffer) {
-	printf("      Loading %i skin weight vectors...\n", header.numInfluenceVectors);
+	printf("SKELETON MANAGER: Loading %i skin weight vectors...\n", header.numInfluenceVectors);
 	SkinArray* buffArray = reinterpret_cast<SkinArray*>(buffer);
 	SkinArray* skinArray = new SkinArray[header.numInfluenceVectors];
 

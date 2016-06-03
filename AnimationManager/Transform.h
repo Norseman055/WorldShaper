@@ -6,13 +6,13 @@ class Quat;
 class Transform {
 public:
 	Vect* getTranslation() const;
-	void setTranslation(Vect* const);
+	void setTranslation(const Vect* const);
 
 	Quat* getRotation() const;
-	void setRotation(Quat* const);
+	void setRotation(const Quat* const);
 
 	Vect* getScale() const;
-	void setScale(Vect* const);
+	void setScale(const Vect* const);
 
 	Transform();
 	~Transform();

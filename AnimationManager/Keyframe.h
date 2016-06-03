@@ -13,7 +13,10 @@ public:
 	Transform* getTransforms() const;
 	void setTransforms(Transform* const);
 
+	void interpolate(const Keyframe&, const Keyframe&, const float);
+
 	Keyframe();
+	Keyframe(const float, const int);
 	~Keyframe();
 
 private:

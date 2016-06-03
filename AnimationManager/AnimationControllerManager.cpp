@@ -59,7 +59,7 @@ AnimationControllerNode* AnimationControllerManager::findDepthFirst(AnimationCon
 }
 
 AnimationController* AnimationControllerManager::loadAnimationsFromBuffer(const char* controllerName, const AnimationHeader& animationHeader, void* buffer) {
-	printf("      Loading %i animations...\n", animationHeader.numAnimations);
+	printf("ANIMATION CONTROLLER MANAGER: Loading %i animations...\n", animationHeader.numAnimations);
 	AnimationController* animController = new AnimationController(controllerName);
 	void* ptr = buffer;
 

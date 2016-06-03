@@ -7,8 +7,7 @@ template <class T>
 class Singleton {
 public:
 	static T* GetInstance() {
-		if ( !instance ) {
-			printf( "  Creating Singleton...\n" );
+		if(!instance) {
 			instance = new T;
 		}
 
@@ -23,5 +22,5 @@ private:
 	static T* instance;
 };
 
-template <class T> 
+template <class T>
 T* Singleton<T>::instance = nullptr;

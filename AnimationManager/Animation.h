@@ -9,8 +9,14 @@ public:
 
 	int getNumKeyframes() const;
 	void setNumKeyframes(const int);
+
 	Keyframe* const getKeyframes() const;
 	void setKeyframes(Keyframe* const);
+
+	float getMaxTime() const;
+	void getBoundingKeyframes(const float, Keyframe&, Keyframe&) const;
+
+	void update(const float);
 
 	Animation();
 	~Animation();
@@ -19,5 +25,5 @@ private:
 	char* name;
 	int numKeyframes;
 	Keyframe* keyframes;
-	Keyframe* currentKeyframe;
+	Keyframe* result;
 };

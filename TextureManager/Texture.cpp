@@ -15,7 +15,7 @@ unsigned int Texture::getTextureID() const {
 }
 
 void Texture::setupTexture(const char* filename) {
-	printf("    Setting up OpenGL buffers for texture %s...", filename);
+	printf("TEXTURE: Setting up OpenGL buffers for texture %s...", filename);
 
 	int width, height, numComponents;
 	unsigned char* imageData = stbi_load(filename, &width, &height, &numComponents, 0);

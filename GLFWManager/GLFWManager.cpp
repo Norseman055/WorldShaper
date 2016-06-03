@@ -6,53 +6,55 @@
 #include "Macros.h"
 
 void GLFWManager::Startup() {
-	printf("===== Starting GLFW Manager =====\n");
+	printf("===== GLFW MANAGER : START =====\n");
 	GLFWManager* glfwManager = GetInstance();
 
 	// Set error callback prior to initialization to notify if initialization fails
 	glfwSetErrorCallback(ErrorCallback);
 
 	// Initialize GLFW library
-	printf("  Initializing GLFW library...");
+	printf("GLFW MANAGER: Initializing GLFW library...");
 	if(!glfwInit()) {
 		exit(EXIT_FAILURE);
 	}
 	printf("  Success!\n");
 
 	// Create a window and context, make a current OpenGL context
-	printf("  Creating game window...");
+	printf("GLFW MANAGER: Creating game window...");
 	glfwManager->mWindow = glfwCreateWindow(GAME_WIDTH, GAME_HEIGHT, "WorldShaper - Make your own", nullptr, nullptr);
 	if(!glfwManager->mWindow) {
 		glfwTerminate();
 		exit(EXIT_FAILURE);
 	}
 	printf("  Success!\n");
-	printf("  Making OpenGL context current...");
+	printf("GLFW MANAGER: Making OpenGL context current...");
 	glfwMakeContextCurrent(glfwManager->mWindow);
 	glfwSwapInterval(1);
 	printf("  Success!\n");
 
-	printf("  Initializing GLEW...");
+	printf("GLFW MANAGER: Initializing GLEW...");
 	glewExperimental = GL_TRUE;
 	GLenum err = glewInit();
 	if(err != GLEW_OK) {
+		printf("  Failure!\n");
 		Shutdown();
 		exit(EXIT_FAILURE);
 	}
 	printf("  Success!\n");
-	printf("===== GLFW Manager started =====\n\n");
 
 	// Display OpenGL version info
 	const GLubyte* renderer = glGetString(GL_RENDERER);
 	const GLubyte* version = glGetString(GL_VERSION);
-	printf("Renderer: %s\n", renderer);
-	printf("OpenGL version supported %s\n", version);
+	printf("GLFW MANAGER: /tRenderer: %s\n", renderer);
+	printf("GLFW MANAGER: /tOpenGL version supported %s\n", version);
 
 	// Enable OpenGL depth-testing
 	glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+	printf("===== GLFW MANAGER : FINISHED STARTING =====\n\n");
 }
 
 void GLFWManager::Shutdown() {

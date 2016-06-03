@@ -60,10 +60,10 @@
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;TimeDebug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)_libs\release\glew;$(SolutionDir)_libs\release\GLFW;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)_libs\release\glew;$(SolutionDir)_libs\release\GLFW;$(SolutionDir)_libs\release\Time;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4006,4221 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <ProjectReference>
@@ -90,8 +90,8 @@
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Lib>
-      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)_libs\release\glew;$(SolutionDir)_libs\release\GLFW;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;TimeRelease.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)_libs\release\glew;$(SolutionDir)_libs\release\GLFW;$(SolutionDir)_libs\release\Time;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4006,4221 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <ProjectReference>

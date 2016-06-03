@@ -8,9 +8,10 @@ class AnimationController {
 public:
 	enum struct PlaybackControl {
 		PLAY,
-		PAUSE,
+		PLAY_LOOP,
 		REWIND,
-		LOOP
+		REWIND_LOOP,
+		PAUSE
 	};
 
 	const char* getName() const;
@@ -26,14 +27,12 @@ public:
 	~AnimationController();
 
 private:
-	void playAnimation(const float);
-	void rewindAnimation(const float);
-	void loopAnimation(const float);
+	float switchTime(const float);
 
 private:
 	char* skeletonName;	// name of skeleton animations are associated with
 	std::list<Animation*> animations;
 	Animation* currentAnimation;
 	PlaybackControl playbackControl;
-	float lastUpdateTime;
+	float tCurrent;
 };

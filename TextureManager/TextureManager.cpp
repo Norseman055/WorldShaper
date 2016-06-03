@@ -4,10 +4,10 @@
 #include "Texture.h"
 
 void TextureManager::Startup() {
-	printf("\n===== Starting Texture Manager =====\n");
+	printf("\n===== TEXTURE MANAGER : START =====\n");
 	GetInstance();
 	LoadTextures();
-	printf("===== Texture Manager started =====\n\n");
+	printf("===== TEXTURE MANAGER : FINISHED STARTING =====\n\n");
 }
 
 void TextureManager::Shutdown() {
@@ -36,7 +36,7 @@ Texture* TextureManager::FindTexture(const TextureType type) {
 }
 
 void TextureManager::LoadTextures() {
-	printf("  Loading textures...\n");
+	printf("TEXTURE MANAGER: Loading textures...\n");
 	AddTexture("../TextureManager/Bricks.tga", TextureType::Texture_Brick);
 }
 

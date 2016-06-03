@@ -6,9 +6,9 @@
 #include "SkeletonManager.h"
 
 void AnimationManager::Startup() {
-	printf("\n===== Starting Animation Manager =====\n");
+	printf("\n===== ANIMATION MANAGER : START =====\n");
 	GetInstance();
-	printf("===== Animation Manager started =====\n\n");
+	printf("===== ANIMATION MANAGER : FINISHED STARTING =====\n\n");
 }
 
 void AnimationManager::Shutdown() {
@@ -16,7 +16,7 @@ void AnimationManager::Shutdown() {
 }
 
 void AnimationManager::LoadAnimationFromBuffer(ModelFileHeader& fileHeader, char* const buffer) {
-	printf("  Loading animation data from buffer... \n");
+	printf("ANIMATION MANAGER: Loading animation data from buffer... \n");
 	char* ptr = buffer;
 
 	// Go to skeleton header
@@ -28,27 +28,27 @@ void AnimationManager::LoadAnimationFromBuffer(ModelFileHeader& fileHeader, char
 	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(triangleHeader) + triangleHeader->dataSize);
 
 	// Load skeleton hierarchy
-	printf("    Loading skeleton hierarchy from buffer...\n");
+	printf("ANIMATION MANAGER: Loading skeleton hierarchy from buffer...\n");
 	SkeletonHeader* skeletonHeader = reinterpret_cast<SkeletonHeader*>(ptr);
 	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(skeletonHeader));
 	SkeletonManager::LoadSkeletonFromBuffer(fileHeader.modelName, *skeletonHeader, ptr);
 
 	// Load bind pose
-	printf("    Loading bind pose from buffer...\n");
+	printf("ANIMATION MANAGER: Loading bind pose from buffer...\n");
 	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +skeletonHeader->dataSize);
 	BindPoseHeader* bindPoseHeader = reinterpret_cast<BindPoseHeader*>(ptr);
 	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(bindPoseHeader));
 	SkeletonManager::LoadBindPoseFromBuffer(fileHeader.modelName, *bindPoseHeader, ptr);
 
 	// Load animations
-	printf("    Loading animations from buffer...\n");
+	printf("ANIMATION MANAGER: Loading animations from buffer...\n");
 	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +bindPoseHeader->dataSize);
 	AnimationHeader* animationHeader = reinterpret_cast<AnimationHeader*>(ptr);
 	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(animationHeader));
 	AnimationControllerManager::LoadAnimationsFromBuffer(fileHeader.modelName, *animationHeader, ptr);
 
 	// Load skin
-	printf("    Loading skin from buffer...\n");
+	printf("ANIMATION MANAGER: Loading skin from buffer...\n");
 	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +animationHeader->dataSize);
 	SkinningHeader* skinningHeader = reinterpret_cast<SkinningHeader*>(ptr);
 	ptr = reinterpret_cast<char*>(reinterpret_cast<unsigned int>(ptr) +sizeof(ptr) + sizeof(skinningHeader));

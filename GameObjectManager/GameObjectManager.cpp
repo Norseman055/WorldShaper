@@ -14,10 +14,10 @@
 #include <string.h>
 
 void GameObjectManager::Startup() {
-	printf("\n===== Starting Game Object Manager =====\n");
+	printf("\n===== GAME OBJECT MANAGER : START =====\n");
 	GetInstance();
 	LoadGameObjects();
-	printf("===== Game Object Manager started =====\n\n");
+	printf("===== GAME OBJECT MANAGER : FINISHED STARTING =====\n\n");
 }
 
 void GameObjectManager::Shutdown() {
@@ -59,7 +59,7 @@ GameObject* GameObjectManager::FindGameObject(const GameObjectType type, const c
 }
 
 void GameObjectManager::LoadGameObjects() {
-	printf("  Loading game objects...\n");
+	printf("GAME OBJECT MANAGER: Loading game objects...\n");
 	AddGameObject(new GO_Cube("testCube"));
 	AddGameObject(new GO_Humanoid("humanoid2"));
 }
@@ -98,6 +98,10 @@ GameObjectNode* GameObjectManager::findDepthFirst(GameObjectNode* const walker, 
 	return gameObject;
 }
 
+/*
+ * Update Parent-to-Child
+ * Updates the parent node, then updates the siblings, then updates the children. Will update the "oldest" sibling's children first.
+ */
 void GameObjectManager::updatePtC(const float gameTime, GameObjectNode* const walker) const {
 	// Update node
 	walker->updateNode(gameTime);
@@ -111,6 +115,10 @@ void GameObjectManager::updatePtC(const float gameTime, GameObjectNode* const wa
 	}
 }
 
+/*
+ * Draw Parent-to-Child
+ * Draws the parent node, then draws the siblings, then draws the children. Will draw the "oldest" sibling's children first
+ */
 void GameObjectManager::drawPtC(GameObjectNode* const walker, Camera* const camera) const {
 	// Draw node
 	walker->drawNode(camera);
