@@ -3,20 +3,14 @@
 #include <list>
 
 class Animation;
+enum struct PlaybackControl;
 
 class AnimationController {
 public:
-	enum struct PlaybackControl {
-		PLAY,
-		PLAY_LOOP,
-		REWIND,
-		REWIND_LOOP,
-		PAUSE
-	};
-
 	const char* getName() const;
 
 	void addAnimation(Animation* const);
+	void setAnimationPlayback(const PlaybackControl);
 	void setCurrentAnimation(const char*);
 	void updateAnimation(const float);
 	void removeAnimation(Animation* const);
@@ -27,7 +21,7 @@ public:
 	~AnimationController();
 
 private:
-	float switchTime(const float);
+	void switchTime(const float);
 
 private:
 	char* skeletonName;	// name of skeleton animations are associated with

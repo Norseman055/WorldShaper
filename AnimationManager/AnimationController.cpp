@@ -1,6 +1,7 @@
 #include "AnimationController.h"
 
 #include "Animation.h"
+#include "PlaybackControls.h"
 #include <assert.h>
 #include <string>
 
@@ -15,6 +16,10 @@ void AnimationController::addAnimation(Animation* const animation) {
 	}
 }
 
+void AnimationController::setAnimationPlayback(const PlaybackControl control) {
+	this->playbackControl = control;
+}
+
 void AnimationController::setCurrentAnimation(const char* name) {
 	this->currentAnimation = findAnimation(name);
 }
@@ -25,7 +30,8 @@ void AnimationController::setCurrentAnimation(const char* name) {
  *		 IT IS NOT THE CURRENT GAME TIME.
  */
 void AnimationController::updateAnimation(const float gametime) {
-	this->currentAnimation->update(switchTime(gametime));
+	this->switchTime(gametime);
+	this->currentAnimation->update(this->tCurrent);
 }
 
 void AnimationController::removeAnimation(Animation* const animation) {
@@ -42,7 +48,7 @@ Animation* AnimationController::findAnimation(const char* name) const {
 	return retAnimation;
 }
 
-float AnimationController::switchTime(const float deltaTime) {
+void AnimationController::switchTime(const float deltaTime) {
 	const float maxTime = this->currentAnimation->getMaxTime();
 	switch(this->playbackControl) {
 		case PlaybackControl::PLAY:
@@ -81,8 +87,6 @@ float AnimationController::switchTime(const float deltaTime) {
 			// PAUSE, DO NOT CHANGE CURRENT ANIMATION TIME
 			break;
 	}
-
-	return this->tCurrent;
 }
 
 AnimationController::AnimationController(const char* inName)

@@ -42,14 +42,13 @@ float Animation::getMaxTime() const {
 	return returnTime;
 }
 
-void Animation::getBoundingKeyframes(const float keyTime, Keyframe& previous, Keyframe& next) const {
-	previous = next = this->keyframes[0];
-	if(keyTime != 0.0f) {
+void Animation::getBoundingKeyframes(const float keyTime, Keyframe* previous, Keyframe* next) const {
+	if(keyTime >= 0.0f) {
 		for(int i = 0; i < this->numKeyframes; i++) {
 			if(this->keyframes[i].getTime() < keyTime) {
-				previous = this->keyframes[i];
+				previous = &this->keyframes[i];
 			} else {
-				next = this->keyframes[i];
+				next = &this->keyframes[i];
 				break;
 			}
 		}
@@ -57,14 +56,15 @@ void Animation::getBoundingKeyframes(const float keyTime, Keyframe& previous, Ke
 }
 
 void Animation::update(const float keyframeTime) {
-	Keyframe prevKeyframe, nextKeyframe;
+	Keyframe* prevKeyframe = this->keyframes;
+	Keyframe* nextKeyframe = prevKeyframe;
 
 	this->getBoundingKeyframes(keyframeTime, prevKeyframe, nextKeyframe);
 
 	if(!this->result) {
-		this->result = new Keyframe(keyframeTime, prevKeyframe.getNumTransforms());
+		this->result = new Keyframe(keyframeTime, prevKeyframe->getNumTransforms());
 	}
-	const float sTime = (keyframeTime - prevKeyframe.getTime()) / (nextKeyframe.getTime() - prevKeyframe.getTime());
+	const float sTime = (keyframeTime - prevKeyframe->getTime()) / (nextKeyframe->getTime() - prevKeyframe->getTime());
 	this->result->interpolate(prevKeyframe, nextKeyframe, sTime);
 }
 

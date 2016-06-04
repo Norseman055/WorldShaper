@@ -15,6 +15,7 @@ public:
 	void setAnimation(const HumanoidAnim);
 
 	void update(const float) const override;
+	void draw(Camera* const) const override;
 
 	GO_Humanoid(const char*);
 	~GO_Humanoid();

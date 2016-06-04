@@ -5,7 +5,21 @@
 #include "ShaderManager.h"
 #include "SkeletonManager.h"
 
+#include "Vertex.h"
+#include "Shader.h"
+#include "Texture.h"
+#include "Model.h"
+#include "Camera.h"
 #include "Skeleton.h"
+
+#include "PlaybackControls.h"
+
+#include <stdio.h>
+#include <Math\Matrix.h>
+
+#define GLEW_STATIC
+#include <glew\glew.h>
+#include <GLFW\glfw3.h>
 
 void GO_Humanoid::setAnimation(const HumanoidAnim animation) {
 	this->currAnim = animation;
@@ -35,10 +49,63 @@ void GO_Humanoid::setAnimation(const HumanoidAnim animation) {
 }
 
 void GO_Humanoid::update(const float gametime) const {
-	// Add update logic here
-	if(this->currAnim != HumanoidAnim::Anim_BindPose) {
-		this->skeleton->updateAnimation(gametime);
-	}
+	this->skeleton->updateAnimation(gametime);
+}
+
+void GO_Humanoid::draw(Camera* const camera) const {
+	GLuint shaderProgram = this->shader->getShaderID();
+	GLuint textureID = this->texture->getTextureID();
+
+	Matrix viewMatrix(camera->getViewMatrix());
+	Matrix projectionMatrix(camera->getProjectionMatrix());
+
+	glUseProgram(shaderProgram);
+
+	auto modelMatrixLoc = glGetUniformLocation(shaderProgram, "modelMatrix");
+	auto viewMatrixLoc = glGetUniformLocation(shaderProgram, "viewMatrix");
+	auto projectionMatrixLoc = glGetUniformLocation(shaderProgram, "projectionMatrix");
+
+	// Since the matrix class has an overloaded 'double *' operator to transparently
+	// cast to a c-style array, we can easily send the matrix to OpenGL just by putting
+	// the matrix object in the last parameter!
+	glUniformMatrix4fv(modelMatrixLoc, 1, false, *this->model->getModelMatrix());
+	glUniformMatrix4fv(viewMatrixLoc, 1, false, viewMatrix);
+	glUniformMatrix4fv(projectionMatrixLoc, 1, false, projectionMatrix);
+
+	auto cameraPosLoc = glGetUniformLocation(shaderProgram, "cameraPos");
+
+	glUniform4f(cameraPosLoc, camera->getPosition()[x], camera->getPosition()[y], camera->getPosition()[z], camera->getPosition()[w]);
+
+	auto specColorLoc = glGetUniformLocation(shaderProgram, "specularColor");
+	auto shinyLoc = glGetUniformLocation(shaderProgram, "shininess");
+
+	glUniform4f(specColorLoc, 1, 1, 1, 1);
+	glUniform1f(shinyLoc, 50);
+
+	// TEXTURES
+	glBindTexture(GL_TEXTURE_2D, textureID);
+
+	auto vertPosLoc = glGetAttribLocation(shaderProgram, "vertexPos");
+	auto vertColorLoc = glGetAttribLocation(shaderProgram, "vertexColor");
+	auto vertNormalLoc = glGetAttribLocation(shaderProgram, "vertexNormal");
+	auto uvLoc = glGetAttribLocation(shaderProgram, "UV");
+
+	glBindBuffer(GL_ARRAY_BUFFER, this->model->getVboVerts());
+
+	glVertexAttribPointer(vertPosLoc, 4, GL_FLOAT, false, sizeof(Vertex), static_cast<void *>(nullptr));
+	glEnableVertexAttribArray(vertPosLoc);
+
+	glVertexAttribPointer(vertNormalLoc, 4, GL_FLOAT, false, sizeof(Vertex), reinterpret_cast<void *>(sizeof(Vect)));
+	glEnableVertexAttribArray(vertNormalLoc);
+
+	glVertexAttribPointer(vertColorLoc, 4, GL_FLOAT, false, sizeof(Vertex), reinterpret_cast<void *>(2 * sizeof(Vect)));
+	glEnableVertexAttribArray(vertColorLoc);
+
+	glVertexAttribPointer(uvLoc, 4, GL_FLOAT, false, sizeof(Vertex), reinterpret_cast<void *>(3 * sizeof(Vect)));
+	glEnableVertexAttribArray(uvLoc);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->model->getVboFaces());
+	glDrawElements(GL_TRIANGLES, 3 * this->model->getNumFaces(), GL_UNSIGNED_INT, nullptr);
 }
 
 void GO_Humanoid::setupHumanoid() {
@@ -46,6 +113,9 @@ void GO_Humanoid::setupHumanoid() {
 	this->setTexture(TextureManager::FindTexture(TextureType::Texture_Brick));
 	this->setShader(ShaderManager::FindShader(ShaderType::Shader_Phong));
 	this->setSkeleton(SkeletonManager::FindSkeleton("humanoid2"));
+
+	this->skeleton->setAnimationPlayback(PlaybackControl::PLAY);
+	this->setAnimation(HumanoidAnim::Anim_Run);
 }
 
 GO_Humanoid::GO_Humanoid(const char* name)

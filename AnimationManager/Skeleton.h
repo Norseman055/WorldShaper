@@ -4,6 +4,7 @@ class PCSTree;
 class AnimationController;
 class Matrix;
 struct SkinArray;
+enum struct PlaybackControl;
 
 class Skeleton {
 public:
@@ -13,9 +14,12 @@ public:
 	void setBones(PCSTree* const bones);
 
 	void addAnimations(AnimationController* const);
+	void removeAnimations();
+
+	void setAnimationPlayback(const PlaybackControl);
 	void setCurrentAnimation(const char*);
 	void updateAnimation(const float) const;
-	void removeAnimations();
+
 	AnimationController* getAnimations() const;
 
 	void addBindPose(Matrix* const);

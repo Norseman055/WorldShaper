@@ -96,6 +96,7 @@
     <ClInclude Include="AnimationNode.h" />
     <ClInclude Include="Bone.h" />
     <ClInclude Include="Keyframe.h" />
+    <ClInclude Include="PlaybackControls.h" />
     <ClInclude Include="Skeleton.h" />
     <ClInclude Include="SkeletonManager.h" />
     <ClInclude Include="SkeletonNode.h" />

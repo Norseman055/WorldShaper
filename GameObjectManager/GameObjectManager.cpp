@@ -60,7 +60,6 @@ GameObject* GameObjectManager::FindGameObject(const GameObjectType type, const c
 
 void GameObjectManager::LoadGameObjects() {
 	printf("GAME OBJECT MANAGER: Loading game objects...\n");
-	AddGameObject(new GO_Cube("testCube"));
 	AddGameObject(new GO_Humanoid("humanoid2"));
 }
 

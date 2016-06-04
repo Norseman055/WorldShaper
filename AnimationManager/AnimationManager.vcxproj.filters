@@ -78,6 +78,9 @@
     <ClInclude Include="AnimationControllerNode.h">
       <Filter>_animation\_controller\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PlaybackControls.h">
+      <Filter>_animation\_controller\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimationManager.cpp">

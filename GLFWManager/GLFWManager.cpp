@@ -45,8 +45,8 @@ void GLFWManager::Startup() {
 	// Display OpenGL version info
 	const GLubyte* renderer = glGetString(GL_RENDERER);
 	const GLubyte* version = glGetString(GL_VERSION);
-	printf("GLFW MANAGER: /tRenderer: %s\n", renderer);
-	printf("GLFW MANAGER: /tOpenGL version supported %s\n", version);
+	printf("GLFW MANAGER: \tRenderer: %s\n", renderer);
+	printf("GLFW MANAGER: \tOpenGL version supported %s\n", version);
 
 	// Enable OpenGL depth-testing
 	glClearColor(0.2f, 0.2f, 0.2f, 0.0f);

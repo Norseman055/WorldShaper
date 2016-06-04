@@ -14,7 +14,7 @@ public:
 	void setKeyframes(Keyframe* const);
 
 	float getMaxTime() const;
-	void getBoundingKeyframes(const float, Keyframe&, Keyframe&) const;
+	void getBoundingKeyframes(const float, Keyframe*, Keyframe*) const;
 
 	void update(const float);
 

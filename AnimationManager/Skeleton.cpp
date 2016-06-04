@@ -1,5 +1,6 @@
 #include "Skeleton.h"
 
+#include "PlaybackControls.h"
 #include "AnimationController.h"
 
 #include <PCSTree\PCSTree.h>
@@ -20,6 +21,10 @@ void Skeleton::setBones(PCSTree* const inBones) {
 
 void Skeleton::addAnimations(AnimationController* const animations) {
 	this->animations = animations;
+}
+
+void Skeleton::setAnimationPlayback(const PlaybackControl control) {
+	this->animations->setAnimationPlayback(control);
 }
 
 void Skeleton::setCurrentAnimation(const char* animName) {
