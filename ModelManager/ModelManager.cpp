@@ -5,6 +5,7 @@
 #include "ModelNode.h"
 #include "Model.h"
 #include "Cube.h"
+#include "Pyramid.h"
 #include "GenericModel.h"
 #include "Vertex.h"
 
@@ -76,6 +77,7 @@ void ModelManager::LoadModelFromBuffer(ModelFileHeader& fileHeader, char* const 
 void ModelManager::LoadModels() {
 	printf("MODEL MANAGER: Loading models...\n");
 	AddModel(new Cube);
+	AddModel(new Pyramid);
 }
 
 ModelNode* ModelManager::Find(const ModelType type) {

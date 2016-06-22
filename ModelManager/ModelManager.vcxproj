@@ -17,6 +17,7 @@
     <ClInclude Include="ModelManager.h" />
     <ClInclude Include="ModelNode.h" />
     <ClInclude Include="ModelTypes.h" />
+    <ClInclude Include="Pyramid.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp" />
@@ -24,6 +25,7 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="ModelNode.cpp" />
+    <ClCompile Include="Pyramid.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0A28EF60-5FC1-4182-A1D5-36D5C37C3799}</ProjectGuid>

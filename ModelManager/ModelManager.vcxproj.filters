@@ -38,6 +38,9 @@
     <ClInclude Include="GenericModel.h">
       <Filter>_Models\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Pyramid.h">
+      <Filter>_Models\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModelManager.cpp">
@@ -53,6 +56,9 @@
       <Filter>_Models\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GenericModel.cpp">
+      <Filter>_Models\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pyramid.cpp">
       <Filter>_Models\Source Files</Filter>
     </ClCompile>
   </ItemGroup>

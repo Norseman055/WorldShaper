@@ -3,5 +3,6 @@
 enum struct GameObjectType {
 	GameObject_None,
 	GameObject_Generic,
-	GameObject_CubeBrick
+	GameObject_CubeBrick,
+	GameObject_PyramidBrick
 };

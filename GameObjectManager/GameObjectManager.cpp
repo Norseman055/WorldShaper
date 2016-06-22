@@ -4,6 +4,7 @@
 #include "GameObjectNode.h"
 #include "GameObject.h"
 #include "GO_Cube.h"
+#include "GO_Pyramid.h"
 #include "GO_Humanoid.h"
 
 #include "ModelManager.h"
