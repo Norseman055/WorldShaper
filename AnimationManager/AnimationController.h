@@ -16,6 +16,7 @@ public:
 	void removeAnimation(Animation* const);
 
 	Animation* findAnimation(const char*) const;
+	Animation* getCurrentAnimation() const;
 
 	AnimationController(const char*);
 	~AnimationController();

@@ -87,6 +87,7 @@ Skeleton* SkeletonManager::loadSkeletonFromBuffer(const char* skeletonName, cons
 	ArchiveBone& firstBone = buffBones[0];
 
 	bonePointers[0] = new Bone(firstBone.boneName);
+	bonePointers[0]->index = firstBone.boneIndex;
 	bonePointers[0]->parentIndex = firstBone.parentIndex;
 	bonePointers[0]->level = firstBone.level;
 
@@ -97,6 +98,7 @@ Skeleton* SkeletonManager::loadSkeletonFromBuffer(const char* skeletonName, cons
 		const ArchiveBone& currentBone = buffBones[boneIndex];
 
 		bonePointers[boneIndex] = new Bone(buffBones[boneIndex].boneName);
+		bonePointers[boneIndex]->index = buffBones[boneIndex].boneIndex;
 		bonePointers[boneIndex]->parentIndex = buffBones[boneIndex].parentIndex;
 		bonePointers[boneIndex]->level = buffBones[boneIndex].level;
 

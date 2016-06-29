@@ -3,6 +3,7 @@
 class PCSTree;
 class AnimationController;
 class Matrix;
+class Bone;
 struct SkinArray;
 enum struct PlaybackControl;
 
@@ -33,6 +34,10 @@ public:
 
 	Skeleton(const char*);
 	~Skeleton();
+
+private:
+	void updateBonePose(Bone* const) const;
+	void setBonePose(Bone* const) const;
 
 private:
 	char* name;

@@ -2,8 +2,10 @@
 
 #include "PlaybackControls.h"
 #include "AnimationController.h"
+#include "Bone.h"
 
 #include <PCSTree\PCSTree.h>
+#include <Math\MathEngine.h>
 #include <assert.h>
 #include <string.h>
 
@@ -33,6 +35,50 @@ void Skeleton::setCurrentAnimation(const char* animName) {
 
 void Skeleton::updateAnimation(const float gametime) const {
 	this->animations->updateAnimation(gametime);
+	this->updateBonePose(static_cast<Bone*>(this->bones->getRoot()));
+}
+
+void Skeleton::updateBonePose(Bone* const bone) const {
+	setBonePose(bone);
+
+	Bone* child;
+	if(bone->getChild()) {
+		child = static_cast<Bone*>(bone->getChild());
+		while(child) {
+			updateBonePose(child);
+			child = static_cast<Bone*>(child->getSibling());
+		}
+	}
+}
+
+void Skeleton::setBonePose(Bone* const bone) const {
+	Bone* child = bone;
+	Bone* parent = static_cast<Bone*>(bone->getParent());
+
+	if(parent && parent != this->bones->getRoot() && child) {
+		Vect start(0.0f, 0.0f, 0.0f);
+
+		parent->transform(this->animations->getCurrentAnimation());
+		Vect ptA = start * *parent->getWorld();
+
+		child->transform(this->animations->getCurrentAnimation());
+		Vect ptB = start * *child->getWorld();
+
+		// direction between anchor points of respective bones
+		const Vect dir = -(ptB - ptA);
+
+		// length of bone
+		const float mag = dir.mag();
+
+		// set orientation and length
+		Matrix S(SCALE, BONE_WIDTH, BONE_WIDTH, mag);
+		Quat R(ROT_ORIENT, dir.getNorm(), Vect(0.0f, 1.0f, 0.0f));
+		Matrix T(TRANS, ptB);
+
+		Matrix boneOrient = S * R * T;
+
+		child->setBoneOrientation(&boneOrient);
+	}
 }
 
 void Skeleton::removeAnimations() {

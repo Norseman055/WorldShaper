@@ -7,6 +7,8 @@ class Texture;
 class Shader;
 class Camera;
 class Skeleton;
+class Matrix;
+class Animation;
 
 class GameObject {
 public:
@@ -18,6 +20,9 @@ public:
 	void setShader(Shader* const);
 	void setSkeleton(Skeleton* const);
 
+	Matrix* getWorld() const;
+
+	virtual void transform(Animation* const) = 0;
 	virtual void update(const float) const;
 	virtual void draw(Camera* const) const;
 
@@ -29,6 +34,10 @@ protected:
 	Texture* texture;
 	Shader* shader;
 	Skeleton* skeleton;
+
+	Matrix* local;
+	Matrix* world;
+	Matrix* boneOrientation;
 
 private:
 	GameObjectType type;

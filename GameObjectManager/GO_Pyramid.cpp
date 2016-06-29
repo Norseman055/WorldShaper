@@ -4,6 +4,8 @@
 #include "TextureManager.h"
 #include "ShaderManager.h"
 
+void GO_Pyramid::transform(Animation* const) { }
+
 void GO_Pyramid::setupPyramid() {
 	this->setModel(ModelManager::FindModel(ModelType::Model_Pyramid));
 	this->setTexture(TextureManager::FindTexture(TextureType::Texture_Brick));

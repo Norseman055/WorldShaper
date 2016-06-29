@@ -4,6 +4,8 @@
 #include "TextureManager.h"
 #include "ShaderManager.h"
 
+void GO_Cube::transform(Animation* const) { }
+
 void GO_Cube::setupCube() {
 	this->setModel(ModelManager::FindModel(ModelType::Model_Cube));
 	this->setTexture(TextureManager::FindTexture(TextureType::Texture_Brick));

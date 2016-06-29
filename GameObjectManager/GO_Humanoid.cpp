@@ -48,6 +48,8 @@ void GO_Humanoid::setAnimation(const HumanoidAnim animation) {
 	}
 }
 
+void GO_Humanoid::transform(Animation* const) { }
+
 void GO_Humanoid::update(const float gametime) const {
 	this->skeleton->updateAnimation(gametime);
 }

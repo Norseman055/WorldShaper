@@ -44,6 +44,12 @@ void GameObject::setSkeleton(Skeleton* const inSkeleton) {
 	this->skeleton = inSkeleton;
 }
 
+Matrix* GameObject::getWorld() const {
+	return this->world;
+}
+
+void GameObject::transform(Animation* const) { }
+
 void GameObject::update(const float gameTime) const {
 	// OVERRIDE THIS METHOD IN INHERITED GAMEOBJECT CLASSES
 	UNUSED(gameTime);
@@ -106,8 +112,12 @@ void GameObject::draw(Camera* const camera) const {
 }
 
 GameObject::GameObject(const GameObjectType inType, const char* inName)
-	: type(inType), name(inName), model(nullptr), texture(nullptr), shader(nullptr), skeleton(nullptr) {
+	: type(inType), name(inName), model(nullptr), texture(nullptr), shader(nullptr), skeleton(nullptr),
+	local(nullptr), world(nullptr), boneOrientation(nullptr) {
 	printf("GAME OBJECT: Creating game object...\n");
+	this->local = new Matrix(IDENTITY);
+	this->world = new Matrix(IDENTITY);
+	this->boneOrientation = new Matrix(IDENTITY);
 }
 
 GameObject::~GameObject() { }

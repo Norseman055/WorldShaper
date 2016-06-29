@@ -20,6 +20,7 @@ struct Triangle {
 
 struct ArchiveBone {
 	char boneName[32];
+	int boneIndex;
 	int parentIndex;
 	int level;
 };

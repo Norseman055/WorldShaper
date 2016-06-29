@@ -32,6 +32,10 @@ void Animation::setKeyframes(Keyframe* const keyframeTree) {
 	this->result = this->keyframes;
 }
 
+Keyframe* const Animation::getResult() const {
+	return this->result;
+}
+
 float Animation::getMaxTime() const {
 	float returnTime;
 	if(this->keyframes && this->numKeyframes != 0) {

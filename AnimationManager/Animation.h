@@ -13,6 +13,8 @@ public:
 	Keyframe* const getKeyframes() const;
 	void setKeyframes(Keyframe* const);
 
+	Keyframe* const getResult() const;
+
 	float getMaxTime() const;
 	void getBoundingKeyframes(const float, Keyframe*, Keyframe*) const;
 

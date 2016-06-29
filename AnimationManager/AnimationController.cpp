@@ -48,6 +48,10 @@ Animation* AnimationController::findAnimation(const char* name) const {
 	return retAnimation;
 }
 
+Animation* AnimationController::getCurrentAnimation() const {
+	return this->currentAnimation;
+}
+
 void AnimationController::switchTime(const float deltaTime) {
 	const float maxTime = this->currentAnimation->getMaxTime();
 	switch(this->playbackControl) {
