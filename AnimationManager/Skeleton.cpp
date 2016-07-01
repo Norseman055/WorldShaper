@@ -38,6 +38,26 @@ void Skeleton::updateAnimation(const float gametime) const {
 	this->updateBonePose(static_cast<Bone*>(this->bones->getRoot()));
 }
 
+void Skeleton::drawBones(Camera* const camera) const {
+	Bone* root = static_cast<Bone*>(this->bones->getRoot());
+	if(root) {
+		recursiveDrawBones(root, camera);
+	}
+}
+
+void Skeleton::recursiveDrawBones(Bone* const bone, Camera* const camera) const {
+	bone->draw(camera);
+
+	Bone* child;
+	if(bone->getChild()) {
+		child = static_cast<Bone*>(bone->getChild());
+		while(child) {
+			recursiveDrawBones(child, camera);
+			child = static_cast<Bone*>(child->getSibling());
+		}
+	}
+}
+
 void Skeleton::updateBonePose(Bone* const bone) const {
 	setBonePose(bone);
 

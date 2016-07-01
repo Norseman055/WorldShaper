@@ -39,14 +39,14 @@ Keyframe* const Animation::getResult() const {
 float Animation::getMaxTime() const {
 	float returnTime;
 	if(this->keyframes && this->numKeyframes != 0) {
-		returnTime = this->keyframes[this->numKeyframes].getTime();
+		returnTime = this->keyframes[this->numKeyframes - 1].getTime();
 	} else {
 		returnTime = 0.0f;
 	}
 	return returnTime;
 }
 
-void Animation::getBoundingKeyframes(const float keyTime, Keyframe* previous, Keyframe* next) const {
+void Animation::getBoundingKeyframes(const float keyTime, Keyframe*& previous, Keyframe*& next) const {
 	if(keyTime >= 0.0f) {
 		for(int i = 0; i < this->numKeyframes; i++) {
 			if(this->keyframes[i].getTime() < keyTime) {

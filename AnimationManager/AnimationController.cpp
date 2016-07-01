@@ -58,7 +58,7 @@ void AnimationController::switchTime(const float deltaTime) {
 		case PlaybackControl::PLAY:
 			this->tCurrent += deltaTime;
 			if(this->tCurrent < 0.0f) {
-				this->tCurrent = maxTime;
+				this->tCurrent = 0.0f;
 			} else if(this->tCurrent > maxTime) {
 				this->tCurrent = maxTime;
 			}

@@ -4,6 +4,7 @@ class PCSTree;
 class AnimationController;
 class Matrix;
 class Bone;
+class Camera;
 struct SkinArray;
 enum struct PlaybackControl;
 
@@ -19,7 +20,9 @@ public:
 
 	void setAnimationPlayback(const PlaybackControl);
 	void setCurrentAnimation(const char*);
+
 	void updateAnimation(const float) const;
+	void drawBones(Camera* const) const;
 
 	AnimationController* getAnimations() const;
 
@@ -38,6 +41,7 @@ public:
 private:
 	void updateBonePose(Bone* const) const;
 	void setBonePose(Bone* const) const;
+	void recursiveDrawBones(Bone* const, Camera* const) const;
 
 private:
 	char* name;
