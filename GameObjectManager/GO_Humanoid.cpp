@@ -55,7 +55,7 @@ void GO_Humanoid::update(const float gametime) const {
 }
 
 void GO_Humanoid::draw(Camera* const camera) const {
-	GameObject::draw(camera);
+	//	GameObject::draw(camera);
 	this->skeleton->drawBones(camera);
 }
 
@@ -65,7 +65,7 @@ void GO_Humanoid::setupHumanoid() {
 	this->setShader(ShaderManager::FindShader(ShaderType::Shader_Phong));
 	this->setSkeleton(SkeletonManager::FindSkeleton("humanoid2"));
 
-	this->skeleton->setAnimationPlayback(PlaybackControl::PLAY);
+	this->skeleton->setAnimationPlayback(PlaybackControl::PLAY_LOOP);
 	this->setAnimation(HumanoidAnim::Anim_Run);
 }
 

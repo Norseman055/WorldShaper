@@ -75,7 +75,7 @@ void Skeleton::setBonePose(Bone* const bone) const {
 	Bone* child = bone;
 	Bone* parent = static_cast<Bone*>(bone->getParent());
 
-	if(parent && parent != this->bones->getRoot() && child) {
+	if(parent && child) {
 		Vect start(0.0f, 0.0f, 0.0f);
 
 		parent->transform(this->animations->getCurrentAnimation());

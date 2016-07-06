@@ -6,6 +6,7 @@
 #define BONE_WIDTH 2.0f
 
 class Matrix;
+class Camera;
 
 class Bone : public PCSNode, public GO_Pyramid {
 public:
@@ -14,6 +15,7 @@ public:
 	void setBoneOrientation(Matrix* const);
 
 	void transform(Animation* const) override;
+	virtual void draw(Camera* const) const override;
 
 	Bone(const char*);
 	virtual ~Bone();
