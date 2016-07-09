@@ -75,7 +75,7 @@ void WorldShaper::update(const float gameTime) {
 }
 
 void WorldShaper::draw() {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	// Update camera for consistency
 	CameraManager::UpdateActiveCamera();

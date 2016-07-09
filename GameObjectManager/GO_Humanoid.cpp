@@ -55,7 +55,7 @@ void GO_Humanoid::update(const float gametime) const {
 }
 
 void GO_Humanoid::draw(Camera* const camera) const {
-	//	GameObject::draw(camera);
+	GameObject::draw(camera);
 	this->skeleton->drawBones(camera);
 }
 

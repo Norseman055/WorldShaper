@@ -49,7 +49,7 @@ void GLFWManager::Startup() {
 	printf("GLFW MANAGER: \tOpenGL version supported %s\n", version);
 
 	// Enable OpenGL depth-testing
-	glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
+	glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
