@@ -3,6 +3,12 @@
 #include <WorldShaper.h>
 
 int main() {
-	WorldShaper::Run();
-	return EXIT_SUCCESS;
+	try {
+		WorldShaper::Run();
+		return EXIT_SUCCESS;
+	} catch(...) {
+		printf("Exception while running WorldShaper engine!");
+		system("PAUSE");
+		return EXIT_FAILURE;
+	}
 }
